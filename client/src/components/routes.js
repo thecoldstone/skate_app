@@ -1,4 +1,4 @@
-import Profile from "../pages/profile";
+import Profile from "../pages/Profile";
 // import SimpleMap from "../components/SimpleMap"
 // import Home from '../Pages/Home/Home';
 // import Login from './Forms/Login';
