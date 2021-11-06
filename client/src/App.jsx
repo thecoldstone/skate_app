@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import React from 'react';
 import routes from './components/routes';
 import './index.css';
 import {
@@ -7,18 +7,21 @@ import {
     Routes
     } from 'react-router-dom';
 
-// export const socket = io('http://localhost:5000/');
+
+
 
 function App() {
+    var x = 5;
     return (
         <Router>
             <Routes>
                 {routes.map((route, index) => {
-                    return (
+                    return(
                         <Route
                             key={index}
                             path={route.path}
-                            element={route.component}
+                            element={<route.element/>
+                            }
                         />
                     )
                 })}

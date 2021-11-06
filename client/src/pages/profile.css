@@ -1,45 +1,45 @@
 .personalInfo,
 .groupsInfo,
 .threadsInfo {
-    margin-top: 20px;
-    min-height: 50vh;
+  margin-top: 20px;
+  min-height: 50vh;
 }
 
 .personalInfo {
-    color: rgb(0, 0, 0);
-    padding: 20px;
+  color: rgb(0, 0, 0);
+  padding: 20px;
 }
 
 /* .personalInfo { */
-    /* background-color: rgb(33, 29, 33); */
+/* background-color: rgb(33, 29, 33); */
 /* } */
 
 /* .groupsInfo { */
-    /* background-color: rgb(65, 203, 189); */
+/* background-color: rgb(65, 203, 189); */
 /* } */
 
 .group {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .group .card {
-    background-color: #5212e8;
-    color: rgb(186, 186, 186);
+  background-color: #5212e8;
+  color: rgb(186, 186, 186);
 }
 
 .group .card a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .group .remove-icon {
-    color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 
 .visit-icon {
-    float: right;
+  float: right;
 }
 
 .thread {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }

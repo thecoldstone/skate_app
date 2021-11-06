@@ -1,29 +1,17 @@
+import React, {useState} from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import './profile.css'
 
 function Profile () {
 
-    // const [user, setUser] = useState({});
-
-    // let history = useHistory();
-
-    // const userAuth = useAuthState();
-
-    // useEffect(() => {
-    //     const fetchUserData = async () => {
-    //         const response = await fetchProfile({'id': userAuth.uid}, true);
-    //         if (!response) history.push('/');
-    //         setUser(response);
-    //     };
-    //     fetchUserData();
-    // }, []);
+    const [userName, setUserName] = useState("James Bond");
 
     return (
        <Container fluid="md">
             <Row>
                 <Col>
-                    <h1>Profile</h1>
+                    <h1>{userName}</h1>
                 </Col>
             </Row>
 

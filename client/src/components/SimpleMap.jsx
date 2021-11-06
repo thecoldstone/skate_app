@@ -1,31 +1,31 @@
-// import React, {useRef, useEffect, useState} from 'react';
-// import mapboxgl from '!mapbox-gl';
+import React, {useRef, useEffect, useState} from 'react';
+import mapboxgl from '!mapbox-gl';
 
-// mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
-// function SimpleMap() {
+function SimpleMap({...props}) {
 
-//     const mapContainer = useRef(null);
-//     const map = useRef(null);
-//     const [lng, setLng] = useState(-70.9);
-//     const [lat, setLat] = useState(42.35);
-//     const [zoom, setZoom] = useState(9);
+    const mapContainer = useRef(null);
+    const map = useRef(null);
+    const [lng, setLng] = useState(-70.9);
+    const [lat, setLat] = useState(42.35);
+    const [zoom, setZoom] = useState(9);
 
-//     useEffect(() => {
-//         if (map.current) return; // initialize map only once
-//         map.current = new mapboxgl.Map({
-//         container: mapContainer.current,
-//         style: 'mapbox://styles/mapbox/streets-v11',
-//         center: [lng, lat],
-//         zoom: zoom
-//         });
-//     });
+    useEffect(() => {
+        if (map.current) return; // initialize map only once
+        map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [lng, lat],
+        zoom: zoom
+        });
+    });
 
-//     return (
-//         <div style={{ height: '100vh', width: '100%' }}>
-//             <div ref={mapContainer} className="map-container"/>
-//         </div>
-//     );
-// }
+    return (
+        <div style={{ height: '100vh', width: '100%' }}>
+            <div ref={mapContainer} className="map-container"/>
+        </div>
+    );
+}
 
-// export default SimpleMap;
+export default SimpleMap;
