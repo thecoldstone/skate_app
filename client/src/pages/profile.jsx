@@ -2,6 +2,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
 
+// import { useNavigate } from 'react-router-dom';
+
 
 import profile_image from '../pictures/profile/profile_main.png';
 import place_1_image from '../pictures/profile/place_1.png';
@@ -11,6 +13,10 @@ import video_1_image from '../pictures/profile/video_1.png';
 import video_2_image from '../pictures/profile/video_2.png';
 import video_3_image from '../pictures/profile/video_3.png';
 
+import instagram_icon_image from "../pictures/icons/instagram.png";
+import facebook_icon_image from "../pictures/icons/facebook_1.png";
+import tiktok_icon_image from "../pictures/icons/tiktok.png";
+
 
 import './Profile.css'
 
@@ -18,7 +24,7 @@ function Profile () {
 
     // const [user, setUser] = useState({});
 
-    // let history = useHistory();
+    // let navigate = useNavigate();
 
     // const userAuth = useAuthState();
 
@@ -32,17 +38,50 @@ function Profile () {
     // }, []);
 
     return (
-       <Container>
+       <Container fluid="md">
             <Row>
-                <Col xl="auto">
+                <Col md={2}>
                     <Image src={profile_image} roundedCircle />
                 </Col>
-                <Col>
+                <Col md={7}>
                     <Row className="text">
                         <h1>Oleksii Korniienko</h1>
                     </Row>
-                    <Row xl={2}>
-                        <Button variant="light" className="button" as="input" type="button" value="Change profile data" />{' '}
+                    <Row md={2}>
+                        <Button href="/edit_profile" variant="light" className="button" as="input" type="button" value="Change profile data" />{' '}
+                    </Row>
+                </Col>
+                <Col md={3} className="text">
+                    <Row>
+                        <Col md={8}>
+                            #someinstagram
+                        </Col>
+                        <Col>
+                            <a href="https://www.instagram.com/">
+                                <Image src={instagram_icon_image}/>
+                            </a>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={8}>
+                            #somefacebook
+                        </Col>
+                        <Col>
+                            <a href="https://www.facebook.com/">
+                                <Image className="rounded_image" src={facebook_icon_image}/>
+                            </a>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={8}>
+                            #sometiktok
+                        </Col>
+                        <Col>
+                            <a href="https://www.tiktok.com/">
+                                <Image src={tiktok_icon_image}/>
+                            </a>
+                        </Col>
+
                     </Row>
                 </Col>
             </Row>

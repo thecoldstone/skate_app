@@ -46,6 +46,10 @@ body {
     border-radius: 10px;
 }
 
+.rounded_image {
+    border-radius: 90px;
+}
+
 /* The heart of the matter */
 
 .place_videos {

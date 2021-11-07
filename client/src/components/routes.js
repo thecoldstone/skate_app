@@ -1,4 +1,5 @@
 import Profile from "../pages/Profile";
+import Edit_profile from "../pages/Edit_profile";
 // import SimpleMap from "../components/SimpleMap"
 // import Home from '../Pages/Home/Home';
 // import Login from './Forms/Login';
@@ -26,6 +27,10 @@ const routes = [
         path: '/profile',
         component: Profile(),
     },
+    {
+        path: '/edit_profile',
+        component: Edit_profile(),
+    }
 //     {
 //         path: '/user',
 //         component: User,
