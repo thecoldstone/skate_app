@@ -1,7 +1,7 @@
 import Profile from "../pages/Profile";
 import SimpleMap from "../components/SimpleMap"
 import NotFound from "../pages/NotFound";
-import Edit_profile from "../pages/Edit_profile";
+import Edit_profile from "../pages/EditProfile";
 
 const routes = [
     {   
@@ -13,13 +13,12 @@ const routes = [
         element: Profile,
     },
     {        
-        path: '/edit_profile',
-        component: Edit_profile(),
+        path: '/editProfile',
+        element: Edit_profile,
     },
     {
         path: '*',
         element: NotFound
     }
 ]
-
 export default routes;
