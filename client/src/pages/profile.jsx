@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
@@ -36,6 +37,7 @@ function Profile () {
     //     };
     //     fetchUserData();
     // }, []);
+    const [userName, setUserName] = useState("James Bond");
 
     return (
        <Container fluid="md">
@@ -45,7 +47,7 @@ function Profile () {
                 </Col>
                 <Col md={7}>
                     <Row className="text">
-                        <h1>Oleksii Korniienko</h1>
+                        <h1>{userName}</h1>
                     </Row>
                     <Row md={2}>
                         <Button href="/edit_profile" variant="light" className="button" as="input" type="button" value="Change profile data" />{' '}
