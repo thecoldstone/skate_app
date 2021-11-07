@@ -3,7 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
 
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 import profile_image from '../pictures/profile/profile_main.png';
@@ -25,7 +26,7 @@ function Profile () {
 
     // const [user, setUser] = useState({});
 
-    // let navigate = useNavigate();
+    const navigate = useNavigate();
 
     // const userAuth = useAuthState();
 
@@ -39,6 +40,10 @@ function Profile () {
     // }, []);
     const [userName, setUserName] = useState("James Bond");
 
+    function edit_prof_button_click() {
+        navigate("/editProfile");
+    }
+
     return (
        <Container fluid="md">
             <Row>
@@ -50,11 +55,12 @@ function Profile () {
                         <h1>{userName}</h1>
                     </Row>
                     <Row md={2}>
-                        <Button href="/edit_profile" variant="light" className="button" as="input" type="button" value="Change profile data" />{' '}
+                        {/* <Link to="/Edit_profile"> SOME TEXt </Link> */}
+                        <Button variant="light" className="button" as="input" type="button" value="Change profile data" onClick={edit_prof_button_click}/>
                     </Row>
                 </Col>
                 <Col md={3} className="text">
-                    <Row>
+                    <Row className="links">
                         <Col md={8}>
                             #someinstagram
                         </Col>
@@ -64,7 +70,7 @@ function Profile () {
                             </a>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className="links">
                         <Col md={8}>
                             #somefacebook
                         </Col>
@@ -74,7 +80,7 @@ function Profile () {
                             </a>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className="links">
                         <Col md={8}>
                             #sometiktok
                         </Col>
