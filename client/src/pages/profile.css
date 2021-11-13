@@ -12,10 +12,20 @@ body {
     font-family: main_font;
 }
 
-.text {
+.text, .text-right {
     color: rgb(255, 255, 255);
     margin-top: 1px;
     margin-bottom: 1px;
+}
+
+.edit_prof_row {
+    color: rgb(255, 255, 255);
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.text-right {
+    text-align: right;
 }
 
 .title, .save_button {
@@ -27,7 +37,7 @@ body {
 }
 
 .title {
-    padding-left: 7%;
+    padding-left: 15%;
     margin-bottom: 25px;
 }
 
@@ -50,7 +60,7 @@ body {
 }
 
 .save_button_cont {
-    height: 445px;
+    height: 365px;
     align-content: flex-end;
 }
 
@@ -86,6 +96,10 @@ body {
     border-radius: 12px;
 }
 
+.button {
+    width: 200px;
+}
+
 .limiter {
     background-color: rgb(255, 255, 255);
     border-color: rgb(255, 255, 255);
@@ -111,7 +125,7 @@ body {
 .place_videos {
     /* overflow-x: scroll; */
     white-space: nowrap;
-    max-width: 69%;
+    max-width: 100%;
 }
 
 .place_row {
