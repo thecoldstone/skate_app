@@ -4,7 +4,7 @@ import NotFound from "../pages/NotFound";
 import Edit_profile from "../pages/EditProfile";
 
 const routes = [
-    {   
+    {
         path: '/',
         element: SimpleMap,
     },
@@ -12,7 +12,7 @@ const routes = [
         path: '/profile',
         element: Profile,
     },
-    {        
+    {
         path: '/editProfile',
         element: Edit_profile,
     },

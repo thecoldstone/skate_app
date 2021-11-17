@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
 import { useNavigate, Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
@@ -30,14 +31,15 @@ function Profile () {
 
     // const userAuth = useAuthState();
 
-    // useEffect(() => {
-    //     const fetchUserData = async () => {
-    //         const response = await fetchProfile({'id': userAuth.uid}, true);
-    //         if (!response) history.push('/');
-    //         setUser(response);
-    //     };
-    //     fetchUserData();
-    // }, []);
+    useEffect(() => {
+        const fetchUserData = async () => {
+            // const response = await fetchProfile({'id': userAuth.uid}, true);
+            const response = await axios.get('/profile');
+            // if (!response) history.push('/');
+            // setUser(response);
+        };
+        fetchUserData();
+    }, []);
     const [userName, setUserName] = useState("James Bond");
 
     function edit_prof_button_click() {
