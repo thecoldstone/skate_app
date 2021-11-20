@@ -2,11 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import close_icon_img from "../../pictures/icons/close_button.png";
-
-import profile_image from '../../pictures/profile/profile_main.png';
 
 import './Profile.css'
 import axios from 'axios';
@@ -14,12 +12,14 @@ import axios from 'axios';
 function Edit_profile () {
     const navigate = useNavigate();
 
-    let [userInfo, setUserinfo] = useState({});
+    let [searchParams, setSearchParams] = useSearchParams();
+    let userId = searchParams.get("id");
 
+    let [userImage, setUserImage] = useState("");
     useEffect(() => {
         const fetchUserData = async () => {
-            let response = await axios.get('/editProfile');
-            setUserinfo(response.data);
+            let response = await axios.post('/profile', JSON.stringify({'id': userId}));;
+            setUserImage(response.data.image);
         };
         fetchUserData();
     }, []);
@@ -34,6 +34,7 @@ function Edit_profile () {
 
     async function save_changes() {
         let request = {
+            "id" : userId,
             "email" : newEmail,
             "pass" : newPass,
             "rep_pass" : newRepPass,
@@ -43,7 +44,7 @@ function Edit_profile () {
             "tiktok" : newTikTok
         }
         let response = await axios.post('/editProfile', JSON.stringify(request));
-        navigate("/profile");
+        navigate("/profile?id=" + userId);
     }
 
     return (
@@ -53,7 +54,7 @@ function Edit_profile () {
                     Edit profile
                 </Col>
                 <Col md={2}>
-                    <a href="/profile">
+                    <a href={"/profile?id=" + userId}>
                         <Image className="video_img" src={close_icon_img}/>
                     </a>
                 </Col>
@@ -61,7 +62,7 @@ function Edit_profile () {
 
             <Row>
                 <Col className="profile_image">
-                    <Image src={profile_image} roundedCircle />
+                    <Image src={userImage} roundedCircle />
                 </Col>
             </Row>
 

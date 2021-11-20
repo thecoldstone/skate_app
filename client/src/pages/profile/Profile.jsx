@@ -4,7 +4,7 @@ import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 
 
@@ -27,18 +27,27 @@ import './Profile.css'
 function Profile () {
     const navigate = useNavigate();
 
+    let [searchParams, setSearchParams] = useSearchParams();
+    let userId = searchParams.get("id");
+
+    // console.log(userId)
+
     const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
         const fetchUserData = async () => {
-            let response = await axios.get('/profile');
+            let response = await axios.post('/profile', JSON.stringify({'id': userId}));
             setUserInfo(response.data);
         };
         fetchUserData();
     }, []);
 
     function edit_prof_button_click() {
-        navigate("/editProfile");
+        navigate("/editProfile?id=" + userId);
+    }
+
+    function open_spot(spotId) {
+        navigate("/spot?id=" + spotId);
     }
 
     if (userInfo && userInfo.my_spots && userInfo.my_spots_info && userInfo.my_spots_videos) {
@@ -108,10 +117,10 @@ function Profile () {
                                      {userInfo.my_spots_info[spot].name}
                                  </Row>
                                  <Row className="text">
-                                     Rank: 71
+                                     {userInfo.my_spots_info[spot].user_ranks[userId]}
                                  </Row>
                                  <Row>
-                                     <Button variant="light" className="place_button" as="input" type="button" value="Open group page" />{' '}
+                                     <Button variant="light" className="place_button" as="input" type="button" value="Open group page" onClick={() => open_spot(userInfo.my_spots_info[spot].id)}/>
                                  </Row>
                              </Col>
                          </Row>
