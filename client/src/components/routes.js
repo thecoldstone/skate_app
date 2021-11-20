@@ -1,7 +1,7 @@
-import Profile from "../pages/Profile";
+import Profile from "../pages/profile/Profile";
+import Edit_profile from "../pages/profile/EditProfile";
 import SimpleMap from "../components/SimpleMap"
 import NotFound from "../pages/NotFound";
-import Edit_profile from "../pages/EditProfile";
 
 const routes = [
     {
