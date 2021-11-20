@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template
 
-from backend.profile import Profile
+from backend.profile import Profile, EditProfile
 
 def add_api_resources(app):
     from flask_restful import Api
@@ -10,6 +10,7 @@ def add_api_resources(app):
 
     ''' /api/ is a basement of this restapi ! '''
     api.add_resource(Profile, '/profile')
+    api.add_resource(EditProfile, '/editProfile')
 
 
 def create_app(test_config=None):
