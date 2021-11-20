@@ -1,0 +1,11 @@
+.header {
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
+    color: rgb(12, 10, 40);
+    font-size: 35px;
+    text-align: center;
+}
+
+.main-image {
+    align-content: center;
+}
