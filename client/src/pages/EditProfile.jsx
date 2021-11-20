@@ -8,8 +8,13 @@ import close_icon_img from "../pictures/icons/close_button.png";
 import profile_image from '../pictures/profile/profile_main.png';
 
 import './Profile.css'
+import axios from 'axios';
 
 function Edit_profile () {
+
+    async function save_changes() {
+       let response = await axios.post('/editProfile', JSON.stringify({'kurlyk':'alibaba'}));
+    }
 
     return (
         <Container fluid="md">
@@ -93,7 +98,7 @@ function Edit_profile () {
                 {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group> */}
-                <Button className="save_button" variant="light" type="button">
+                <Button className="save_button" variant="light" type="button" onClick={save_changes}>
                     Save changes
                 </Button>
             </Row>
