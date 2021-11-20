@@ -5,13 +5,9 @@ import {
     BrowserRouter as Router,
     Route,
     Routes
-    } from 'react-router-dom';
-
-
-
+} from 'react-router-dom';
 
 function App() {
-    var x = 5;
     return (
         <Router>
             <Routes>
@@ -20,8 +16,7 @@ function App() {
                         <Route
                             key={index}
                             path={route.path}
-                            element={<route.element/>
-                            }
+                            element={<route.element/>}
                         />
                     )
                 })}

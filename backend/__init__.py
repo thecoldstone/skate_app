@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template
 
 from backend.profile import Profile, EditProfile
+from backend.spot import Spot, Comment_add
 
 def add_api_resources(app):
     from flask_restful import Api
@@ -11,6 +12,8 @@ def add_api_resources(app):
     ''' /api/ is a basement of this restapi ! '''
     api.add_resource(Profile, '/profile')
     api.add_resource(EditProfile, '/editProfile')
+    api.add_resource(Spot, '/spot')
+    api.add_resource(Comment_add, '/comment_add')
 
 
 def create_app(test_config=None):

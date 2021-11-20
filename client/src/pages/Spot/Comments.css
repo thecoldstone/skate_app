@@ -1,0 +1,33 @@
+.contributors {
+    margin: 0.2rem 0 0.2rem 0;
+}
+
+.remove-icon {
+    float: right;
+    color: rgba(0, 0, 0, .1);
+}
+
+.remove-icon:hover {
+    transition: ease 0.2s;
+    color: rgba(255, 73, 73, 0.885);
+}
+
+.heart-icon:hover {
+    transition: ease 0.2s;
+    color: rgba(255, 73, 73, 0.885);  
+}
+
+.plus-icon {
+    color: rgba(255, 73, 73, 0.1);
+}
+
+.plus-icon:hover {
+    transition: ease 0.2s;
+    color: rgba(255, 73, 73, 0.885);  
+}
+
+.vertical-scrollable {
+    overflow-y: auto;
+    float: none;
+    height: 800px;
+}
