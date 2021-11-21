@@ -1,3 +1,10 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
 .map-container {
-  height: 700px;
+  /* 56px is the height of the navbar => we substract 56 px in order to fit perfectly the map to the screen size */
+  height: calc(100vh - 56px);
 }

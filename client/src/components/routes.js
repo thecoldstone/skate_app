@@ -1,12 +1,12 @@
 import Profile from "../pages/Profile";
-import SimpleMap from "../components/SimpleMap"
+import HomePage from "../pages/HomePage"
 import NotFound from "../pages/NotFound";
 import Edit_profile from "../pages/EditProfile";
 
 const routes = [
     {
         path: '/',
-        element: SimpleMap,
+        element: HomePage,
     },
     {
         path: '/profile',
