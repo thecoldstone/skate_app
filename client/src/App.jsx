@@ -6,10 +6,12 @@ import {
     Route,
     Routes
 } from 'react-router-dom';
+import {NavigationBar} from './components/homepage/index';
 
 function App() {
     return (
         <Router>
+            <NavigationBar/>
             <Routes>
                 {routes.map((route, index) => {
                     return(

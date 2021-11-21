@@ -1,14 +1,15 @@
 import React, {useRef, useEffect, useState} from 'react';
+import {Container, Col, Row} from 'react-bootstrap';
 import mapboxgl from '!mapbox-gl';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
-function SimpleMap({...props}) {
+function Map() {
 
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
+    const [lng, setLng] = useState(15);
+    const [lat, setLat] = useState(50);
     const [zoom, setZoom] = useState(9);
 
     useEffect(() => {
@@ -18,14 +19,22 @@ function SimpleMap({...props}) {
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [lng, lat],
         zoom: zoom
+
         });
+        map.current.addControl(new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true,
+            showUserHeading: true
+        }));
     });
 
     return (
-        <div style={{ height: '100vh', width: '100%' }}>
+        <Row>
             <div ref={mapContainer} className="map-container"/>
-        </div>
+        </Row>
     );
 }
 
-export default SimpleMap;
+export default Map;
