@@ -52,7 +52,7 @@ function Profile () {
 
     if (userInfo && userInfo.my_spots && userInfo.my_spots_info && userInfo.my_spots_videos) {
         return (
-            <Container fluid="md">
+            <Container className="body-profile" fluid="md">
                  <Row>
                      <Col md="auto">
                          <Image src={userInfo.image} roundedCircle />

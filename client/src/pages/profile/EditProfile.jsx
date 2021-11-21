@@ -48,7 +48,7 @@ function Edit_profile () {
     }
 
     return (
-        <Container fluid="md">
+        <Container className="body-profile" fluid="md">
             <Row className="title">
                 <Col md={10}>
                     Edit profile

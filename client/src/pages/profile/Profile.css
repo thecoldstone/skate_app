@@ -3,21 +3,24 @@
     src: url("../../fonts/Aldrich-Regular.ttf");
 }
 
-body {
+/* body {
     margin-left: 25%;
     margin-right: 25%;
     margin-top: 1%;
     margin-bottom: 1%;
     background-image: linear-gradient(to right ,rgb(255, 255, 255) 25%, rgb(12, 10, 40) 25% 75%, rgb(255, 255, 255) 75% 100%);
     font-family: main_font;
-}
+} */
 
 .body-profile {
     margin-left: 25%;
     margin-right: 25%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    background-image: linear-gradient(to right ,rgb(255, 255, 255) 25%, rgb(12, 10, 40) 25% 75%, rgb(255, 255, 255) 75% 100%);
+    /* margin-top: 1%; */
+    /* margin-bottom: 1%; */
+    background-color: rgb(12, 10, 40);
+    width: 50%;
+    height: 100vh;
+    /* background-image: linear-gradient(to right ,rgb(255, 255, 255) 25%, rgb(12, 10, 40) 25% 75%, rgb(255, 255, 255) 75% 100%); */
     font-family: main_font;
 }
 
