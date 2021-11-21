@@ -29,5 +29,13 @@
 .vertical-scrollable {
     overflow-y: auto;
     float: none;
-    height: 800px;
+    height: 600px;
 }
+
+a, a:hover {
+    color: rgb(115, 113, 33);
+}
+
+a:link {
+    text-decoration: none;
+  }

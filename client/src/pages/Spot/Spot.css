@@ -6,6 +6,14 @@
     text-align: center;
 }
 
-.main-image {
-    align-content: center;
+.spot-detail {
+    height: 10%;
+    width: 100%;
+    object-fit: fill;
+}
+
+.chat {
+    height: 80%;
+    width: 100%;
+    object-fit: cover;
 }
