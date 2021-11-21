@@ -8,9 +8,13 @@ function NavigationBar()
                 <Navbar.Brand href="/">Skate</Navbar.Brand>
                 <Navbar.Toggle aria-controls="gearwheel-nav"/>
                 <Navbar.Collapse id="gearwheel-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link>communities</Nav.Link>
+                        <Nav.Link>aboutUs</Nav.Link>
+                    </Nav>
                     <Nav>
-                        <Nav.Link href="/login">Login</Nav.Link>
-                        <Nav.Link href="/signup">Signup</Nav.Link>
+                        <Nav.Link href="/login">login</Nav.Link>
+                        <Nav.Link href="/signup">signup</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
