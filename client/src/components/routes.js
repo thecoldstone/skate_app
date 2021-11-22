@@ -1,13 +1,23 @@
+import HomePage from "../pages/HomePage";
+import Login from "../pages/authorization/Login";
+import Signup from "../pages/authorization/Signup";
 import Profile from "../pages/profile/Profile";
 import Edit_profile from "../pages/profile/EditProfile";
-import SimpleMap from "../components/SimpleMap"
 import NotFound from "../pages/NotFound";
 import Spot from "../pages/Spot/Spot";
 
 const routes = [
     {
         path: '/',
-        element: SimpleMap,
+        element: HomePage,
+    },
+    {
+        path: '/login',
+        element: Login,
+    },
+    {
+        path: '/signup',
+        element: Signup
     },
     {
         path: '/profile',
