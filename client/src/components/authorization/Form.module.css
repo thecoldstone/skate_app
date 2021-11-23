@@ -1,0 +1,17 @@
+.f_pwd {
+    display: flex;
+    justify-content: right;
+    color: rgba(0, 0, 0, .1);
+}
+
+.btn_login {
+    width: 100%;
+}
+
+.btn_login:hover {
+    background: #000;
+}
+
+.btn_login_social {
+    
+}
