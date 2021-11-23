@@ -1,6 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react';
 import {Container, Col, Row} from 'react-bootstrap';
 import mapboxgl from '!mapbox-gl';
+import mapStyles from './Map.module.css';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
@@ -32,7 +33,7 @@ function Map() {
 
     return (
         <Row>
-            <div ref={mapContainer} className="map-container"/>
+            <div ref={mapContainer} className={mapStyles.map_container}/>
         </Row>
     );
 }
