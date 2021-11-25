@@ -1,33 +1,37 @@
-import {Col, Row, Form, FormGroup, Button} from 'react-bootstrap';
-import formStyles from './Form.module.css';
+import {Col, Row, Form as RForm, FormGroup, Button} from 'react-bootstrap';
+import {FcGoogle} from 'react-icons/fc';
+import {BsFacebook} from 'react-icons/bs';
 
-function FormComponent() {
+import {SocialNetworkButton} from '.';
+import LoginForm from './forms/LoginForm';
+import SignupForm from './forms/SignupForm';
+
+function Form(props) {
+    const currentForm = props.type === "Login" ? <LoginForm/> : <SignupForm/>;
+    const currentTitle = props.type === "Login" ? "Login" : "Signup";
+
     return(
-        <Form style={{width: "400px"}}>
-            <FormGroup controlId="email" className="mb-3 mt-3">
-                <Form.Control
-                    style={{height: "50px"}}
-                    type="email"
-                    placeholder="Enter your email or login"/>
-            </FormGroup>
-            <FormGroup controlId="password" className="mb-3">
-                <Form.Control
-                    style={{height: "50px"}}
-                    type="password"
-                    placeholder="Enter your password"/>
-            </FormGroup>
-            <FormGroup>
-                <Col className={formStyles.f_pwd}><p>Forgot password?</p></Col>
-            </FormGroup>
-            <FormGroup>
-                <Button
-                    className={formStyles.btn_login}
-                    variant="dark">
-                    Login
-                </Button>
-            </FormGroup>
-        </Form>
+        <>
+            <Row>
+                <Col style={{textAlign: "center"}}>
+                    <h3>{currentTitle}</h3>
+                </Col>
+            </Row>
+            <Row>
+                {currentForm}
+            </Row>
+            <Row 
+                className="mt-5 mb-5"
+                style={{height: "2px", backgroundColor: "rgba(0, 0, 0, .1)"}}>     
+            </Row>
+            <Row className="mb-2">
+                <SocialNetworkButton icon={<FcGoogle style={{marginTop: "-5px"}}/>} text="Continue with Google"/>
+            </Row>
+            <Row>
+                <SocialNetworkButton icon={<BsFacebook style={{marginTop: "-5px"}}/>} text="Continue with Facebook"/>
+            </Row>
+        </>
     );
 }
 
-export default FormComponent;
+export default Form;

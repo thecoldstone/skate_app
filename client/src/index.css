@@ -1,5 +1,28 @@
 body,
 html {
-  margin: 0;
-  padding: 0;
+    margin: 0px;
+    padding: 0px; 
+}
+
+/* adjustment for the scrollbar in order to make a white bar on the right side smaller (often occurrences in the Safari/Chrome) */
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  background-color: #F5F5F5;
+  overflow-x: auto;
+}
+
+::-webkit-scrollbar
+{
+  width: 10px !important;
+  overflow-x: auto;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(77, 67, 67, 0.466);
+  background-color: #3c8dbc;
+  overflow-x: auto;
 }

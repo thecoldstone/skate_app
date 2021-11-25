@@ -1,7 +1,7 @@
-import FormComponent from './Form';
+import Form from './Form';
 import SocialNetworkButton from './SocialNetworkButton';
 
 export {
-    FormComponent,
+    Form,
     SocialNetworkButton,
 } 
