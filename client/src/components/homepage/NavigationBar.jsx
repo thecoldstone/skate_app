@@ -1,11 +1,12 @@
 import {Container, Navbar, Nav} from 'react-bootstrap';
+import navigationStyles from './NavigationBar.module.css';
 
 function NavigationBar()
 {
     return(
         <Navbar bg="light" expand="lg" sticky="top">
-            <Container>
-                <Navbar.Brand href="/">Skate</Navbar.Brand>
+            <Container style={{margin: "-15px 20px"}}>
+                <Navbar.Brand href="/"><p className={navigationStyles.logo}>Skate</p></Navbar.Brand>
                 <Navbar.Toggle aria-controls="gearwheel-nav"/>
                 <Navbar.Collapse id="gearwheel-nav">
                     <Nav className="me-auto">

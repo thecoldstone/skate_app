@@ -48,7 +48,7 @@ function TabFeed() {
 
     return(
         <Tab.Container activeKey={key} onSelect={(k) => setKey(k)}>
-                                <Row className="mt-sm-2"> 
+                                <Row className="mt-sm-2" style={{position: "fixed"}}> 
                                     <Nav variant="pills">
                                         <Nav.Item>
                                             <Nav.Link href="#all" eventKey="all">All</Nav.Link>
@@ -67,7 +67,7 @@ function TabFeed() {
                                         </Nav.Item>
                                     </Nav> 
                                 </Row>
-                                <Row className="my-sm-4">
+                                <Row style={{marginTop: "80px"}}>
                                     <Tab.Content>
                                         <Tab.Pane eventKey="all">
                                             {renderFeedItems()}

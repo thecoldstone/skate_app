@@ -1,25 +1,31 @@
-import {Container, Row, Col, Image} from 'react-bootstrap';
-import FormComponent from './Form';
+import {Container, Row, Col, Image, Button} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import {Form} from '../../components/authorization/index';
 
 function Login() {
     return(
         <Container fluid style={{backgroundColor: "#F2F2F2"}}>
             <Row>
                 <Col md={6}>
-                    <Row className="justify-content-md-center" style={{margin: "20% 0"}}>
+                    <Row className="justify-content-md-center" style={{margin: "10% 0"}}>
                         <Col md="auto">
-                            <Row>
-                                <Col><h2>Login</h2></Col>
-                            </Row>
-                            <Row>
-                                <FormComponent/> 
+                            <Form type="Login"/>
+                            <Row className="mt-5">
+                                <Col style={{textAlign: "center"}}>
+                                    <Row>
+                                        <p>Don't have an account</p>
+                                    </Row>
+                                    <Row>
+                                        <Link to="/signup" style={{color: "blue"}}>Signup</Link>
+                                    </Row>
+                                </Col>
                             </Row>
                         </Col>
                     </Row>
                 </Col>
                 <Col md={6}>
                     <Row>
-                        <Image src="assets/skatepark_img_login.png" style={{objectFit: "cover", height: "calc(100vh - 56px)", padding: "0"}}/>
+                        <Image src="assets/skatepark_img_login.png" style={{objectFit: "cover", height: "calc(100vh - 60px)", padding: "0"}}/>
                     </Row>
                 </Col>
             </Row>
