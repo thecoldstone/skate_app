@@ -19,8 +19,6 @@ function Profile () {
     let [searchParams, setSearchParams] = useSearchParams();
     let userId = searchParams.get("id");
 
-    // console.log(userId)
-
     const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
@@ -39,14 +37,14 @@ function Profile () {
         navigate("/spot?id=" + spotId);
     }
 
-    if (userInfo && userInfo.my_spots && userInfo.my_spots_info && userInfo.my_spots_videos) {
+    if (userInfo && userInfo.my_spots && userInfo.my_spots_info) {
         return (
             <Container className="body-profile" fluid="md">
                  <Row>
                      <Col md="auto">
-                         <Image src={userInfo.image} roundedCircle />
+                         <Image src={userInfo.image} roundedCircle className="title-panel" />
                      </Col>
-                     <Col md="auto">
+                     <Col md={6}>
                          <Row className="text">
                              <h1>{userInfo.name}</h1>
                          </Row>
@@ -116,11 +114,12 @@ function Profile () {
                          <Row>
                              <Col xl="auto" className="place_videos">
                                  <Container className="horizontal-scrollable">
-                                    {userInfo.my_spots_videos[spot].map((video, video_id) =>
+                                    {userInfo.my_spots_info[spot]["videos"].map((video, video_id) =>
                                         <Col className="col-xs-4 text-center" key={video_id}>
-                                            <a href={video.url}>
-                                                <Image className="video_img" src={video.image}/>
-                                            </a>
+                                            <iframe
+                                                className = "video_img" 
+                                                src="https://www.youtube.com/embed/z-99see1eKw">
+                                            </iframe>
                                         </Col>
                                     )}
                                  </Container>

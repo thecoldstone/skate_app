@@ -1,4 +1,4 @@
-actual_user = -1
+actual_user = 0
 
 users = {
     0 : {
@@ -9,56 +9,8 @@ users = {
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
-        "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_spots_videos" : {
-            0 : [
-                {
-                    "image": "https://picsum.photos/id/758/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/770/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/769/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                }
-            ],
-            1 : [
-                {
-                    "image": "https://picsum.photos/id/768/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/767/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                }
-            ],
-            2 : [
-                {
-                    "image": "https://picsum.photos/id/766/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/765/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/764/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/760/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/757/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                }
-            ]
-        }
+        "my_spots" : [0],
+        "my_spots_info" : {}
     },
     1 : {
         "image" : "https://picsum.photos/id/1003/100/100",
@@ -69,55 +21,7 @@ users = {
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
         "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_spots_videos" : {
-            0 : [
-                {
-                    "image": "https://picsum.photos/id/758/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/770/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/769/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                }
-            ],
-            1 : [
-                {
-                    "image": "https://picsum.photos/id/768/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/767/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                }
-            ],
-            2 : [
-                {
-                    "image": "https://picsum.photos/id/766/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/765/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/764/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/760/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/757/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                }
-            ]
-        }
+        "my_spots_info" : {}
     },
     2 : {
         "image" : "https://picsum.photos/id/1001/100/100",
@@ -128,55 +32,7 @@ users = {
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
         "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_spots_videos" : {
-            0 : [
-                {
-                    "image": "https://picsum.photos/id/758/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/770/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/769/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                }
-            ],
-            1 : [
-                {
-                    "image": "https://picsum.photos/id/768/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/767/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                }
-            ],
-            2 : [
-                {
-                    "image": "https://picsum.photos/id/766/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/765/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/764/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/760/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                },
-                {
-                    "image": "https://picsum.photos/id/757/150/85",
-                    "url":"https://www.youtube.com/watch?v=MlcRss1uzS0"
-                }
-            ]
-        }
+        "my_spots_info" : {}
     }
 }
 
@@ -194,7 +50,21 @@ spots = {
             0 : 71,
             1 : 30,
             2 : 37
-        }
+        },
+        "videos" : [
+            {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 1,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 2,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            }
+        ]
     },
     1 : {
         "name" : "Another Beach",
@@ -209,7 +79,29 @@ spots = {
             0 : 65,
             1 : 11,
             2 : 33
-        }
+        },
+        "videos" : [
+            {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 1,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 1,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 2,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            }
+        ]
     },
     2 : {
         "name" : "test Beach",
@@ -224,7 +116,45 @@ spots = {
             0 : 31,
             1 : 39,
             2 : 97
-        }
+        },
+        "videos" : [
+            {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 1,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 1,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 1,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            },
+            {
+                "user_id" : 2,
+                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+            }
+        ]
     }
 }
 
