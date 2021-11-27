@@ -5,17 +5,6 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-
-
-// import profile_image from '../../pictures/profile/profile_main.png';
-// import profile_images_folder from '../../pictures/profile';
-// import place_1_image from '../../pictures/profile/place_1.png';
-// import place_2_image from '../../pictures/profile/place_2.png';
-
-// import video_1_image from '../../pictures/profile/video_1.png';
-// import video_2_image from '../../pictures/profile/video_2.png';
-// import video_3_image from '../../pictures/profile/video_3.png';
 
 import instagram_icon_image from "../../pictures/icons/instagram.png";
 import facebook_icon_image from "../../pictures/icons/facebook_1.png";

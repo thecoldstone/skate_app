@@ -1,3 +1,5 @@
+actual_user = -1
+
 users = {
     0 : {
         "image" : "https://picsum.photos/id/1005/100/100",
