@@ -14,12 +14,9 @@ class Profile(Resource):
             temp_videos = []
             for video in actual_user["my_spots_info"][spot]["videos"]:
                 if video["user_id"] == int(json_data["id"]):
-                    # print("need_to_add : " + str(video))
                     temp_videos.append(video)
             actual_user["my_spots_info"][spot]["videos"] = copy.deepcopy(temp_videos)
         
-        # print(db.get_spot(0))
-        # print(actual_user["my_spots_info"][0])
         return actual_user
     
     def get(self):
@@ -55,7 +52,6 @@ class EditProfile(Resource):
             actual_user["tiktok"] = json_data["tiktok"]
 
         if "spot_id" in json_data:
-            print(json_data["spot_id"])
             if int(json_data["spot_id"]) not in actual_user["my_spots"]:
                 actual_user["my_spots"].append(int(json_data["spot_id"]))
             else:
