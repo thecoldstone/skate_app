@@ -4,12 +4,11 @@ import { Container, Row, Col, Card} from 'react-bootstrap';
 import Comments from './Comments';
 import Comment from './Comment';
 
-function Chat({spot}) {
+function Chat({spot, spotId}) {
     return (
         <Container fluid="md">
             <Comments spot={spot}/>
-            <Comment spot={spot}/>
-            {/* <Comment chat={chat}/> */}
+            <Comment spot={spot} spotId={spotId}/>
         </Container>
     )
 }

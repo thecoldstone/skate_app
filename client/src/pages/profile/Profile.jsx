@@ -120,7 +120,7 @@ function Profile () {
                                      {userInfo.my_spots_info[spot].user_ranks[userId]}
                                  </Row>
                                  <Row>
-                                     <Button variant="light" className="place_button" as="input" type="button" value="Open group page" onClick={() => open_spot(userInfo.my_spots_info[spot].id)}/>
+                                     <Button variant="light" className="place_button" as="input" type="button" value="Open group page" onClick={() => open_spot(spot)}/>
                                  </Row>
                              </Col>
                          </Row>

@@ -14,7 +14,7 @@ function Comments({spot}) {
                     <Col>
                         <Card>
                             <Card.Body>
-                                <Link to={`/user?id=${comment.userId}`}>{comment.userName}</Link>
+                                <Link to={`/profile?id=${comment.userId}`}>{comment.userName}</Link>
                                 <Card.Text>
                                     {comment.comment}
                                 </Card.Text>
