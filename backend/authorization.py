@@ -10,7 +10,6 @@ class Login(Resource):
         return {"user_id":db.actual_user}
     
     def get(self):
-        print("HERE")
         return {"user_id" : db.actual_user}
 
 
