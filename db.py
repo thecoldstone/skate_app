@@ -1,3 +1,5 @@
+actual_user = -1
+
 spots = {
     "venice" : {
         "id" : 1,
