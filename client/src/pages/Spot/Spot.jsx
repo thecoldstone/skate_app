@@ -19,9 +19,7 @@ function Spot() {
         const fetchSpotData = async () => {
             try {
                 let response = await axios.post('/spot', JSON.stringify({'id': spotId}));
-                let data = await response.data;
-                setSpot(data);
-                console.log(data);
+                setSpot(response.data);
             } catch(error){
                 console.log(error);
             }
@@ -37,7 +35,7 @@ function Spot() {
             <Row className="header">
                 <h1>{spot.name}</h1>
             </Row>
-            <Chat className="chat" spot={spot}/> 
+            <Chat className="chat" spot={spot} spotId={spotId}/> 
         </Container>
     )
 }

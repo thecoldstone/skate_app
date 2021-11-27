@@ -4,7 +4,7 @@ import { Row, Col, Form, FormLabel, Button } from 'react-bootstrap';
 import axios from 'axios';
 import './Comment.css';
 
-function Comment({spot}) {
+function Comment({spot, spotId}) {
 
     const [comment, setComment] = useState("");
 
@@ -26,7 +26,7 @@ function Comment({spot}) {
         try {
             let _comment = await comment;
             await setComment("");
-            await addComment({'id': spot.id, 'comment': {'userId': 111, 'userName' : 'Jason Statham', 'comment': _comment}});
+            await addComment({'id': spotId, 'comment': {'userId': 111, 'userName' : 'Jason Statham', 'comment': _comment}});
             window.location.reload();
         } catch (error) {
             console.log(error);
