@@ -5,7 +5,7 @@ from backend import create_app
 
 # Set up the application
 app = create_app()
-CORS(app)
+CORS(app, origins=["http://localhost:3000"])
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
