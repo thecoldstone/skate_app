@@ -51,6 +51,23 @@ const places = {
         "address": "Brno-Židenice, Juliánov",
         "id": "3"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78,
+          38.910525
+        ]
+      },
+      "properties": {
+        "title": "Photo#1",
+        "type": "photo",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
+        "address": "Brno-Židenice, Juliánov",
+        "id": "4"
+      }
     }
   ]
 };

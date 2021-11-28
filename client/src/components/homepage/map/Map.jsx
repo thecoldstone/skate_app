@@ -1,5 +1,4 @@
 import {useRef, useContext} from 'react';
-import {Row} from 'react-bootstrap';
 import MapContext from './MapContext';
 import mapStyles from './Map.module.css';
 

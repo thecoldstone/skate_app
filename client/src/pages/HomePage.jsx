@@ -47,14 +47,14 @@ function HomePage() {
 
     return(
         <MapContext.Provider value={{map, mapContainer}}>
-            <Container fluid>
+            <Container>
                 <Row>
-                    <Col md={{span: 6, order: 1}} style={{zIndex: "1"}}>
+                    <Col md={{order: 1}} style={{zIndex: "1"}}>
                         <Row>
                             <Map/>
                         </Row>
                     </Col>
-                    <Col md={6}>
+                    <Col sm={6}>
                         <Row>
                             <TabFeed/>
                         </Row>
