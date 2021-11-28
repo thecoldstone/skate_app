@@ -16,11 +16,19 @@ class Profile(Resource):
                 if video["user_id"] == int(json_data["id"]):
                     temp_videos.append(video)
             actual_user["my_spots_info"][spot]["videos"] = copy.deepcopy(temp_videos)
-        
+
+        for friend in actual_user["my_friends"]:
+            actual_user["my_friends_info"][friend] = copy.deepcopy(db.get_user(friend))
+
+        if int(json_data["id"]) == db.actual_user:
+            actual_user["is_my_page"] = True
+        else:
+            actual_user["is_my_page"] = False
+
         return actual_user
     
     def get(self):
-        return {"ERROR":"POST REQUEST ONLY!"}
+        return copy.deepcopy(db.users)
 
 
 class EditProfile(Resource):
@@ -56,6 +64,12 @@ class EditProfile(Resource):
                 actual_user["my_spots"].append(int(json_data["spot_id"]))
             else:
                 actual_user["my_spots"].remove(int(json_data["spot_id"]))
+        
+        if "friend_id" in json_data:
+            if int(json_data["friend_id"]) not in actual_user["my_friends"]:
+                actual_user["my_friends"].append(int(json_data["friend_id"]))
+            else:
+                actual_user["my_friends"].remove(int(json_data["friend_id"]))
 
         db.set_user(json_data["id"], actual_user)
 
