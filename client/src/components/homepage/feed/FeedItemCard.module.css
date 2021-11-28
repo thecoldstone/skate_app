@@ -1,0 +1,12 @@
+.forma_djr_regular {
+    font-family: forma-djr-deck, sans-serif;
+    font-weight: 500;
+    font-style: normal; 
+}
+
+.forma_djr_medium {
+    font-family: forma-djr-deck, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: #223A88;
+}

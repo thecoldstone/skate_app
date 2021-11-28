@@ -26,3 +26,29 @@ html {
   background-color: #3c8dbc;
   overflow-x: auto;
 }
+
+.nav-link {
+  color: black;
+  font-family: forma-djr-deck, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-style: normal; 
+}
+
+.nav-link:hover {
+  color: #3c8dbc;
+}
+
+.nav-link.active {
+  color: black;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.marker {
+  border: none;
+  cursor: pointer;
+  height: 56px;
+  width: 56px;
+  background-color: #F5F5F5;
+}
