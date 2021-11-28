@@ -10,7 +10,9 @@ users = {
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
         "my_spots" : [0],
-        "my_spots_info" : {}
+        "my_spots_info" : {},
+        "my_friends" : [1],
+        "my_friends_info" : {}
     },
     1 : {
         "image" : "https://picsum.photos/id/1003/100/100",
@@ -21,7 +23,9 @@ users = {
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
         "my_spots" : [0, 1, 2],
-        "my_spots_info" : {}
+        "my_spots_info" : {},
+        "my_friends" : [0,2],
+        "my_friends_info" : {}
     },
     2 : {
         "image" : "https://picsum.photos/id/1001/100/100",
@@ -32,7 +36,9 @@ users = {
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
         "my_spots" : [0, 1, 2],
-        "my_spots_info" : {}
+        "my_spots_info" : {},
+        "my_friends" : [],
+        "my_friends_info" : {}
     }
 }
 

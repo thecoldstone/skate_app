@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Tab } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -12,9 +12,22 @@ import tiktok_icon_image from "../../pictures/icons/tiktok.png";
 
 import './Profile.css'
 
+import Places from './Places';
+import Friends from './Friends';
+
+
+// function setCurrentTabByHash(hash) {
+//     if (hash == '#places') {
+//         return 'places';
+//     }
+
+//     return 'friends';
+// }
 
 function Profile () {
     const navigate = useNavigate();
+
+    const [key, setKey] = useState('places');
 
     let [searchParams, setSearchParams] = useSearchParams();
     let userId = searchParams.get("id");
@@ -27,14 +40,32 @@ function Profile () {
             setUserInfo(response.data);
         };
         fetchUserData();
+        // setKey(setCurrentTabByHash(location.hash));
     }, []);
 
     function edit_prof_button_click() {
         navigate("/editProfile?id=" + userId);
     }
 
-    function open_spot(spotId) {
-        navigate("/spot?id=" + spotId);
+    function add_friend_button_click() {
+        axios.post('/editProfile', JSON.stringify({'id':'actual_user' ,'friend_id': userId}));
+    }
+
+    function setButtonState(){
+        // console.log(userInfo.is_my_page)
+        if (userInfo.is_my_page){
+            return (
+                <Row md={2}>
+                    <Button variant="light" className="button" as="input" type="button" value="Change profile data" onClick={edit_prof_button_click}/>
+                </Row>
+            );
+        } else {
+            return (
+                <Row md={2}>
+                    <Button variant="light" className="button" as="input" type="button" value="Add friend" onClick={add_friend_button_click}/>
+                </Row>
+            );
+        }
     }
 
     if (userInfo && userInfo.my_spots && userInfo.my_spots_info) {
@@ -48,9 +79,7 @@ function Profile () {
                          <Row className="text">
                              <h1>{userInfo.name}</h1>
                          </Row>
-                         <Row md={2}>
-                             <Button variant="light" className="button" as="input" type="button" value="Change profile data" onClick={edit_prof_button_click}/>
-                         </Row>
+                         {setButtonState()}
                      </Col>
                      <Col md="auto" className="text">
                          <Row className="links">
@@ -85,48 +114,28 @@ function Profile () {
                          </Row>
                      </Col>
                  </Row>
-     
-                 <Row className="limiter">
-                     <Col>
-                         Places
-                     </Col>
-                 </Row>
-     
-     
-                 {userInfo.my_spots.map((spot, spot_id) =>
-                     <Row key={spot_id}>
-                         <Row xl="auto" className="place_row">
-                             <Col xl="auto" className="place_icon">
-                                 <Image className="group_img" src={userInfo.my_spots_info[spot].image} roundedCircle />
-                             </Col>
-                             <Col xl="auto" className="place_info">
-                                 <Row className="text">
-                                     {userInfo.my_spots_info[spot].name}
-                                 </Row>
-                                 <Row className="text">
-                                     {userInfo.my_spots_info[spot].user_ranks[userId]}
-                                 </Row>
-                                 <Row>
-                                     <Button variant="light" className="place_button" as="input" type="button" value="Open group page" onClick={() => open_spot(spot)}/>
-                                 </Row>
-                             </Col>
-                         </Row>
-                         <Row>
-                             <Col xl="auto" className="place_videos">
-                                 <Container className="horizontal-scrollable">
-                                    {userInfo.my_spots_info[spot]["videos"].map((video, video_id) =>
-                                        <Col className="col-xs-4 text-center" key={video_id}>
-                                            <iframe
-                                                className = "video_img" 
-                                                src="https://www.youtube.com/embed/z-99see1eKw">
-                                            </iframe>
-                                        </Col>
-                                    )}
-                                 </Container>
-                             </Col>
-                         </Row>
-                     </Row>
-                 )}
+                <Tab.Container activeKey={key} onSelect={(k) => setKey(k)}>
+                    <Row className="limiter"> 
+                        <Nav variant="pills">
+                            <Nav.Item>
+                                <Nav.Link href="#places" eventKey="places">Places</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link href="#friends" eventKey="friends">Friends</Nav.Link>
+                            </Nav.Item>
+                        </Nav> 
+                    </Row>
+                    <Row>
+                        <Tab.Content>
+                            <Tab.Pane eventKey="places" >
+                                <Places userInfo={userInfo} userId={userId}/>
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="friends">
+                                <Friends userInfo={userInfo}/>
+                            </Tab.Pane>
+                        </Tab.Content>
+                    </Row>
+                </Tab.Container>
              </Container>
          )
     } else {
