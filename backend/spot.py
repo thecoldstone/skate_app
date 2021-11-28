@@ -20,6 +20,6 @@ class Comment_add(Resource):
         
         for spot_id in db.spots:
             if int(spot_id) == int(json_data['id']):
-                db.get_spot(spot_id).append(json_data['comment'])
+                db.get_spot(spot_id)['comments'].append(json_data['comment'])
 
         return {'result': "Ok"}

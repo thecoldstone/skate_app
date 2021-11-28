@@ -34,26 +34,30 @@ function Comment({spot, spotId}) {
     }
 
     return (
-        <Col className="comment">
-            <Form onSubmit={handleSubmit}>
-                <FormLabel className="comment-header">Comment</FormLabel>
-                <Form.Control 
-                    as="textarea" 
-                    rows={3} 
-                    placeholder={"Enter your comment"} 
-                    disabled={false}
-                    value={comment}
-                    onChange={e => setComment(e.target.value)}
+        <Form className="comment" onSubmit={handleSubmit}>
+             <Row className="align-items-center">
+                <Col >
+                    <FormLabel className="comment-header">Comment</FormLabel>
+                    <Form.Control 
+                        as="textarea" 
+                        rows={3} 
+                        placeholder={"Enter your comment"} 
+                        disabled={false}
+                        value={comment}
+                        onChange={e => setComment(e.target.value)}
                     />
-                <Button
-                    className="comment-button"
-                    variant="primary" 
-                    type="submit" 
-                    disabled={comment.length == 0}> 
-                    Send
-                </Button>
-            </Form>
-        </Col>
+                </Col>
+                <Col xs="auto">
+                    <Button
+                        className="comment-button"
+                        variant="primary" 
+                        type="submit" 
+                        disabled={comment.length == 0}> 
+                        Send
+                    </Button>
+                </Col>
+            </Row>
+        </Form>
     )
 }
 

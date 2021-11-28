@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card} from 'react-bootstrap';
+import React from 'react';
+import { Container } from 'react-bootstrap';
 
 import Comments from './Comments';
 import Comment from './Comment';
