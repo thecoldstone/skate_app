@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Nav, Tab} from 'react-bootstrap';
 import { useSearchParams, useLocation } from "react-router-dom";
-import axios from 'axios';
+import { useApiContext } from '../../components/AppContext';
 import Image from 'react-bootstrap/Image'
 
 import place_1_image from '../../pictures/spots/spot2.jpg';
@@ -24,6 +24,7 @@ function Spot() {
     const [key, setKey] = useState('all');
     
     const location = useLocation();
+    const api = useApiContext();
 
     let [searchParams, setSearchParams] = useSearchParams();
     let spotId = searchParams.get("id");
@@ -31,7 +32,7 @@ function Spot() {
     useEffect(() => {
         const fetchSpotData = async () => {
             try {
-                let response = await axios.post('/spot', JSON.stringify({'id': spotId}));
+                let response = await api.post('/spot', JSON.stringify({'id': spotId}));
                 setSpot(response.data);
             } catch(error){
                 console.log(error);

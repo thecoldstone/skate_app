@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react';
 import { Container, Row, Col, Nav, Tab } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useApiContext } from '../../components/AppContext';
 
 import instagram_icon_image from "../../pictures/icons/instagram.png";
 import facebook_icon_image from "../../pictures/icons/facebook_1.png";
@@ -28,6 +29,7 @@ function Profile () {
     const navigate = useNavigate();
 
     const [key, setKey] = useState('places');
+    const api = useApiContext();
 
     let [searchParams, setSearchParams] = useSearchParams();
     let userId = searchParams.get("id");
@@ -36,7 +38,7 @@ function Profile () {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            let response = await axios.post('/profile', JSON.stringify({'id': userId}));
+            let response = await api.post('/profile', JSON.stringify({'id': userId}));
             setUserInfo(response.data);
         };
         fetchUserData();
@@ -48,7 +50,7 @@ function Profile () {
     }
 
     function add_friend_button_click() {
-        axios.post('/editProfile', JSON.stringify({'id':'actual_user' ,'friend_id': userId}));
+        api.post('/editProfile', JSON.stringify({'id':'actual_user' ,'friend_id': userId}));
         window.location.reload();
     }
 
