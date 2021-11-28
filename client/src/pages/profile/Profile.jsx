@@ -5,17 +5,6 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-
-
-// import profile_image from '../../pictures/profile/profile_main.png';
-// import profile_images_folder from '../../pictures/profile';
-// import place_1_image from '../../pictures/profile/place_1.png';
-// import place_2_image from '../../pictures/profile/place_2.png';
-
-// import video_1_image from '../../pictures/profile/video_1.png';
-// import video_2_image from '../../pictures/profile/video_2.png';
-// import video_3_image from '../../pictures/profile/video_3.png';
 
 import instagram_icon_image from "../../pictures/icons/instagram.png";
 import facebook_icon_image from "../../pictures/icons/facebook_1.png";
@@ -29,8 +18,6 @@ function Profile () {
 
     let [searchParams, setSearchParams] = useSearchParams();
     let userId = searchParams.get("id");
-
-    // console.log(userId)
 
     const [userInfo, setUserInfo] = useState({});
 
@@ -50,14 +37,14 @@ function Profile () {
         navigate("/spot?id=" + spotId);
     }
 
-    if (userInfo && userInfo.my_spots && userInfo.my_spots_info && userInfo.my_spots_videos) {
+    if (userInfo && userInfo.my_spots && userInfo.my_spots_info) {
         return (
             <Container className="body-profile" fluid="md">
                  <Row>
                      <Col md="auto">
-                         <Image src={userInfo.image} roundedCircle />
+                         <Image src={userInfo.image} roundedCircle className="title-panel" />
                      </Col>
-                     <Col md="auto">
+                     <Col md={6}>
                          <Row className="text">
                              <h1>{userInfo.name}</h1>
                          </Row>
@@ -120,18 +107,19 @@ function Profile () {
                                      {userInfo.my_spots_info[spot].user_ranks[userId]}
                                  </Row>
                                  <Row>
-                                     <Button variant="light" className="place_button" as="input" type="button" value="Open group page" onClick={() => open_spot(userInfo.my_spots_info[spot].id)}/>
+                                     <Button variant="light" className="place_button" as="input" type="button" value="Open group page" onClick={() => open_spot(spot)}/>
                                  </Row>
                              </Col>
                          </Row>
                          <Row>
                              <Col xl="auto" className="place_videos">
                                  <Container className="horizontal-scrollable">
-                                    {userInfo.my_spots_videos[spot].map((video, video_id) =>
+                                    {userInfo.my_spots_info[spot]["videos"].map((video, video_id) =>
                                         <Col className="col-xs-4 text-center" key={video_id}>
-                                            <a href={video.url}>
-                                                <Image className="video_img" src={video.image}/>
-                                            </a>
+                                            <iframe
+                                                className = "video_img" 
+                                                src="https://www.youtube.com/embed/z-99see1eKw">
+                                            </iframe>
                                         </Col>
                                     )}
                                  </Container>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useSearchParams } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import Image from 'react-bootstrap/Image'
 
@@ -19,15 +20,22 @@ function Spot() {
         const fetchSpotData = async () => {
             try {
                 let response = await axios.post('/spot', JSON.stringify({'id': spotId}));
-                let data = await response.data;
-                setSpot(data);
-                console.log(data);
+                setSpot(response.data);
             } catch(error){
                 console.log(error);
             }
         };
         fetchSpotData();
     }, [])
+
+    async function add_spot_in_list() {
+        let request = {
+            "id" : "actual_user",
+            "spot_id" : spotId
+        };
+        let response = await axios.post('/editProfile', JSON.stringify(request));
+        console.log(response.data);
+    }
 
     return (
         <Container fluid>
@@ -36,8 +44,9 @@ function Spot() {
             </Row>
             <Row className="header">
                 <h1>{spot.name}</h1>
+                <Button variant="dark" className="button" as="input" type="button" value="+" onClick={add_spot_in_list}/>
             </Row>
-            <Chat className="chat" spot={spot}/> 
+            <Chat className="chat" spot={spot} spotId={spotId}/> 
         </Container>
     )
 }
