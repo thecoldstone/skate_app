@@ -1,15 +1,17 @@
 import {Container, Navbar, Nav} from 'react-bootstrap';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import navigationStyles from './NavigationBar.module.css';
-import axios from 'axios';
+import { useApiContext } from '../AppContext';
 
 
 function NavigationBar()
 {
     const [loginInfo, setLoginInfo] = useState({});
+    const api = useApiContext();
+
     useEffect(() => {
         const fetchUserData = async () => {
-            let response = await axios.get('/authorization_login');
+            let response = await api.get('/authorization_login');
             setLoginInfo(response.data);
         };
         fetchUserData();

@@ -5,24 +5,27 @@ import {
     Route,
     Routes
 } from 'react-router-dom';
+import {AppProvider} from './components/AppContext';
 import {NavigationBar} from './components/homepage/index';
 
 function App() {
     return (
-        <Router>
-            <NavigationBar/>
-            <Routes>
-                {routes.map((route, index) => {
-                    return(
-                        <Route
-                            key={index}
-                            path={route.path}
-                            element={<route.element/>}
-                        />
-                    )
-                })}
-            </Routes>
-      </Router>
+        <AppProvider>
+            <Router>
+                <NavigationBar/>
+                    <Routes>
+                        {routes.map((route, index) => {
+                            return(
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={<route.element/>}
+                                />
+                            )
+                        })}
+                    </Routes>
+            </Router>
+        </AppProvider>
     )
 }
 
