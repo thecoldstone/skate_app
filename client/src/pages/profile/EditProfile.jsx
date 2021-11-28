@@ -4,13 +4,13 @@ import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+import { useApiContext } from '../../components/AppContext';
 import close_icon_img from "../../pictures/icons/close_button.png";
-
 import './Profile.css'
-import axios from 'axios';
 
 function Edit_profile () {
     const navigate = useNavigate();
+    const api = useApiContext();
 
     let [searchParams, setSearchParams] = useSearchParams();
     let userId = searchParams.get("id");
@@ -18,7 +18,7 @@ function Edit_profile () {
     let [userImage, setUserImage] = useState("");
     useEffect(() => {
         const fetchUserData = async () => {
-            let response = await axios.post('/profile', JSON.stringify({'id': userId}));;
+            let response = await api.post('/profile', JSON.stringify({'id': userId}));;
             setUserImage(response.data.image);
         };
         fetchUserData();
@@ -43,7 +43,7 @@ function Edit_profile () {
             "instagram" : newInst,
             "tiktok" : newTikTok
         }
-        let response = await axios.post('/editProfile', JSON.stringify(request));
+        let response = await api.post('/editProfile', JSON.stringify(request));
         navigate("/profile?id=" + userId);
     }
 

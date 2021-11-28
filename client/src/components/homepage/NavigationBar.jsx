@@ -18,8 +18,8 @@ function NavigationBar()
     }, []); // open login page -> click login -> need to reload navbar
 
     function checkLogin() {
-        function logout() {
-            axios.get('/authorization_logout');
+        const logout = async () => {
+            let response = await api.get('/authorization_logout');
         }
     
         if (loginInfo["user_id"] != -1) {

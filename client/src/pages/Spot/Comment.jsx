@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Row, Col, Form, FormLabel, Button } from 'react-bootstrap';
 
-import axios from 'axios';
+import { useApiContext } from '../../components/AppContext';
 import './Comment.css';
 
 function Comment({spot, spotId}) {
 
     const [comment, setComment] = useState("");
+    const api = useApiContext();
 
     async function addComment(comment) {
-            let response = await axios.post(`/comment_add`, JSON.stringify(comment));
+            let response = await api.post(`/comment_add`, JSON.stringify(comment));
             let data = await response.data;
             
             if(!data.hasOwnProperty('error')) {
