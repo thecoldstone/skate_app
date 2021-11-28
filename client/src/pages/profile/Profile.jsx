@@ -49,6 +49,7 @@ function Profile () {
 
     function add_friend_button_click() {
         axios.post('/editProfile', JSON.stringify({'id':'actual_user' ,'friend_id': userId}));
+        window.location.reload();
     }
 
     function setButtonState(){
@@ -60,9 +61,13 @@ function Profile () {
                 </Row>
             );
         } else {
+            let button_text = "Add friend +";
+            if (userInfo.is_in_friends_list) {
+                button_text = "Remove friend -"
+            }
             return (
                 <Row md={2}>
-                    <Button variant="light" className="button" as="input" type="button" value="Add friend" onClick={add_friend_button_click}/>
+                    <Button variant="light" className="button" as="input" type="button" value={button_text} onClick={add_friend_button_click}/>
                 </Row>
             );
         }

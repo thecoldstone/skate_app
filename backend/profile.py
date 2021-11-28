@@ -25,6 +25,12 @@ class Profile(Resource):
         else:
             actual_user["is_my_page"] = False
 
+        if int(json_data["id"]) in db.users[db.actual_user]["my_friends"]:
+            actual_user["is_in_friends_list"] = True
+        else:
+            actual_user["is_in_friends_list"] = False
+
+
         return actual_user
     
     def get(self):
