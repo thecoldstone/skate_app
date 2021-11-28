@@ -25,7 +25,7 @@ function Spot() {
     
     const location = useLocation();
 
-    const searchParams = useSearchParams();
+    let [searchParams, setSearchParams] = useSearchParams();
     let spotId = searchParams.get("id");
 
     useEffect(() => {
