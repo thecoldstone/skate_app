@@ -21,7 +21,7 @@ function Places({userInfo, userId}) {
             {userInfo.my_spots.map((spot, spot_id) =>
                 <Row key={spot_id}>
                     <Row xl="auto" className="place_row">
-                        <Col xl="auto" className="place_icon">
+                        <Col xl="auto">
                             <Image className="group_img" src={userInfo.my_spots_info[spot].image} roundedCircle />
                         </Col>
                         <Col xl="auto" className="place_info">
