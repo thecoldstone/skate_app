@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Row, Col, Form, FormLabel, Button } from 'react-bootstrap';
 
 import { useApiContext } from '../../components/AppContext';
-import './Comment.css';
+
+import "./Chat.css"
 
 function Comment({spot, spotId}) {
 
@@ -10,15 +11,15 @@ function Comment({spot, spotId}) {
     const api = useApiContext();
 
     async function addComment(comment) {
-            let response = await api.post(`/comment_add`, JSON.stringify(comment));
-            let data = await response.data;
-            
-            if(!data.hasOwnProperty('error')) {
-              return null;
-            }
+        let response = await api.post(`/comment_add`, JSON.stringify(comment));
+        let data = await response.data;
         
-            // TODO Handle error state
-            return data.error;
+        if(!data.hasOwnProperty('error')) {
+            return null;
+        }
+    
+        // TODO Handle error state
+        return data.error;
     }
 
     async function handleSubmit(event) {
@@ -35,20 +36,19 @@ function Comment({spot, spotId}) {
     }
 
     return (
-        <Form className="comment" onSubmit={handleSubmit}>
-             <Row className="align-items-center">
-                <Col >
-                    <FormLabel className="comment-header">Comment</FormLabel>
+        <Form onSubmit={handleSubmit}>
+             <Row>
+                <Col>
                     <Form.Control 
                         as="textarea" 
-                        rows={3} 
+                        type="text"
                         placeholder={"Enter your comment"} 
                         disabled={false}
                         value={comment}
                         onChange={e => setComment(e.target.value)}
                     />
                 </Col>
-                <Col xs="auto">
+                <Col xs="auto" style={{padding: "0%"}}>
                     <Button
                         className="comment-button"
                         variant="primary" 

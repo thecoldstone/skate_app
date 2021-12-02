@@ -2,15 +2,15 @@ import React, {useState, useEffect} from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
 
-import './Comments.css';
+import './Chat.css';
 
 function Comments({spot}) {
     if (spot && spot.comments)
     {
-        return (          
-            <Col className="vertical-scrollable">
+        return (       
+            <>   
                 {spot.comments.map((comment, index) => 
-                <Row key={index} className="contributors">
+                <Row key={index} className="comment">
                     <Col>
                         <Card>
                             <Card.Body>
@@ -22,7 +22,7 @@ function Comments({spot}) {
                         </Card>
                     </Col>
                 </Row>)}
-            </Col>
+            </>
         ) 
     } else {
         return null;

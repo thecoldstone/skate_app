@@ -74,7 +74,7 @@ spots = {
     },
     1 : {
         "name" : "Another Beach",
-        "image": "https://picsum.photos/id/773/100/100",
+        "image": "https://www.blansko.cz/soubory/clanky/images/2021/skatepark-51967-5604_800.jpg",
         'comments': [
             {'userId': 2, 'userName': users[2]['name'], 'comment': 'asdasdasd'},
             {'userId': 1, 'userName': users[1]['name'], 'comment': 'asasdasd'},

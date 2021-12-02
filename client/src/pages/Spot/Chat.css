@@ -1,0 +1,29 @@
+.comment {
+    margin-top: 5px;
+}
+
+.vertical-scrollable {
+    overflow-y: auto;
+    float: none;
+    height: "calc(80vh-60px)";
+}
+
+a, a:hover {
+    color: rgb(115, 113, 33);
+}
+
+a:link {
+    text-decoration: none;
+  }
+
+.chat-container {
+    padding: 0%;
+    margin: 0%;
+    height: "calc(80vh - 60px)";
+}
+
+.comment-body {
+    margin-top: 5px;
+    padding: 0%;
+    margin: 0%;
+}
