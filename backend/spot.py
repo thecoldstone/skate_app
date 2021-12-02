@@ -41,7 +41,7 @@ class Edit_spot(Resource):
 
             if "video_url" in json_data and "user_id" in json_data: # add video
                 spot_id = int(json_data["spot_id"])
-                video_url = int(json_data["video_url"])
+                video_url = json_data["video_url"]
                 user_id = int(json_data["user_id"])
                 new_video = {
                     "user_id": user_id,
