@@ -1,19 +1,28 @@
-.header {
-    background-color: rgb(255, 255, 255);
-    border-color: rgb(255, 255, 255);
-    color: rgb(12, 10, 40);
-    font-size: 35px;
-    text-align: center;
+.image-container {
+    /* 60px is the height of the navbar => we substract 56 px in order to fit perfectly the map to the screen size */
+    height: calc(100vh - 60px);
+    position: fixed;
+    width: 50%;
+    margin: 0%;
+    padding: 0%;
 }
 
-.spot-detail {
-    height: 10%;
-    width: 100%;
-    object-fit: fill;
+.gallery-container {
+    columns: 2 auto;
+    margin: 0%;
+    padding: 0%;
 }
 
-.chat {
-    height: 90%;
-    width: 100%;
-    object-fit: cover;
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.favourite-icon {
+  float: right;
+  vertical-align: middle;
+  font-size: 24px;
+  color: rgba(0, 0, 0, .1);
 }

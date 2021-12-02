@@ -1,23 +1,30 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
-import Comments from './Comments';
-import Comment from './Comment';
+import "./Spot.css";
 
-function Gallery({spot, spotId}) {
-    return (
-        <Container fluid="md">
-            <iframe
-                height="20%" 
-                width="60%"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
-        </Container>
-    )
+function Gallery({spot}) {
+
+    if (spot && spot.videos) 
+    {
+        return (
+            <Container className="gallery-container">
+                {spot.videos.map((video, index) =>
+                    <Col key={index}>
+                        <iframe
+                            className="video-container"
+                            src={video.url}>
+                        </iframe>
+                    </Col>
+                )}
+            </Container>
+        )
+    }
+    else
+    {
+        return null;
+    }
+    
 }
 
 export default Gallery;

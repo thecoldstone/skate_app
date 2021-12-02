@@ -54,13 +54,13 @@ function TabFeed() {
             <Row>
                 <Col>
                     <Row style={{background: "radial-gradient(circle, rgba(255,255,255,0.9724264705882353) 0%, rgba(255,255,255,1) 100%)", height: "60px", position: "fixed", width: "inherit"}}>
-                    <Col>
-                        <Row className="mt-2"> 
-                            <Nav className="my-auto">
-                                {renderNavItems()}
-                            </Nav> 
-                        </Row>
-                    </Col>
+                        <Col>
+                            <Row className="mt-2"> 
+                                <Nav className="my-auto">
+                                    {renderNavItems()}
+                                </Nav> 
+                            </Row>
+                        </Col>
                     </Row>
                     <FeedContent/>
                 </Col>

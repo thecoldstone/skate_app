@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Nav, Tab} from 'react-bootstrap';
+import { Container, Row, Col} from 'react-bootstrap';
 import { useSearchParams, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo } from '@fortawesome/free-solid-svg-icons';
 import { useApiContext } from '../../components/AppContext';
-import Image from 'react-bootstrap/Image'
 
-import place_1_image from '../../pictures/spots/spot2.jpg';
-import './Spot.css';
-
-import Chat from './Chat';
-import Gallery from './Gallery';
+import "./Spot.css"
+import SpotContent from './SpotContent';
 
 function setCurrentTabByHash(hash) {
     if (hash == '#gallery') {
@@ -19,11 +17,7 @@ function setCurrentTabByHash(hash) {
 }
 
 function Spot() {
-
     const [spot, setSpot] = useState({});
-    const [key, setKey] = useState('all');
-    
-    const location = useLocation();
     const api = useApiContext();
 
     let [searchParams, setSearchParams] = useSearchParams();
@@ -39,40 +33,51 @@ function Spot() {
             }
         };
         fetchSpotData();
-        setKey(setCurrentTabByHash(location.hash));
     }, [])
 
+    const renderSpotImage = () => {
+        if (spot.image)
+        {
+            return (
+                <Row className="image-container" style={{ 
+                    backgroundImage: `url(${spot.image})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}>
+                    <div className="text-white text-center d-flex align-items-center py-5" style={{backgroundColor: "rgba(0,0,0,0.7)"}}>
+                        <div>
+                            <h3 className="pink-text">
+                                {spot.name}
+                            </h3>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Repellat fugiat, laboriosam, voluptatem, optio vero odio nam
+                            sit officia accusamus minus error nisi architecto nulla ipsum
+                            dignissimos. Odit sed qui, dolorum!
+                            </p>
+                            <p><FontAwesomeIcon icon={faVideo}/> {spot.videos.length}</p>
+                        </div>
+                    </div>
+                </Row>
+            )
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     return (       
-        <Container fluid>
+        <Container className="container">
             <Row>
-                <Col md={6}>
-                    <Tab.Container activeKey={key} onSelect={(k) => setKey(k)}>
-                        <Row className="mt-sm-2" style={{position: "fixed"}}> 
-                            <Nav variant="pills">
-                                <Nav.Item>
-                                    <Nav.Link href="#сhat" eventKey="chat">Chat</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link href="#gallery" eventKey="gallery">Gallery</Nav.Link>
-                                </Nav.Item>
-                            </Nav> 
-                        </Row>
-                        <Row style={{marginTop: "80px"}}>
-                            <Tab.Content>
-                                <Tab.Pane eventKey="chat">
-                                    <Chat className="chat" spot={spot} spotId={spotId}/> 
-                                </Tab.Pane>
-                                <Tab.Pane eventKey="gallery">
-                                    <Gallery/>
-                                </Tab.Pane>
-                            </Tab.Content>
-                        </Row>
-                    </Tab.Container>
-                </Col>
-                <Col md={6}>
+                <Col sm={6}>
                     <Row>
-                        <Image style={{objectFit: "cover", height: "calc(100vh - 60px)", padding: "0"}} src={place_1_image}/>
+                        <SpotContent spot={spot} spotId={spotId}/>
                     </Row>
+                </Col>
+                <Col>
+                    {renderSpotImage()}
                 </Col>
             </Row>
         </Container>
@@ -80,3 +85,4 @@ function Spot() {
 }
 
 export default Spot;
+
