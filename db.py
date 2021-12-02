@@ -9,7 +9,7 @@ users = {
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
-        "my_spots" : [0],
+        "my_spots" : [0,1,2],
         "my_spots_info" : {},
         "my_friends" : [1],
         "my_friends_info" : {}
@@ -62,6 +62,22 @@ spots = {
                 "user_id" : 0,
                 "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
             },
+                        {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/JtDqhdpHn3g"
+            },
+                        {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/Yv2p-ffhj1M"
+            },
+                        {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/0e3GPea1Tyg"
+            },
+                        {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/3N0S-Sg3Pbk"
+            },
             {
                 "user_id" : 1,
                 "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
@@ -89,11 +105,19 @@ spots = {
         "videos" : [
             {
                 "user_id" : 0,
-                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+                "url" : "https://www.youtube.com/embed/mWKXPnlUvg0"
             },
             {
                 "user_id" : 0,
-                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+                "url" : "https://www.youtube.com/embed/mNXVXZ6Xu30"
+            },
+            {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/55WOSS0L6yo"
+            },
+            {
+                "user_id" : 0,
+                "url" : "https://www.youtube.com/embed/LX0bSu9rNnE"
             },
             {
                 "user_id" : 1,
@@ -126,11 +150,11 @@ spots = {
         "videos" : [
             {
                 "user_id" : 0,
-                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+                "url" : "https://www.youtube.com/embed/ClasOS9VFWI"
             },
             {
                 "user_id" : 0,
-                "url" : "https://www.youtube.com/embed/MlcRss1uzS0"
+                "url" : "https://www.youtube.com/embed/9LPXCGwSLAg"
             },
             {
                 "user_id" : 0,

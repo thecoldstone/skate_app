@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template
 
 from backend.profile import Profile, EditProfile
-from backend.spot import Spot, Comment_add
+from backend.spot import Spot, Comment_add, Edit_spot
 from backend.authorization import Login, Logout
 
 def add_api_resources(app):
@@ -14,6 +14,7 @@ def add_api_resources(app):
     api.add_resource(Profile, '/profile')
     api.add_resource(EditProfile, '/editProfile')
     api.add_resource(Spot, '/spot')
+    api.add_resource(Edit_spot, '/edit_spot')
     api.add_resource(Comment_add, '/comment_add')
     api.add_resource(Login, '/authorization_login')
     api.add_resource(Logout, '/authorization_logout')

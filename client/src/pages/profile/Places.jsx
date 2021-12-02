@@ -1,12 +1,19 @@
 import React from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useApiContext } from '../../components/AppContext';
 
 function Places({userInfo, userId}) {
     const navigate = useNavigate();
+    const api = useApiContext();
 
     function open_spot(spotId) {
         navigate("/spot?id=" + spotId);
+    }
+
+    function remove_video(spotId, videoId) {
+        api.post('/edit_spot', JSON.stringify({'spot_id':spotId , 'video_id': videoId, 'user_id': userId}));
+        window.location.reload();
     }
 
     return (
@@ -36,8 +43,9 @@ function Places({userInfo, userId}) {
                                 <Col className="col-xs-4 text-center" key={video_id}>
                                     <iframe
                                         className = "video_img" 
-                                        src="https://www.youtube.com/embed/z-99see1eKw">
+                                        src={video.url}>
                                     </iframe>
+                                    <Button variant="light" as="input" type="button" value="-" onClick={() => remove_video(spot, video_id)}/>
                                 </Col>
                             )}
                             </Container>
