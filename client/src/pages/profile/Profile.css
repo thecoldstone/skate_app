@@ -112,6 +112,15 @@
     border-radius: 12px;
 }
 
+/* .remove-video-button {
+    width: 5px;
+    text-align: left;
+} */
+
+/* .add-video-button {
+    height: 25px;
+} */
+
 .button {
     width: 200px;
 }
@@ -151,6 +160,9 @@
 .horizontal-scrollable {
     overflow-x: scroll;
     white-space: nowrap;
+    /* align-items: center;
+    justify-content: center;
+    display: 'flex'; */
 }
     
 .horizontal-scrollable, .col-xs-4 {
@@ -166,7 +178,7 @@
     /* padding-bottom: 20px; */
     /* padding-top: 18px; */
     width: 150px;
-    margin-right: 25px;
+    margin-right: 45px;
 }
     
 /* .col-xs-4:nth-child(2n+1) {
