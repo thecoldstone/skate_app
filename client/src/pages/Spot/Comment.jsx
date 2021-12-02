@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Row, Col, Form, FormLabel, Button } from 'react-bootstrap';
 
-import { useApiContext } from '../../components/AppContext';
+import { useApiContext, useAuthState } from '../../components/AppContext';
 
 import "./Chat.css"
 
 function Comment({spot, spotId}) {
 
     const [comment, setComment] = useState("");
+    const currentUser = useAuthState();
     const api = useApiContext();
 
     async function addComment(comment) {
@@ -28,7 +29,7 @@ function Comment({spot, spotId}) {
         try {
             let _comment = await comment;
             await setComment("");
-            await addComment({'id': spotId, 'comment': {'userId': 111, 'userName' : 'Jason Statham', 'comment': _comment}});
+            await addComment({'id': spotId, 'comment': {'userId': currentUser.id, 'comment': _comment}});
             window.location.reload();
         } catch (error) {
             console.log(error);

@@ -16,8 +16,8 @@ def add_api_resources(app):
     api.add_resource(Spot, '/spot')
     api.add_resource(Edit_spot, '/edit_spot')
     api.add_resource(Comment_add, '/comment_add')
-    api.add_resource(Login, '/authorization_login')
-    api.add_resource(Logout, '/authorization_logout')
+    api.add_resource(Login, '/login')
+    api.add_resource(Logout, '/logout')
 
 
 def create_app(test_config=None):

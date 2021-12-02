@@ -6,8 +6,14 @@ import db
 class Login(Resource):
     def post(self):
         json_data = request.get_json(force=True)
-        db.actual_user = json_data["user_id"]
-        return {"user_id":db.actual_user}
+        for user_id, user in db.users.items():
+            if (user["email"] == json_data["email"] and
+                user["pass"] == json_data["password"]):
+                db.actual_user = user_id
+                return {"id": user_id}
+        else:
+            return {"error": "Given email or password is incorrect"}
+        
     
     def get(self):
         return {"user_id" : db.actual_user}

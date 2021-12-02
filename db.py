@@ -2,10 +2,10 @@ actual_user = 0
 
 users = {
     0 : {
-        "image" : "https://picsum.photos/id/1005/100/100",
-        "email" : "myemail@gmail.com",
-        "name" : "James Kukold",
+        "email" : "myemail0@gmail.com",
         "pass" : "123",
+        "image" : "https://picsum.photos/id/1005/100/100",
+        "name" : "James Kukold",
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
@@ -15,23 +15,23 @@ users = {
         "my_friends_info" : {}
     },
     1 : {
+        "email" : "myemail1@gmail.com",
+        "pass" : "456",
         "image" : "https://picsum.photos/id/1003/100/100",
-        "email" : "myemail@gmail.com",
         "name" : "James Bandit",
-        "pass" : "123",
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
         "my_spots" : [0, 1, 2],
         "my_spots_info" : {},
-        "my_friends" : [0,2],
+        "my_friends" : [0, 2],
         "my_friends_info" : {}
     },
     2 : {
+        "email" : "myemail2@gmail.com",
+        "pass" : "789",
         "image" : "https://picsum.photos/id/1001/100/100",
-        "email" : "myemail@gmail.com",
         "name" : "James Fofan",
-        "pass" : "123",
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",

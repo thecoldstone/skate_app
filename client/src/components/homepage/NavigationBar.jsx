@@ -1,33 +1,26 @@
 import {Container, Navbar, Nav} from 'react-bootstrap';
 import {useState, useEffect, useContext} from 'react';
 import navigationStyles from './NavigationBar.module.css';
-import { useApiContext } from '../AppContext';
+import { useApiContext, useAuthState, useAuthDispatch } from '../AppContext';
+import { logout } from "../authorization/AuthorizationHandler";
 
 
 function NavigationBar()
 {
-    const [loginInfo, setLoginInfo] = useState({});
-    const api = useApiContext();
+    const currentUser = useAuthState();
+    const dispatch = useAuthDispatch();
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            let response = await api.get('/authorization_login');
-            setLoginInfo(response.data);
-        };
-        fetchUserData();
-    }, []); // open login page -> click login -> need to reload navbar
+    const handleLogout = () => {
+        logout(dispatch);
+    }
 
     function checkLogin() {
-        const logout = async () => {
-            let response = await api.get('/authorization_logout');
-        }
-    
-        if (loginInfo["user_id"] != -1) {
-            let profile_path = "/profile?id=" + loginInfo["user_id"];
+        if (currentUser.id != undefined) {
+            let profile_path = "/profile?id=" + currentUser.id;
             return (
                 <Nav>
                     <Nav.Link href={profile_path}>Profile</Nav.Link>
-                    <Nav.Link href="/" onClick={logout}>LogOut</Nav.Link>
+                    <Nav.Link href="/" onClick={handleLogout}>LogOut</Nav.Link>
                 </Nav>
             )
         }
@@ -40,19 +33,17 @@ function NavigationBar()
         )
     };
 
-    if (loginInfo){
-        return(
-            <Navbar bg="light" expand="lg" sticky="top">
-                <Container>
-                    <Navbar.Brand href="/"><p className={navigationStyles.logo}>Skate</p></Navbar.Brand>
-                    <Navbar.Toggle aria-controls="gearwheel-nav"/>
-                    <Navbar.Collapse id="gearwheel-nav" className="justify-content-end">
-                        {checkLogin()}
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-        );
-    }
+    return(
+        <Navbar bg="light" expand="lg" sticky="top">
+            <Container>
+                <Navbar.Brand href="/"><p className={navigationStyles.logo}>Skate</p></Navbar.Brand>
+                <Navbar.Toggle aria-controls="gearwheel-nav"/>
+                <Navbar.Collapse id="gearwheel-nav" className="justify-content-end">
+                    {checkLogin()}
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    );
 };
 
 export default NavigationBar;

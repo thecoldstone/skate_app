@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { useApiContext } from '../../components/AppContext';
+import { useApiContext, useAuthState } from '../../components/AppContext';
 import './Spot.css';
 import Chat from './Chat';
 import Gallery from './Gallery';
@@ -21,6 +21,7 @@ function SpotContent({spot, spotId}) {
     const [key, setKey] = useState('all');
     const location = useLocation();
     const api = useApiContext();
+    const currentUser = useAuthState();
 
     function addFavouriteSpot()
     {
@@ -28,7 +29,7 @@ function SpotContent({spot, spotId}) {
             event.preventDefault();
             try {
                 let request = {
-                    "id" : 0,
+                    "id" : currentUser.id,
                     "spot_id" : spotId
                 };
                 await api.post('/editProfile', JSON.stringify(request));
@@ -52,11 +53,12 @@ function SpotContent({spot, spotId}) {
     {
         const [modal, setModal] = useState(false);
         const [video, setVideo] = useState("");
+        const currentUser = useAuthState();
 
         const addVideo = async () => {
             try {
                 let request = {
-                    "user_id" : 0,
+                    "user_id" : currentUser.id,
                     "video_url": video,
                     "spot_id" : spotId,
                 };

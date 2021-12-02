@@ -2,17 +2,36 @@ import {Col, Row, Form, FormGroup, Button} from 'react-bootstrap';
 import {useState} from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useApiContext } from '../../AppContext';
+import { login } from "../AuthorizationHandler"
+import { useApiContext, useAuthState, useAuthDispatch } from '../../AppContext';
 import formStyles from './Form.module.css';
 
 function LoginForm() {
-    const navigate = useNavigate();
-    const api = useApiContext();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    async function login() {
-       let response = await api.post('/authorization_login', JSON.stringify({'user_id': 0}));
-       let profile_path = "/profile?id=" + response.data["user_id"];
-       navigate(profile_path);
+    const api = useApiContext();
+    const currentUser = useAuthState();
+    const dispatch = useAuthDispatch();
+
+    const navigate = useNavigate();
+
+    function validateForm() {
+        return email.length > 0 && password.length > 0;
+    }
+
+    async function handleSubmit(event) {
+        try {
+            let data = await login(dispatch, {email, password})
+            if (data)
+            {
+                navigate('/profile?id=' + data.id);
+                window.location.reload();
+            }
+            console.log(currentUser.errorMessage);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return(
@@ -21,13 +40,18 @@ function LoginForm() {
                 <Form.Control
                     style={{height: "50px"}}
                     type="email"
-                    placeholder="Enter your email or login"/>
+                    placeholder="Enter your email or login"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}/>
             </FormGroup>
             <FormGroup controlId="password" className="mb-3">
                 <Form.Control
                     style={{height: "50px"}}
                     type="password"
-                    placeholder="Enter your password"/>
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    disabled={currentUser.loading}/>
             </FormGroup>
             <FormGroup>
                 <Col className={formStyles.f_pwd}><p>Forgot password?</p></Col>
@@ -36,7 +60,9 @@ function LoginForm() {
                 <Button
                     className={formStyles.btn_login}
                     variant="dark"
-                    onClick={login}>
+                    type="submit"
+                    disabled={!validateForm()}
+                    onClick={handleSubmit}>
                     Login
                 </Button>
             </FormGroup>

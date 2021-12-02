@@ -16,10 +16,10 @@ class Spot(Resource):
 class Comment_add(Resource):
     def post(self):
         json_data = request.get_json(force=True)
-        print(json_data)
         
         for spot_id in db.spots:
             if int(spot_id) == int(json_data['id']):
+                json_data['comment']['userName'] = db.users[json_data['comment']['userId']]["name"]
                 db.get_spot(spot_id)['comments'].append(json_data['comment'])
 
         return {'result': "Ok"}
