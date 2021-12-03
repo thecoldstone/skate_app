@@ -2,15 +2,20 @@ import os
 
 from flask import Flask, render_template
 
+from backend.homepage import All, Events, Places, Videos, Photos
 from backend.profile import Profile, EditProfile
 from backend.spot import Spot, Comment_add, Edit_spot
 from backend.authorization import Login, Logout
 
 def add_api_resources(app):
     from flask_restful import Api
-    api = Api(app)
+    api = Api(app, prefix='/api')
 
-    ''' /api/ is a basement of this restapi ! '''
+    api.add_resource(All, '/all')
+    api.add_resource(Events, '/events')
+    api.add_resource(Places, '/places')
+    api.add_resource(Videos, '/videos')
+    api.add_resource(Photos, '/photos')
     api.add_resource(Profile, '/profile')
     api.add_resource(EditProfile, '/editProfile')
     api.add_resource(Spot, '/spot')

@@ -21,13 +21,12 @@ function LoginForm() {
     }
 
     async function handleSubmit(event) {
+        event.preventDefault();
         try {
             let data = await login(dispatch, {email, password})
-            if (data)
-            {
-                navigate('/profile?id=' + data.id);
-                window.location.reload();
-            }
+            if(!data) return
+            navigate('/profile?id=' + data.id);
+            window.location.reload();
             console.log(currentUser.errorMessage);
         } catch (error) {
             console.log(error);
@@ -35,7 +34,7 @@ function LoginForm() {
     }
 
     return(
-        <Form style={{width: "400px"}}>
+        <Form style={{width: "400px"}} onSubmit={handleSubmit}>
             <FormGroup controlId="email" className="mb-3 mt-3">
                 <Form.Control
                     style={{height: "50px"}}
@@ -61,8 +60,7 @@ function LoginForm() {
                     className={formStyles.btn_login}
                     variant="dark"
                     type="submit"
-                    disabled={!validateForm()}
-                    onClick={handleSubmit}>
+                    disabled={!validateForm()}>
                     Login
                 </Button>
             </FormGroup>
