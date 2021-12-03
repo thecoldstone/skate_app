@@ -9,6 +9,7 @@ class Login(Resource):
         for user_id, user in db.users.items():
             if (user["email"] == json_data["email"] and
                 user["pass"] == json_data["password"]):
+                print(user_id)
                 db.actual_user = user_id
                 return {"id": user_id}
         else:
