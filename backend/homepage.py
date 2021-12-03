@@ -6,7 +6,7 @@ import db
 
 class All(Resource):
     def get(self):
-        return {'result': 'Ok'}
+        return {'spots': db.spots_geojson}
 
 class Events(Resource):
     def get(self):
