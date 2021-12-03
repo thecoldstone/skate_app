@@ -121,7 +121,6 @@
     height: 25px;
     font-size: 25px;
     padding: 0px;
-    position: absolute;
 }
 
 .button {
@@ -134,8 +133,7 @@
     color: rgb(12, 10, 40);
     text-align: center;
     font-size: 35px;
-    margin-top: 1%;
-    margin-bottom: 3%;
+    margin-top: 10px;
 }
 
 .rounded_image {
@@ -149,6 +147,7 @@
 
 .place_row {
     margin-bottom: 25px;
+    margin-top: 25px;
 }
 
 .friends_contacts {
