@@ -3,12 +3,16 @@ import mapboxgl from '!mapbox-gl';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
-const map = "Loading...";
-const mapContainer = "Loading...";
-
 const MapContext = createContext({
-    map: map,
-    mapContainer: mapContainer
+    map: "Loading...",
+    mapContainer: "Loading...",
+    currentState: {
+        key: "all",
+        setKey: () => {},
+        mapData: null,
+        setMapData: () => {}
+    },
+    setCurrentState: () => {}
 });
 
 export default MapContext;

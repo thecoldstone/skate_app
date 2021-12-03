@@ -4,12 +4,14 @@ import { BsFillPeopleFill } from 'react-icons/bs'
 import { ImLocation2 } from 'react-icons/im';
 import fontStyles from '../FeedItemCard.module.css';
 
-function VideoCard(props) {
+function SpotCard(props) {
 
     let navigate = useNavigate()
 
     const handleExploeButton = (e) => {
         e.preventDefault();
+
+        navigate(`/spot?id=${props.id}`);
     }
 
     return (
@@ -24,7 +26,7 @@ function VideoCard(props) {
                                 <Row>
                                     <Col style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                                         <BsFillPeopleFill size="1.5em" />
-                                        <p style={{ marginTop: "1rem" }}>35 people</p>
+                                        <p style={{ marginTop: "1rem" }}>{props.feature.properties.members} members</p>
                                         <ImLocation2 size="1.5em" />
                                         <p style={{ marginTop: "1rem" }}>{props.feature.properties.address}</p>
                                         <Button 
@@ -52,4 +54,4 @@ function VideoCard(props) {
     )
 }
 
-export default VideoCard;
+export default SpotCard;

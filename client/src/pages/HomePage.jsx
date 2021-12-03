@@ -1,21 +1,27 @@
 import {useRef, useState, useEffect} from 'react';
 import {Container, Col, Row} from 'react-bootstrap';
 import mapboxgl from '!mapbox-gl';
-import places from '../components/homepage/map/places';
 import {Map, MapContext, TabFeed} from '../components/homepage/index';
-
 
 function HomePage() {
 
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(-77.034084);
-    const [lat, setLat] = useState(38.909671);
-    const [zoom, setZoom] = useState(9);
+    // Brno set as default location
+    const [lng, setLng] = useState(16.609807151023205);
+    const [lat, setLat] = useState(49.191751445816635);
+    const [zoom, setZoom] = useState(13);
+
+    const [key, setKey] = useState("all")
+    const [mapData, setMapData] = useState(null)
 
     useEffect(() => {
-        initMap();
-    });
+        if(!mapData) return;
+
+        if (map.current === null) {
+            initMap();
+        }
+    }, [mapData]);
 
     const initMap = () => {
         map.current = new mapboxgl.Map({
@@ -32,21 +38,32 @@ function HomePage() {
             trackUserLohation: true,
             showUserHeading: true
         }));
-    
+
         map.current.on('load', () => {
-            map.current.addLayer({
-                id: 'locations',
-                type: 'circle',
-                source: {
-                    type: 'geojson',
-                    data: places
-                }
-            });
+            if (mapData != null) {
+                map.current.addLayer({
+                    id: 'locations',
+                    type: 'circle',
+                    source: {
+                        type: 'geojson',
+                        data: mapData
+                    }
+                });
+            }
         });
     }
-
+    
     return(
-        <MapContext.Provider value={{map, mapContainer}}>
+        <MapContext.Provider value={{
+            map, 
+            mapContainer, 
+            currentState: {
+                key: key,
+                setKey: setKey,
+                mapData: mapData,
+                setMapData: setMapData
+            }
+        }}>
             <Container>
                 <Row>
                     <Col md={{order: 1}} style={{zIndex: "1"}}>

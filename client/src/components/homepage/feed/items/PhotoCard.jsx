@@ -1,12 +1,9 @@
 import { Row, Col, Image, Button } from 'react-bootstrap';
-import {useNavigate} from 'react-router-dom';
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { ImLocation2 } from 'react-icons/im';
 import fontStyles from '../FeedItemCard.module.css';
 
-function VideoCard(props) {
-
-    let navigate = useNavigate()
+function PhotoCard(props) {
 
     const handleExploeButton = (e) => {
         e.preventDefault();
@@ -52,4 +49,4 @@ function VideoCard(props) {
     )
 }
 
-export default VideoCard;
+export default PhotoCard;

@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext, lazy, Suspense  } from 'react';
 import {Row, Col, Tab, Nav} from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
 import FeedContent from './FeedContent';
+import api from '../../api';
+import { MapContext } from '..';
 
-const navItems = ["all", "events", "places", "videos", "photos"];
+const navItems = ["all", "events", "spots", "videos", "photos"];
 
 function setCurrentTabByHash(hash) {
     const pattern = new RegExp('^#(all|events|places|videos|photos)$')
@@ -17,11 +18,21 @@ function setCurrentTabByHash(hash) {
 
 function TabFeed() {
     const [key, setKey] = useState('all');
-    const location = useLocation();
+    const {map, currentState} = useContext(MapContext);
 
+    // Fetch data for TabFeed and Map 
     useEffect(() => {
-        setKey(setCurrentTabByHash(location.hash));
-    }, []);
+        (async()=> {
+            api.get(`/${currentState.key}`)
+            .then((res) => {
+                if (!res && !res.data && !res.data.result) return; // No data
+                currentState.setMapData(res.data.result)
+            })  
+            .catch((err)=> {
+                console.log(err)
+            });
+        })()
+    }, [currentState.key]);
 
     const renderNavItems = () => {
         return (
@@ -50,7 +61,7 @@ function TabFeed() {
     };
 
     return(
-        <Tab.Container activeKey={key} onSelect={(k) => setKey(k)}>
+        <Tab.Container activeKey={currentState.key} onSelect={(k) => currentState.setKey(k)}>
             <Row>
                 <Col>
                     <Row style={{background: "radial-gradient(circle, rgba(255,255,255,0.9724264705882353) 0%, rgba(255,255,255,1) 100%)", height: "60px", position: "fixed", width: "inherit"}}>
@@ -62,7 +73,9 @@ function TabFeed() {
                             </Row>
                         </Col>
                     </Row>
-                    <FeedContent/>
+                    <Suspense fallback={<h1>Loading...</h1>}>
+                        <FeedContent/>
+                    </Suspense>
                 </Col>
             </Row>
         </Tab.Container>
