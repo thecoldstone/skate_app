@@ -30,7 +30,6 @@ function Comment({spot, spotId}) {
             let _comment = await comment;
             await setComment("");
             await addComment({'id': spotId, 'comment': {'userId': currentUser.id, 'comment': _comment}});
-            window.location.reload();
         } catch (error) {
             console.log(error);
         }

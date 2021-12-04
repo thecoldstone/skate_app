@@ -20,11 +20,11 @@ function Places({userInfo, userId}) {
         <Container fluid="md">
             {userInfo.my_spots.map((spot, spot_id) =>
                 <Row key={spot_id}>
-                    <Row xl="auto" className="place_row">
-                        <Col xl="auto">
+                    <Row md="auto" className="place_row">
+                        <Col md="auto">
                             <Image className="group_img" src={userInfo.my_spots_info[spot].image} roundedCircle />
                         </Col>
-                        <Col xl="auto" className="place_info">
+                        <Col md="auto" className="place_info">
                             <Row className="text">
                                 {userInfo.my_spots_info[spot].name}
                             </Row>
@@ -37,17 +37,19 @@ function Places({userInfo, userId}) {
                         </Col>
                     </Row>
                     <Row>
-                        <Col xl="auto" className="place_videos">
+                        <Col md="auto">
                             <Container className="horizontal-scrollable">
-                            {userInfo.my_spots_info[spot]["videos"].map((video, video_id) =>
-                                <Col className="col-xs-4 text-center" key={video_id}>
-                                    <iframe
-                                        className = "video_img" 
-                                        src={video.url}>
-                                    </iframe>
-                                    <Button variant="light" as="input" type="button" value="-" onClick={() => remove_video(spot, video_id)}/>
-                                </Col>
-                            )}
+                                {userInfo.my_spots_info[spot]["videos"].map((video, video_id) =>
+                                    <Col className="col-xs-4" key={video_id}>
+                                        <Col className="text-right">
+                                            <Button variant="light" className="remove_video_button" as="input" value="x" onClick={() => remove_video(spot, video_id)}/>
+                                        </Col>
+                                        <iframe
+                                            className = "video_img" 
+                                            src={video.url}>
+                                        </iframe>
+                                    </Col>
+                                )}
                             </Container>
                         </Col>
                     </Row>

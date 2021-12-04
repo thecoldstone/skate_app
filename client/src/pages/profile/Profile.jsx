@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useApiContext } from '../../components/AppContext';
+import { useApiContext, useAuthState } from '../../components/AppContext';
 
 import instagram_icon_image from "../../pictures/icons/instagram.png";
 import facebook_icon_image from "../../pictures/icons/facebook_1.png";
@@ -17,16 +17,9 @@ import Places from './Places';
 import Friends from './Friends';
 
 
-// function setCurrentTabByHash(hash) {
-//     if (hash == '#places') {
-//         return 'places';
-//     }
-
-//     return 'friends';
-// }
-
 function Profile () {
     const navigate = useNavigate();
+    const currentUser = useAuthState();
 
     const [key, setKey] = useState('places');
     const api = useApiContext();
@@ -42,7 +35,6 @@ function Profile () {
             setUserInfo(response.data);
         };
         fetchUserData();
-        // setKey(setCurrentTabByHash(location.hash));
     }, []);
 
     function edit_prof_button_click() {
@@ -55,23 +47,24 @@ function Profile () {
     }
 
     function setButtonState(){
-        // console.log(userInfo.is_my_page)
-        if (userInfo.is_my_page){
-            return (
-                <Row md={2}>
-                    <Button variant="light" className="button" as="input" type="button" value="Change profile data" onClick={edit_prof_button_click}/>
-                </Row>
-            );
-        } else {
-            let button_text = "Add friend +";
-            if (userInfo.is_in_friends_list) {
-                button_text = "Remove friend -"
+        if (currentUser.id != undefined){
+            if (userInfo.is_my_page){
+                return (
+                    <Row md={2}>
+                        <Button variant="light" className="button" as="input" type="button" value="Change profile data" onClick={edit_prof_button_click}/>
+                    </Row>
+                );
+            } else {
+                let button_text = "Add friend +";
+                if (userInfo.is_in_friends_list) {
+                    button_text = "Remove friend -"
+                }
+                return (
+                    <Row md={2}>
+                        <Button variant="light" className="button" as="input" type="button" value={button_text} onClick={add_friend_button_click}/>
+                    </Row>
+                );
             }
-            return (
-                <Row md={2}>
-                    <Button variant="light" className="button" as="input" type="button" value={button_text} onClick={add_friend_button_click}/>
-                </Row>
-            );
         }
     }
 
@@ -123,7 +116,7 @@ function Profile () {
                  </Row>
                 <Tab.Container activeKey={key} onSelect={(k) => setKey(k)}>
                     <Row className="limiter"> 
-                        <Nav variant="pills">
+                        <Nav>
                             <Nav.Item>
                                 <Nav.Link href="#places" eventKey="places">Places</Nav.Link>
                             </Nav.Item>
