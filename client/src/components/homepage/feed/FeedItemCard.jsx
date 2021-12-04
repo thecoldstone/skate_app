@@ -1,24 +1,20 @@
 import { useContext } from 'react';
-import {Row, Col, Image, Button} from 'react-bootstrap';
-import {BsFillPeopleFill} from 'react-icons/bs'
-import {ImLocation2} from 'react-icons/im';
+import {Row} from 'react-bootstrap';
 import mapboxgl from '!mapbox-gl';
-import fontStyles from './FeedItemCard.module.css';
 import MapContext from '../map/MapContext';
-import places from '../map/places';
+import SpotCard from './items/SpotCard';
+import VideoCard from './items/VideoCard';
+import EventCard from './items/EventCard';
+import PhotoCard from './items/PhotoCard';
 
 function FeedItemCard(props) {
-    const {map} = useContext(MapContext);
+    const {map, currentState} = useContext(MapContext);
+    
 
     const onClickItem = (e) => {
         e.preventDefault();
-
-        for(const feature of places.features) {
-            if (e.currentTarget.id === feature.properties.id) {
-                flyToPlace(feature);
-                createPopUp(feature);
-            }
-        }
+        flyToPlace(props.feature)
+        createPopUp(props.feature)
     };
 
     const flyToPlace = (feature) => {
@@ -43,6 +39,18 @@ function FeedItemCard(props) {
             .addTo(map.current)
     };
 
+    const renderItem = () => {
+        if (props.type === "spot") {
+            return <SpotCard {...props}/>
+        } else if(props.type === "video") {
+            return <VideoCard {...props}/>
+        } else if(props.type === "event") {
+            return <EventCard {...props}/>
+        } else if(props.type === "photo") {
+            return <PhotoCard {...props}/>
+        }
+    }
+
     return(
         <Row 
             id={props.id} onClick={(e) => onClickItem(e)}
@@ -53,37 +61,7 @@ function FeedItemCard(props) {
                 marginBottom: "30px",
             }}
         >
-            <Col sm={9}>
-                <Row className="mx-md-1 my-3">
-                    <Col>
-                        <Row><h4 className={fontStyles.forma_djr_medium}>{props.title}</h4></Row>
-                        <Row className="mt-2"><p>BlaBlaBla...</p></Row>
-                        <Row className="mt-2">
-                            <Col>
-                                <Row>
-                                    <Col style={{display: "flex", gap: "10px", alignItems: "center"}}>
-                                        <BsFillPeopleFill size="1.5em"/>
-                                        <p style={{marginTop: "1rem"}}>35 people</p>
-                                        <ImLocation2 size="1.5em"/>
-                                        <p style={{marginTop: "1rem"}}>Brno-Židenice, Juliánov</p>
-                                        <Button style={{backgroundColor: "#223A88", borderRadius: "11px"}}>Explore</Button>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Col>
-
-                </Row>
-            </Col>
-            <Col sm={3} style={{padding: "0"}}>
-                {/* <Row> */}
-                    <Image fluid src={`assets/${props.img}`} style={{
-                        objectFit: "cover",
-                        borderRadius: "0 10px 10px 0",
-                        height: "100%"
-                    }}/>
-                {/* </Row> */}
-            </Col>
+            {renderItem()}          
         </Row>
     );
 }

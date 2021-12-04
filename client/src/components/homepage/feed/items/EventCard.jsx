@@ -4,7 +4,7 @@ import { BsFillPeopleFill } from 'react-icons/bs'
 import { ImLocation2 } from 'react-icons/im';
 import fontStyles from '../FeedItemCard.module.css';
 
-function VideoCard(props) {
+function EventCard(props) {
 
     let navigate = useNavigate()
 
@@ -52,4 +52,4 @@ function VideoCard(props) {
     )
 }
 
-export default VideoCard;
+export default EventCard;
