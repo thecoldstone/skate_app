@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template
 
-from backend.homepage import All, Events, Places, Videos, Photos
+from backend.homepage import All, Events, Spots, Videos, Photos
 from backend.profile import Profile, EditProfile
 from backend.spot import Spot, Comment_add, Edit_spot
 from backend.authorization import Login, Logout
@@ -13,7 +13,7 @@ def add_api_resources(app):
 
     api.add_resource(All, '/all')
     api.add_resource(Events, '/events')
-    api.add_resource(Places, '/places')
+    api.add_resource(Spots, '/spots')
     api.add_resource(Videos, '/videos')
     api.add_resource(Photos, '/photos')
     api.add_resource(Profile, '/profile')

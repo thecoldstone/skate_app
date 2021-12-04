@@ -6,20 +6,20 @@ import db
 
 class All(Resource):
     def get(self):
-        return {'spots': db.spots_geojson}
+        return {'result': db.get_homepage_contet("all")}
 
 class Events(Resource):
     def get(self):
-        return {'result': 'Ok'}
+        return {'result': db.get_homepage_contet("events")}
 
-class Places(Resource):
+class Spots(Resource):
     def get(self):
-        return {'result': 'Ok'}
+        return {'result': db.get_homepage_contet("spots")}
 
 class Videos(Resource):
     def get(self):
-        return {'result': 'Ok'}
+        return {'result': db.get_homepage_contet("videos")}
 
 class Photos(Resource):
     def get(self):
-        return {'result': 'Ok'}
+        return {'result': db.get_homepage_contet("photos")}

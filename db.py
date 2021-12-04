@@ -195,62 +195,93 @@ spots = {
     }
 }
 
-spots_geojson = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "geometry": {
+tab_spots = [
+    {
+        "type": "Feature",
+        "geometry": {
                 "type": "Point",
                 "coordinates": [
                     16.609397322755587,
                     49.19899335319561
                 ]
-            },
-            "properties": {
-                "title": "Skatepark #1",
-                "type": "spot",
-                "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
-                "address": "Brno-Židenice, Juliánov",
-                "id": "1"
-            }
         },
-        {
-            "type": "Feature",
-            "geometry": {
+        "properties": {
+            "title": "Spot #1",
+            "type": "spot",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
+            "address": "Janáčkovo divadlo",
+            "id": "1",
+            "members": 24
+        }
+    }
+]
+
+tab_events = [
+    {
+        "type": "Feature",
+        "geometry": {
                 "type": "Point",
                 "coordinates": [
                     16.608322918657706,
                     49.21169085644892
                 ]
-            },
-            "properties": {
-                "title": "SkateFest",
-                "type": "event",
-                "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
-                "address": "Brno-Židenice, Juliánov",
-                "id": "2"
-            }
         },
-        {
-            "type": "Feature",
-            "geometry": {
+        "properties": {
+            "title": "SkateFest",
+            "type": "event",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
+            "address": "Boby Centrum",
+            "id": "2"
+        }
+    }
+]
+
+tab_videos = [
+    {
+        "type": "Feature",
+        "geometry": {
                 "type": "Point",
                 "coordinates": [
                     16.657182730046852,
                     49.196919012878325
                 ]
-            },
-            "properties": {
-                "title": "Video#1",
-                "type": "video",
-                "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
-                "address": "Brno-Židenice, Juliánov",
-                "id": "3"
-            }
+        },
+        "properties": {
+            "title": "Video#1",
+            "type": "video",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
+            "address": "Brno-Židenice, Juliánov",
+            "id": "3"
         }
-    ]
-}
+    }
+]
+
+tab_photos = [
+    {
+        "type": "Feature",
+        "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    16.657182730046852,
+                    49.196919012878325
+                ]
+        },
+        "properties": {
+            "title": "Photo#1",
+            "type": "photo",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
+            "address": "Brno-Židenice, Juliánov",
+            "id": "4"
+        }
+    }
+]
+
+tab_all = [
+    tab_events,
+    tab_spots,
+    tab_videos,
+    tab_photos
+]
 
 
 def get_spot(id):
@@ -262,6 +293,37 @@ def set_spot(id, name, image):
         spots[int(id)] = {"name": name, "image": image}
     else:
         print("ERROR, ID ALREADY EXISTS")
+
+
+def get_homepage_contet(content_type):
+
+    respond_body = {
+        "type": "FeatureCollection",
+        "features": []
+    }
+
+    if content_type == "all":
+        for items in tab_all:
+            for item in items:
+                respond_body["features"].append(item)
+
+    if content_type == "events":
+        for item in tab_events:
+            respond_body["features"].append(item)
+
+    if content_type == "spots":
+        for item in tab_spots:
+            respond_body["features"].append(item)
+
+    if content_type == "videos":
+        for item in tab_videos:
+            respond_body["features"].append(item)
+
+    if content_type == "photos":
+        for item in tab_photos:
+            respond_body["features"].append(item)
+
+    return respond_body
 
 
 def get_user(id):
