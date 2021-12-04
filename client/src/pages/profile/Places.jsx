@@ -29,7 +29,7 @@ function Places({userInfo, userId}) {
                                 {userInfo.my_spots_info[spot].name}
                             </Row>
                             <Row className="text">
-                                {userInfo.my_spots_info[spot].user_ranks[userId]}
+                                Rank: {userInfo.my_spots_info[spot].user_ranks[userId]}
                             </Row>
                             <Row>
                                 <Button variant="light" className="place_button" as="input" type="button" value="Open group page" onClick={() => open_spot(spot)}/>
