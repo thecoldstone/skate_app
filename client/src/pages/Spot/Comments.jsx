@@ -1,15 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
+import { Row, Col, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import './Chat.css';
 
-function Comments({spot}) {
-    if (spot && spot.comments)
+function Comments({comments}) {
+    if (comments)
     {
         return (       
             <>   
-                {spot.comments.map((comment, index) => 
+                {comments.map((comment, index) => 
                 <Row key={index} className="comment">
                     <Col>
                         <Card>
