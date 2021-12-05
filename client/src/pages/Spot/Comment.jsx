@@ -12,7 +12,7 @@ function Comment({spot, spotId}) {
     const api = useApiContext();
 
     async function addComment(comment) {
-        let response = await api.post(`/comment_add`, JSON.stringify(comment));
+        let response = await api.post(`/commentAdd`, JSON.stringify(comment));
         let data = await response.data;
         
         if(!data.hasOwnProperty('error')) {

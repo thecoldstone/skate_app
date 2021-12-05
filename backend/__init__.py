@@ -5,7 +5,7 @@ from flask import Flask, render_template
 from backend.homepage import All, Events, Spots, Videos, Photos
 from backend.profile import Profile, EditProfile
 from backend.spot import Spot, Comment_add, Edit_spot
-from backend.authorization import Login, Logout
+from backend.authorization import Login
 
 def add_api_resources(app):
     from flask_restful import Api
@@ -19,10 +19,9 @@ def add_api_resources(app):
     api.add_resource(Profile, '/profile')
     api.add_resource(EditProfile, '/editProfile')
     api.add_resource(Spot, '/spot')
-    api.add_resource(Edit_spot, '/edit_spot')
-    api.add_resource(Comment_add, '/comment_add')
+    api.add_resource(Edit_spot, '/editSpot')
+    api.add_resource(Comment_add, '/commentAdd')
     api.add_resource(Login, '/login')
-    api.add_resource(Logout, '/logout')
 
 
 def create_app(test_config=None):

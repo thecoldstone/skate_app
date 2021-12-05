@@ -31,7 +31,9 @@ function Profile () {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            let response = await api.post('/profile', JSON.stringify({'id': userId}));
+            let response = await api.post('/profile', JSON.stringify({
+                'id': userId, 'user_id': currentUser.id
+            }));
             setUserInfo(response.data);
         };
         fetchUserData();
@@ -42,33 +44,45 @@ function Profile () {
     }
 
     function add_friend_button_click() {
-        api.post('/editProfile', JSON.stringify({'id':'actual_user' ,'friend_id': userId}));
+        api.post('/editProfile', JSON.stringify({'id': currentUser.id, 'friend_id': userId}));
         window.location.reload();
     }
 
     function setButtonState(){
         if (currentUser.id != undefined){
-            if (userInfo.is_my_page){
+            if (userId == currentUser.id){
                 return (
                     <Row md={2}>
-                        <Button variant="light" className="button" as="input" type="button" value="Change profile data" onClick={edit_prof_button_click}/>
+                        <Button
+                        variant="light"
+                        className="button"
+                        type="button"
+                        onClick={edit_prof_button_click}>
+                            Change profile data
+                        </Button>
                     </Row>
                 );
             } else {
                 let button_text = "Add friend +";
-                if (userInfo.is_in_friends_list) {
+                if (userInfo["is_in_friends_list"]) {
                     button_text = "Remove friend -"
                 }
                 return (
                     <Row md={2}>
-                        <Button variant="light" className="button" as="input" type="button" value={button_text} onClick={add_friend_button_click}/>
+                        <Button
+                        variant="light"
+                        className="button"
+                        type="button"
+                        onClick={add_friend_button_click}>
+                            {button_text}
+                        </Button>
                     </Row>
                 );
             }
         }
     }
 
-    if (userInfo && userInfo.my_spots && userInfo.my_spots_info) {
+    if (userInfo && userInfo.spots && userInfo.spot_info) {
         return (
             <Container className="body-profile" fluid="md">
                  <Row>

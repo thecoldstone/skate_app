@@ -32,7 +32,7 @@ function Edit_profile () {
     const [newInst, setInst] = useState("");
     const [newTikTok, setTikTok] = useState("");
 
-    async function save_changes() {
+    async function saveChanges() {
         let request = {
             "id" : userId,
             "email" : newEmail,
@@ -43,7 +43,7 @@ function Edit_profile () {
             "instagram" : newInst,
             "tiktok" : newTikTok
         }
-        let response = await api.post('/editProfile', JSON.stringify(request));
+        await api.post('/editProfile', JSON.stringify(request));
         navigate("/profile?id=" + userId);
     }
 
@@ -126,10 +126,7 @@ function Edit_profile () {
             </Row>
 
             <Row className="save_button_cont">
-                {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group> */}
-                <Button className="save_button" variant="light" type="button" onClick={save_changes}>
+                <Button className="save_button" variant="light" type="button" onClick={saveChanges}>
                     Save changes
                 </Button>
             </Row>

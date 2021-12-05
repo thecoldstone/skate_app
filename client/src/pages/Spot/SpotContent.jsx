@@ -62,7 +62,7 @@ function SpotContent({spot, spotId}) {
                     "video_url": video,
                     "spot_id" : spotId,
                 };
-                await api.post('/edit_spot', JSON.stringify(request));
+                await api.post('/editSpot', JSON.stringify(request));
                 window.location.reload();
             } catch (error) {
                 console.log(error);
@@ -89,13 +89,13 @@ function SpotContent({spot, spotId}) {
                         onHide={() => setModal(false)}
                         >
                         <Modal.Header closeButton>
-                            <Modal.Title>Add video</Modal.Title>
+                            <Modal.Title>Add Youtube video</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <Form.Control 
                                 as="textarea" 
                                 type="text"
-                                placeholder={"Enter video URL"} 
+                                placeholder={"Insert Youtube video URL here"} 
                                 disabled={false}
                                 value={video}
                                 onChange={e => setVideo(e.target.value)}
