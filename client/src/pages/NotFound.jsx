@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko00@stud.fit.vutbr.cz>
+ */
+
 import {Col, Row, Container} from 'react-bootstrap';
 
 

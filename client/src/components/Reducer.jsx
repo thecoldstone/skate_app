@@ -1,3 +1,7 @@
+/**
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
 let user = localStorage.getItem("currentUser")
     ? JSON.parse(localStorage.getItem("currentUser"))
     : "";

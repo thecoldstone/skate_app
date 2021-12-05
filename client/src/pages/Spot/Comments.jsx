@@ -1,3 +1,7 @@
+/**
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
 import { Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 

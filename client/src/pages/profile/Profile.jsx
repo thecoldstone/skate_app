@@ -1,3 +1,7 @@
+/**
+ * Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+ */
+
 import React, {useState, useEffect} from 'react';
 import { Container, Row, Col, Nav, Tab } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
@@ -5,14 +9,13 @@ import Button from 'react-bootstrap/Button';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useApiContext, useAuthState } from '../../components/AppContext';
-
 import instagram_icon_image from "../../pictures/icons/instagram.png";
 import facebook_icon_image from "../../pictures/icons/facebook_1.png";
 import tiktok_icon_image from "../../pictures/icons/tiktok.png";
 
 import './Profile.css'
 
+import { useApiContext, useAuthState } from '../../components/AppContext';
 import Places from './Places';
 import Friends from './Friends';
 
@@ -39,11 +42,11 @@ function Profile () {
         fetchUserData();
     }, []);
 
-    function edit_prof_button_click() {
+    function editProfileButtonClick() {
         navigate("/editProfile?id=" + userId);
     }
 
-    function add_friend_button_click() {
+    function addFriendButtonClick() {
         api.post('/editProfile', JSON.stringify({'id': currentUser.id, 'friend_id': userId}));
         window.location.reload();
     }
@@ -57,7 +60,7 @@ function Profile () {
                         variant="light"
                         className="button"
                         type="button"
-                        onClick={edit_prof_button_click}>
+                        onClick={editProfileButtonClick}>
                             Change profile data
                         </Button>
                     </Row>
@@ -73,7 +76,7 @@ function Profile () {
                         variant="light"
                         className="button"
                         type="button"
-                        onClick={add_friend_button_click}>
+                        onClick={addFriendButtonClick}>
                             {button_text}
                         </Button>
                     </Row>

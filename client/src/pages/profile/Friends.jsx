@@ -1,3 +1,7 @@
+/**
+ * Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+ */
+
 import React from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';

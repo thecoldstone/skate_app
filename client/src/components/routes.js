@@ -1,3 +1,9 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ * Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
 import HomePage from "../pages/HomePage";
 import Login from "../pages/authorization/Login";
 import Signup from "../pages/authorization/Signup";

@@ -1,3 +1,8 @@
+/**
+ *  Author: Nikita Zhukov <xzhuko00@stud.fit.vutbr.cz>
+ *  Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
 import {Col, Row, Form, FormGroup, Button} from 'react-bootstrap';
 import {useState} from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';

@@ -1,4 +1,8 @@
-import {Col, Row, Form, FormGroup, Button} from 'react-bootstrap';
+/**
+ *  Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
+import {Form, FormGroup, Button} from 'react-bootstrap';
 import formStyles from './Form.module.css';
 import { useNavigate } from 'react-router-dom';
 

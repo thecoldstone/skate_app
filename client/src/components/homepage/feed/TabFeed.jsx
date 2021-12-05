@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import { useState, useEffect, useContext, lazy, Suspense  } from 'react';
 import {Row, Col, Tab, Nav} from 'react-bootstrap';
 import FeedContent from './FeedContent';
