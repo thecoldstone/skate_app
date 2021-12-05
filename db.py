@@ -313,10 +313,11 @@ tab_spots = [
         "properties": {
             "title": "Spot #1",
             "type": "spot",
-            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
+            "description": "Well-located spot in the city center.",
             "address": "Janáčkovo divadlo",
             "id": "1",
-            "members": 24
+            "members": 24,
+            "image": "https://as1.ftcdn.net/v2/jpg/02/87/93/88/1000_F_287938821_r4gVJaWOkQivCpByTVH2Sq4FPTZDPXN7.jpg"
         }
     }
 ]
@@ -334,9 +335,10 @@ tab_events = [
         "properties": {
             "title": "SkateFest",
             "type": "event",
-            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
+            "description": "Workshop for small children to learn basic skate tricks.",
             "address": "Boby Centrum",
-            "id": "2"
+            "id": "2",
+            "image": "https://t4.ftcdn.net/jpg/03/85/01/71/240_F_385017164_97YeX100UVZWAbJ1QZ3HUtaOE8uMNZQN.jpg"
         }
     }
 ]
@@ -354,9 +356,10 @@ tab_videos = [
         "properties": {
             "title": "Video#1",
             "type": "video",
-            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
+            "description": "Insnane skater destroys the skatepark.",
             "address": "Brno-Židenice, Juliánov",
-            "id": "3"
+            "id": "3",
+            "image": "https://as2.ftcdn.net/v2/jpg/03/02/47/73/1000_F_302477323_YcrRliEVC4z6RZJPCACGxO3bBjdbHcrf.jpg"
         }
     }
 ]
@@ -367,16 +370,17 @@ tab_photos = [
         "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    16.657182730046852,
-                    49.196919012878325
+                    16.657183,
+                    49.1970
                 ]
         },
         "properties": {
             "title": "Photo#1",
             "type": "photo",
-            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.",
+            "description": "Beautiful pictures of young talents from Brno.",
             "address": "Brno-Židenice, Juliánov",
-            "id": "4"
+            "id": "4",
+            "image": "https://as2.ftcdn.net/v2/jpg/04/72/12/31/1000_F_472123128_RL8Jx0jqylDsTcplDLhM2nXOaAHsn1Qy.jpg"
         }
     }
 ]
