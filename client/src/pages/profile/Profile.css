@@ -1,3 +1,7 @@
+/**
+ * Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+ */
+
 @font-face {
     font-family: main_font;
     src: url("../../fonts/Aldrich-Regular.ttf");
@@ -58,13 +62,13 @@
 }
 
 .col-centered {
-    padding-left: 2%;
+    padding-left: 3%;
     margin: 0 auto;
     float: none;
 }
 
 .save_button_cont {
-    height: 365px;
+    height: 33vh;
     align-content: flex-end;
 }
 
@@ -155,7 +159,7 @@
 }
 
 .horizontal-scrollable {
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
 }
     

@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import {useRef, useState, useEffect} from 'react';
 import {Container, Col, Row} from 'react-bootstrap';
 import mapboxgl from '!mapbox-gl';

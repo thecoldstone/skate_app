@@ -1,3 +1,7 @@
+/**
+ * Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+ */
+
 import React, {useState, useEffect} from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
@@ -8,7 +12,7 @@ import { useApiContext } from '../../components/AppContext';
 import close_icon_img from "../../pictures/icons/close_button.png";
 import './Profile.css'
 
-function Edit_profile () {
+function EditProfile () {
     const navigate = useNavigate();
     const api = useApiContext();
 
@@ -18,7 +22,7 @@ function Edit_profile () {
     let [userImage, setUserImage] = useState("");
     useEffect(() => {
         const fetchUserData = async () => {
-            let response = await api.post('/profile', JSON.stringify({'id': userId}));;
+            let response = await api.post('/profile', JSON.stringify({'id': userId})); // get user image
             setUserImage(response.data.image);
         };
         fetchUserData();
@@ -32,7 +36,7 @@ function Edit_profile () {
     const [newInst, setInst] = useState("");
     const [newTikTok, setTikTok] = useState("");
 
-    async function save_changes() {
+    async function saveChanges() { // create dictionary and send to backend
         let request = {
             "id" : userId,
             "email" : newEmail,
@@ -43,7 +47,7 @@ function Edit_profile () {
             "instagram" : newInst,
             "tiktok" : newTikTok
         }
-        let response = await api.post('/editProfile', JSON.stringify(request));
+        await api.post('/editProfile', JSON.stringify(request));
         navigate("/profile?id=" + userId);
     }
 
@@ -55,7 +59,7 @@ function Edit_profile () {
                 </Col>
                 <Col md={2}>
                     <a href={"/profile?id=" + userId}>
-                        <Image className="video_img" src={close_icon_img}/>
+                        <Image className="video_img" src={close_icon_img}/> {/*close button*/}
                     </a>
                 </Col>
             </Row>
@@ -126,14 +130,11 @@ function Edit_profile () {
             </Row>
 
             <Row className="save_button_cont">
-                {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group> */}
-                <Button className="save_button" variant="light" type="button" onClick={save_changes}>
+                <Button className="save_button" variant="light" type="button" onClick={saveChanges}>
                     Save changes
                 </Button>
             </Row>
         </Container>
     )
 }
-export default Edit_profile;
+export default EditProfile;

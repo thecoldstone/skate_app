@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import { Row, Col, Image, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { BsFillPeopleFill, BsFillCalendarEventFill } from 'react-icons/bs'

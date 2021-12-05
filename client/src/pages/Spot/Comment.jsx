@@ -1,24 +1,28 @@
+/**
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
 import React, { useState } from 'react';
-import { Row, Col, Form, FormLabel, Button } from 'react-bootstrap';
+import { Row, Col, Form, Button } from 'react-bootstrap';
 
 import { useApiContext, useAuthState } from '../../components/AppContext';
 
 import "./Chat.css"
 
-function Comment({spot, spotId}) {
+function Comment({spotId}) {
 
     const [comment, setComment] = useState("");
     const currentUser = useAuthState();
     const api = useApiContext();
 
     async function addComment(comment) {
-        let response = await api.post(`/comment_add`, JSON.stringify(comment));
+        let response = await api.post(`/commentAdd`, JSON.stringify(comment));
         let data = await response.data;
         
         if(!data.hasOwnProperty('error')) {
             return null;
         }
-    
+
         // TODO Handle error state
         return data.error;
     }

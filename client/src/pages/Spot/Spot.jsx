@@ -1,6 +1,10 @@
+/**
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col} from 'react-bootstrap';
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo } from '@fortawesome/free-solid-svg-icons';
 import { useApiContext } from '../../components/AppContext';
@@ -45,16 +49,15 @@ function Spot() {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 }}>
-                    <div className="text-white text-center d-flex align-items-center py-5" style={{backgroundColor: "rgba(0,0,0,0.7)"}}>
+                    <div
+                    className="text-white text-center d-flex align-items-center py-5"
+                    style={{backgroundColor: "rgba(0,0,0,0.7)"}}>
                         <div>
                             <h3 className="pink-text">
                                 {spot.name}
                             </h3>
                             <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Repellat fugiat, laboriosam, voluptatem, optio vero odio nam
-                            sit officia accusamus minus error nisi architecto nulla ipsum
-                            dignissimos. Odit sed qui, dolorum!
+                                {spot.description}
                             </p>
                             <p><FontAwesomeIcon icon={faVideo}/> {spot.videos.length}</p>
                         </div>

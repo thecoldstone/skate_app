@@ -1,4 +1,8 @@
-actual_user = 0
+"""
+    Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+    Author: Nikita Zhukov <xzhuko00@stud.fit.vutbr.cz>
+    Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+"""
 
 users = {
     0 : {
@@ -9,10 +13,10 @@ users = {
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
-        "my_spots" : [0,1,2],
-        "my_spots_info" : {},
-        "my_friends" : [1,2,3,4,5,6,7,8],
-        "my_friends_info" : {}
+        "spots" : [0, 1, 2],
+        "spot_info" : {},
+        "friends" : [1,2,3,4,5,6,7,8],
+        "friend_info" : {}
     },
     1 : {
         "email" : "myemail1@gmail.com",
@@ -22,10 +26,10 @@ users = {
         "tiktok" : "something.something",
         "facebook" : "something",
         "instagram" : "something",
-        "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_friends" : [0, 2],
-        "my_friends_info" : {}
+        "spots" : [0, 1, 2],
+        "spot_info" : {},
+        "friends" : [0, 2],
+        "friend_info" : {}
     },
     2 : {
         "email" : "myemail2@gmail.com",
@@ -35,10 +39,10 @@ users = {
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
-        "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_friends" : [],
-        "my_friends_info" : {}
+        "spots" : [0, 1, 2],
+        "spot_info" : {},
+        "friends" : [0, 1, 3, 4 ,7],
+        "friend_info" : {}
     },
     3 : {
         "email" : "myemail3@gmail.com",
@@ -48,10 +52,10 @@ users = {
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
-        "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_friends" : [],
-        "my_friends_info" : {}
+        "spots" : [0, 1, 2],
+        "spot_info" : {},
+        "friends" : [1, 5, 7, 4, 2],
+        "friend_info" : {}
     },
     4 : {
         "email" : "myemail4@gmail.com",
@@ -61,10 +65,10 @@ users = {
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
-        "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_friends" : [],
-        "my_friends_info" : {}
+        "spots" : [0, 1, 2],
+        "spot_info" : {},
+        "friends" : [0, 1, 3, 4, 7],
+        "friend_info" : {}
     },
     5 : {
         "email" : "myemail5@gmail.com",
@@ -74,10 +78,10 @@ users = {
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
-        "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_friends" : [],
-        "my_friends_info" : {}
+        "spots" : [0, 1, 2],
+        "spot_info" : {},
+        "friends" : [0, 1, 3],
+        "friend_info" : {}
     },
     6 : {
         "email" : "myemail6@gmail.com",
@@ -87,10 +91,10 @@ users = {
         "tiktok" : "khsgasdga.lame",
         "facebook" : "asgdag0",
         "instagram" : "khabgsdagsdgy00",
-        "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_friends" : [],
-        "my_friends_info" : {}
+        "spots" : [0, 1, 2],
+        "spot_info" : {},
+        "friends" : [3, 4, 5],
+        "friend_info" : {}
     },
     7 : {
         "email" : "myemail7@gmail.com",
@@ -100,10 +104,10 @@ users = {
         "tiktok" : "asdgme",
         "facebook" : "khabylasdgicial00",
         "instagram" : "kasdg",
-        "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_friends" : [],
-        "my_friends_info" : {}
+        "spots" : [0, 1, 2],
+        "spot_info" : {},
+        "friends" : [6, 7, 3],
+        "friend_info" : {}
     },
     8 : {
         "email" : "myemail8@gmail.com",
@@ -113,10 +117,10 @@ users = {
         "tiktok" : "khaby.lame",
         "facebook" : "khabylameofficial00",
         "instagram" : "khaby00",
-        "my_spots" : [0, 1, 2],
-        "my_spots_info" : {},
-        "my_friends" : [],
-        "my_friends_info" : {}
+        "spots" : [0, 1, 2],
+        "spot_info" : {},
+        "friends" : [2, 4, 6],
+        "friend_info" : {}
     }
 }
 

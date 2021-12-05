@@ -1,58 +1,89 @@
+/**
+ * Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+ */
+
 import React from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
+
 import { useApiContext } from '../../components/AppContext';
 
 function Places({userInfo, userId}) {
     const navigate = useNavigate();
     const api = useApiContext();
 
-    function open_spot(spotId) {
+    function openSpot(spotId) {
         navigate("/spot?id=" + spotId);
     }
 
-    function remove_video(spotId, videoId) {
-        api.post('/edit_spot', JSON.stringify({'spot_id':spotId , 'video_id': videoId, 'user_id': userId}));
+    function removeVideo(spotId, videoId) {
+        api.post('/editSpot', JSON.stringify({
+            'spot_id':spotId , 'video_id': videoId, 'user_id': userId
+        }));
         window.location.reload();
+    }
+
+    function renderVideos(spot) { // videos horizontal scrollable list
+        if (userInfo.spot_info[spot]["videos"].length) {
+            return (
+                <Row>
+                    <Col md="auto">
+                        <Container className="horizontal-scrollable"> {/*go through all videos and create iframe & delete button for everyone*/}
+                            {userInfo.spot_info[spot]["videos"].map((video, video_id) => 
+                                <Col className="col-xs-4" key={video_id}>
+                                    <Col className="text-right">
+                                        <FontAwesomeIcon 
+                                        icon={faTimes} 
+                                        size="1x" cursor='pointer' 
+                                        onClick={e => removeVideo(spot, video_id)}
+                                        />
+                                    </Col>
+                                    <iframe
+                                        className = "video_img" 
+                                        src={video.url}>
+                                    </iframe>
+                                </Col>
+                            )}
+                        </Container>
+                    </Col>
+                </Row>
+            )
+        }
+        else {
+            return null;
+        }
+        
     }
 
     return (
         <Container fluid="md">
-            {userInfo.my_spots.map((spot, spot_id) =>
+            {userInfo.spots.map((spot, spot_id) =>
                 <Row key={spot_id}>
                     <Row md="auto" className="place_row">
                         <Col md="auto">
-                            <Image className="group_img" src={userInfo.my_spots_info[spot].image} roundedCircle />
+                            <Image className="group_img" src={userInfo.spot_info[spot].image} roundedCircle /> {/*spot image*/}
                         </Col>
                         <Col md="auto" className="place_info">
                             <Row className="text">
-                                {userInfo.my_spots_info[spot].name}
+                                {userInfo.spot_info[spot].name}
                             </Row>
                             <Row className="text">
-                                Rank: {userInfo.my_spots_info[spot].user_ranks[userId]}
+                                Rank: {userInfo.spot_info[spot].user_ranks[userId]} {/*user`s rank on this spot image*/}
                             </Row>
                             <Row>
-                                <Button variant="light" className="place_button" as="input" type="button" value="Open group page" onClick={() => open_spot(spot)}/>
+                                <Button
+                                variant="light"
+                                className="place_button"
+                                type="button"
+                                onClick={() => openSpot(spot)}>
+                                    Open spot page    
+                                </Button>
                             </Row>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md="auto">
-                            <Container className="horizontal-scrollable">
-                                {userInfo.my_spots_info[spot]["videos"].map((video, video_id) =>
-                                    <Col className="col-xs-4" key={video_id}>
-                                        <Col className="text-right">
-                                            <Button variant="light" className="remove_video_button" as="input" value="x" onClick={() => remove_video(spot, video_id)}/>
-                                        </Col>
-                                        <iframe
-                                            className = "video_img" 
-                                            src={video.url}>
-                                        </iframe>
-                                    </Col>
-                                )}
-                            </Container>
-                        </Col>
-                    </Row>
+                   {renderVideos(spot)}
                 </Row>
             )}
         </Container>

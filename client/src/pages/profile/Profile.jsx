@@ -1,3 +1,7 @@
+/**
+ * Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+ */
+
 import React, {useState, useEffect} from 'react';
 import { Container, Row, Col, Nav, Tab } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
@@ -5,21 +9,20 @@ import Button from 'react-bootstrap/Button';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useApiContext, useAuthState } from '../../components/AppContext';
-
 import instagram_icon_image from "../../pictures/icons/instagram.png";
 import facebook_icon_image from "../../pictures/icons/facebook_1.png";
 import tiktok_icon_image from "../../pictures/icons/tiktok.png";
 
 import './Profile.css'
 
+import { useApiContext, useAuthState } from '../../components/AppContext';
 import Places from './Places';
 import Friends from './Friends';
 
 
 function Profile () {
     const navigate = useNavigate();
-    const currentUser = useAuthState();
+    const currentUser = useAuthState(); // current user is in local storage
 
     const [key, setKey] = useState('places');
     const api = useApiContext();
@@ -31,49 +34,63 @@ function Profile () {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            let response = await api.post('/profile', JSON.stringify({'id': userId}));
+            let response = await api.post('/profile', JSON.stringify({ // get user info
+                'id': userId, 'user_id': currentUser.id
+            }));
             setUserInfo(response.data);
         };
         fetchUserData();
     }, []);
 
-    function edit_prof_button_click() {
+    function editProfButtonClick() {
         navigate("/editProfile?id=" + userId);
     }
 
-    function add_friend_button_click() {
-        api.post('/editProfile', JSON.stringify({'id':'actual_user' ,'friend_id': userId}));
+    function addFriendButtonClick() { // add/remove friend
+        api.post('/editProfile', JSON.stringify({'id': currentUser.id, 'friend_id': userId}));
         window.location.reload();
     }
 
-    function setButtonState(){
+    function setButtonState(){ // no buttons if user is unathorized
         if (currentUser.id != undefined){
-            if (userInfo.is_my_page){
+            if (userId == currentUser.id){ // if actual profile is user`s profile, show button "Edit profile"
                 return (
                     <Row md={2}>
-                        <Button variant="light" className="button" as="input" type="button" value="Change profile data" onClick={edit_prof_button_click}/>
+                        <Button
+                        variant="light"
+                        className="button"
+                        type="button"
+                        onClick={editProfButtonClick}>
+                            Change profile data
+                        </Button>
                     </Row>
                 );
-            } else {
+            } else { // if not, show button "Add friend"/"Remove friend"
                 let button_text = "Add friend +";
-                if (userInfo.is_in_friends_list) {
+                if (userInfo["is_in_friends_list"]) {
                     button_text = "Remove friend -"
                 }
                 return (
                     <Row md={2}>
-                        <Button variant="light" className="button" as="input" type="button" value={button_text} onClick={add_friend_button_click}/>
+                        <Button
+                        variant="light"
+                        className="button"
+                        type="button"
+                        onClick={addFriendButtonClick}>
+                            {button_text}
+                        </Button>
                     </Row>
                 );
             }
         }
     }
 
-    if (userInfo && userInfo.my_spots && userInfo.my_spots_info) {
+    if (userInfo && userInfo.spots && userInfo.spot_info) {
         return (
             <Container className="body-profile" fluid="md">
                  <Row>
                      <Col md="auto">
-                         <Image src={userInfo.image} roundedCircle className="title-panel" />
+                         <Image src={userInfo.image} roundedCircle className="title-panel" /> {/*profile image*/}
                      </Col>
                      <Col md={6}>
                          <Row className="text">
@@ -114,7 +131,7 @@ function Profile () {
                          </Row>
                      </Col>
                  </Row>
-                <Tab.Container activeKey={key} onSelect={(k) => setKey(k)}>
+                <Tab.Container activeKey={key} onSelect={(k) => setKey(k)}> {/*places and friends tabs*/}
                     <Row className="limiter"> 
                         <Nav>
                             <Nav.Item>
@@ -128,7 +145,7 @@ function Profile () {
                     <Row>
                         <Tab.Content>
                             <Tab.Pane eventKey="places" >
-                                <Places userInfo={userInfo} userId={userId}/>
+                                <Places userInfo={userInfo} userId={userId}/> {/*places and friends content*/}
                             </Tab.Pane>
                             <Tab.Pane eventKey="friends">
                                 <Friends userInfo={userInfo}/>

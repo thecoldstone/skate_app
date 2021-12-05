@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import {Container, Navbar, Nav} from 'react-bootstrap';
 import {useState, useEffect, useContext} from 'react';
 import navigationStyles from './NavigationBar.module.css';

@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import { useContext } from 'react';
 import {Row} from 'react-bootstrap';
 import mapboxgl from '!mapbox-gl';

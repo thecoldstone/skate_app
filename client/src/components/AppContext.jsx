@@ -1,3 +1,8 @@
+/**
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import { createContext, useContext, useReducer } from 'react';
 import io from 'socket.io-client';
 import { initialState, AuthReducer } from './Reducer';

@@ -1,3 +1,7 @@
+/**
+ * Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+ */
+
 import React from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -9,36 +13,43 @@ import tiktok_icon_image from "../../pictures/icons/tiktok.png";
 function Friends({userInfo}) {
     const navigate = useNavigate();
 
-    function open_friend(friendId) {
+    function openFriend(friendId) { // open friend`s profile
         navigate("/profile?id=" + friendId);
         window.location.reload();
     }
 
     return (
-        <Container fluid="md">
-            {userInfo.my_friends.map((friend, friend_id) =>
+        <Container fluid="md"> {/*go through all friends*/}
+            {userInfo.friends.map((friend, friend_id) =>
                 <Row key={friend_id}>
                     <Row md="auto" className="place_row">
                         <Col md="auto" className="place_icon">
-                            <Image className="group_img" src={userInfo.my_friends_info[friend].image} roundedCircle />
+                            <Image className="group_img" src={userInfo.friend_info[friend].image} roundedCircle /> {/*friend`s profile image*/}
                         </Col>
                         <Col md="auto" className="place_info">
                             <Row className="text">
-                                {userInfo.my_friends_info[friend].name}
+                                {userInfo.friend_info[friend].name}
                             </Row>
                             <Row className="profile_spot_button">
-                                <Button variant="light" className="place_button" as="input" type="button" value="Open friend profile" onClick={() => open_friend(friend)}/>
+                                <Button
+                                variant="light"
+                                className="place_button"
+                                type="button"
+                                onClick={() => openFriend(friend)}>
+                                    Open friend profile 
+                                </Button>
                             </Row>
                         </Col>
+                        {/*Friend`s facebook, instagram and tiktok*/}
                         <Col>
                             <Row className="friends_contacts">
                                 <Col md="auto">
-                                    <a href={"https://www.instagram.com/" + userInfo.my_friends_info[friend].instagram}>
+                                    <a href={"https://www.instagram.com/" + userInfo.friend_info[friend].instagram}>
                                         <Image src={instagram_icon_image}/>
                                     </a>
                                 </Col>
                                 <Col md="auto" className="text">
-                                    @{userInfo.my_friends_info[friend].instagram}
+                                    @{userInfo.friend_info[friend].instagram}
                                 </Col>
                             </Row>
                         </Col>
@@ -50,7 +61,7 @@ function Friends({userInfo}) {
                                     </a>
                                 </Col>
                                 <Col md="auto" className="text">
-                                    @{userInfo.my_friends_info[friend].facebook}
+                                    @{userInfo.friend_info[friend].facebook}
                                 </Col>
                             </Row>
                         </Col>
@@ -62,7 +73,7 @@ function Friends({userInfo}) {
                                     </a>
                                 </Col>
                                 <Col md="auto" className="text">
-                                    @{userInfo.my_friends_info[friend].tiktok}
+                                    @{userInfo.friend_info[friend].tiktok}
                                 </Col>
                             </Row>
                         </Col>

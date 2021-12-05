@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import {Container, Row, Col, Image, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {Form} from '../../components/authorization/index';
