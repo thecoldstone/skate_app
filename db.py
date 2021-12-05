@@ -41,7 +41,7 @@ users = {
         "instagram" : "khaby00",
         "spots" : [0, 1, 2],
         "spot_info" : {},
-        "friends" : [0, 1],
+        "friends" : [0, 1, 3, 4 ,7],
         "friend_info" : {}
     },
     3 : {
@@ -54,7 +54,7 @@ users = {
         "instagram" : "khaby00",
         "spots" : [0, 1, 2],
         "spot_info" : {},
-        "friends" : [0],
+        "friends" : [1, 5, 7, 4, 2],
         "friend_info" : {}
     },
     4 : {
@@ -67,7 +67,7 @@ users = {
         "instagram" : "khaby00",
         "spots" : [0, 1, 2],
         "spot_info" : {},
-        "friends" : [0],
+        "friends" : [0, 1, 3, 4, 7],
         "friend_info" : {}
     },
     5 : {
@@ -80,7 +80,7 @@ users = {
         "instagram" : "khaby00",
         "spots" : [0, 1, 2],
         "spot_info" : {},
-        "friends" : [0],
+        "friends" : [0, 1, 3],
         "friend_info" : {}
     },
     6 : {
@@ -93,7 +93,7 @@ users = {
         "instagram" : "khabgsdagsdgy00",
         "spots" : [0, 1, 2],
         "spot_info" : {},
-        "friends" : [0],
+        "friends" : [3, 4, 5],
         "friend_info" : {}
     },
     7 : {
@@ -106,7 +106,7 @@ users = {
         "instagram" : "kasdg",
         "spots" : [0, 1, 2],
         "spot_info" : {},
-        "friends" : [0],
+        "friends" : [6, 7, 3],
         "friend_info" : {}
     },
     8 : {
@@ -119,7 +119,7 @@ users = {
         "instagram" : "khaby00",
         "spots" : [0, 1, 2],
         "spot_info" : {},
-        "friends" : [0],
+        "friends" : [2, 4, 6],
         "friend_info" : {}
     }
 }
