@@ -4,6 +4,9 @@
     Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
 """
 
+"""
+    Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+"""
 users = {
     0 : {
         "email" : "myemail0@gmail.com",
@@ -124,6 +127,9 @@ users = {
     }
 }
 
+"""
+    Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+"""
 spots = {
     0: {
         "name": "Venice Beach",
@@ -306,6 +312,9 @@ spots = {
     }
 }
 
+"""
+    Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+"""
 tab_spots = [
     {
         "type": "Feature",
@@ -328,6 +337,9 @@ tab_spots = [
     }
 ]
 
+"""
+    Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+"""
 tab_events = [
     {
         "type": "Feature",
@@ -349,6 +361,9 @@ tab_events = [
     }
 ]
 
+"""
+    Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+"""
 tab_videos = [
     {
         "type": "Feature",
@@ -370,6 +385,9 @@ tab_videos = [
     }
 ]
 
+"""
+    Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+"""
 tab_photos = [
     {
         "type": "Feature",
@@ -391,6 +409,9 @@ tab_photos = [
     }
 ]
 
+"""
+    Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+"""
 tab_all = [
     tab_events,
     tab_spots,
@@ -399,10 +420,16 @@ tab_all = [
 ]
 
 
+"""
+    Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+"""
 def get_spot(id):
     return spots[int(id)]
 
 
+"""
+    Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+"""
 def set_spot(id, name, image):
     if id not in spots:
         spots[int(id)] = {"name": name, "image": image}
@@ -410,6 +437,9 @@ def set_spot(id, name, image):
         print("ERROR, ID ALREADY EXISTS")
 
 
+"""
+    Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+"""
 def get_homepage_contet(content_type):
 
     respond_body = {
@@ -441,9 +471,15 @@ def get_homepage_contet(content_type):
     return respond_body
 
 
+"""
+    Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+"""
 def get_user(id):
     return users[int(id)]
 
 
+"""
+    Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+"""
 def set_user(id, new_info):
     users[int(id)] = new_info

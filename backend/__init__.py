@@ -1,5 +1,4 @@
 """
-    Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
     Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
 """
 

@@ -17,6 +17,7 @@ const WebSocketContext = createContext();
 /**
  * Get Api Context
  * 
+ * @author Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
  * @returns {React.Context}
  */
 export function useApiContext() {
@@ -31,6 +32,7 @@ export function useApiContext() {
 /**
  * Get Auth State Context
  * 
+ * @author Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
  * @returns {React.Context}
  */
 export function useAuthState() {
@@ -45,6 +47,7 @@ export function useAuthState() {
 /**
  * Get Auth Dispatch Context
  * 
+ * @author Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
  * @returns {React.Context}
  */
 export function useAuthDispatch() {
@@ -59,6 +62,7 @@ export function useAuthDispatch() {
 /**
  * Get Web Socket Context
  * 
+ * @author Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
  * @returns {React.Context}
  */
 export function useWebSocket() {
@@ -72,6 +76,9 @@ export function useWebSocket() {
 
 /**
  * Returns App Provider
+ * 
+ * @author Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ * @author Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
  * 
  * @param {React.FC} param
  * @returns {React.Provider}
