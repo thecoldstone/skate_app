@@ -8,7 +8,8 @@ import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { useApiContext, useAuthState, useWebSocket } from '../../components/AppContext';
+import { useApiContext, useAuthState,
+         useAuthDispatch, useWebSocket } from '../../components/AppContext';
 import './Spot.css';
 import Chat from './Chat';
 import Gallery from './Gallery';
@@ -27,6 +28,7 @@ function SpotContent({spot, spotId}) {
     const location = useLocation();
     const api = useApiContext();
     const currentUser = useAuthState();
+    const dispatch = useAuthDispatch();
     const webSocket = useWebSocket();
 
     useEffect(() =>{
@@ -53,6 +55,7 @@ function SpotContent({spot, spotId}) {
                     "spot_id" : spotId
                 };
                 await api.post('/editProfile', JSON.stringify(request));
+                window.location.reload();
             } catch (error) {
                 console.log(error);
             }
@@ -74,17 +77,21 @@ function SpotContent({spot, spotId}) {
     {
         const [modal, setModal] = useState(false);
         const [video, setVideo] = useState("");
-        const currentUser = useAuthState();
 
-        const addVideo = async () => {
+        const addVideo = async (event) => {
+            event.preventDefault();
+
             try {
                 let request = {
                     "user_id" : currentUser.id,
                     "video_url": video,
                     "spot_id" : spotId,
                 };
-                await api.post('/editSpot', JSON.stringify(request));
-                window.location.reload();
+                let response = await api.post('/editSpot', JSON.stringify(request));
+                if (response.data.error)
+                    dispatch({ type: 'VIDEO_LOADING_ERROR', error: response.data.error });
+                else
+                    window.location.reload();
             } catch (error) {
                 console.log(error);
             }
@@ -102,7 +109,7 @@ function SpotContent({spot, spotId}) {
                         />
                     </Nav.Item>
 
-                    <Modal 
+                    <Modal
                         size="lg"
                         aria-labelledby="contained-modal-title-vcenter"
                         centered
@@ -121,6 +128,7 @@ function SpotContent({spot, spotId}) {
                                 value={video}
                                 onChange={e => setVideo(e.target.value)}
                             />
+                            {currentUser.errorMessage ? <p className="error">{currentUser.errorMessage}</p> : null}
                         </Modal.Body>
                         <Modal.Footer>
                             <Button 
