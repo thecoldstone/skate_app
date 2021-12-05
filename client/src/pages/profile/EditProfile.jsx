@@ -8,7 +8,7 @@ import { useApiContext } from '../../components/AppContext';
 import close_icon_img from "../../pictures/icons/close_button.png";
 import './Profile.css'
 
-function Edit_profile () {
+function EditProfile () {
     const navigate = useNavigate();
     const api = useApiContext();
 
@@ -133,4 +133,4 @@ function Edit_profile () {
         </Container>
     )
 }
-export default Edit_profile;
+export default EditProfile;

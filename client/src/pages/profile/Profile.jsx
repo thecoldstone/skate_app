@@ -39,11 +39,11 @@ function Profile () {
         fetchUserData();
     }, []);
 
-    function edit_prof_button_click() {
+    function editProfButtonClick() {
         navigate("/editProfile?id=" + userId);
     }
 
-    function add_friend_button_click() {
+    function addFriendButtonClick() {
         api.post('/editProfile', JSON.stringify({'id': currentUser.id, 'friend_id': userId}));
         window.location.reload();
     }
@@ -57,7 +57,7 @@ function Profile () {
                         variant="light"
                         className="button"
                         type="button"
-                        onClick={edit_prof_button_click}>
+                        onClick={editProfButtonClick}>
                             Change profile data
                         </Button>
                     </Row>
@@ -73,7 +73,7 @@ function Profile () {
                         variant="light"
                         className="button"
                         type="button"
-                        onClick={add_friend_button_click}>
+                        onClick={addFriendButtonClick}>
                             {button_text}
                         </Button>
                     </Row>
