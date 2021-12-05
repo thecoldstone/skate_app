@@ -15,3 +15,8 @@
 .btn_login:hover {
     background: #000;
 }
+
+.error {
+    font-size: 0.8rem;
+    color: #bb0000;
+}

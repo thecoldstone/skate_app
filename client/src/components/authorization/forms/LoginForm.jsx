@@ -57,6 +57,7 @@ function LoginForm() {
 
     return (
         <Form style={{ width: "400px" }} onSubmit={handleSubmit}>
+            {currentUser.errorMessage ? <p className="error">{currentUser.errorMessage}</p> : null}
             <FormGroup controlId="email" className="mb-3 mt-3">
                 <Form.Control
                     style={{ height: "50px" }}

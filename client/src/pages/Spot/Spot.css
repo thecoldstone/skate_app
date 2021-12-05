@@ -30,3 +30,8 @@
   font-size: 24px;
   color: rgba(0, 0, 0, .1);
 }
+
+.error {
+  font-size: 0.8rem;
+  color: #bb0000;
+}

@@ -55,6 +55,13 @@ export const AuthReducer = (initialState, action) => {
             loading: false,
             errorMessage: action.error
         }
+
+        case "VIDEO_LOADING_ERROR":
+        return {
+            ...initialState,
+            loading: false,
+            errorMessage: action.error
+        }
     
         default:
         throw new Error(`Unhandled action type: ${action.type}`);

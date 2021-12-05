@@ -15,7 +15,7 @@ class Spot(Resource):
             if int(spot_id) == int(json_data['id']):
                 return db.get_spot(spot_id)
         
-        return None
+        return {'error': 'Spot ' +  json_data['id'] + ' not found'}
 
 
 class Comment_add(Resource):
