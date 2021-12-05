@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 .map_container {
     /* 60px is the height of the navbar => we substract 56 px in order to fit perfectly the map to the screen size */
     height: calc(100vh - 60px);

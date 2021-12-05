@@ -1,3 +1,7 @@
+/**
+ * Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+ */
+
 import React, {useState, useEffect} from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'

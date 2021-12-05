@@ -1,3 +1,7 @@
+/**
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
 import { useEffect, useState} from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import { useWebSocket } from '../../components/AppContext';
@@ -26,7 +30,7 @@ function Chat({spot, spotId}) {
             </Col>
             <Col >
                 <Row className="comment">
-                    <Comment spot={spot} spotId={spotId}/>
+                    <Comment spotId={spotId}/>
                 </Row>
                 
             </Col>

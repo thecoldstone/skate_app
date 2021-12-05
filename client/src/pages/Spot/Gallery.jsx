@@ -1,5 +1,9 @@
+/**
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Col } from 'react-bootstrap';
 
 import "./Spot.css";
 

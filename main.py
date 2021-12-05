@@ -1,3 +1,7 @@
+"""
+    Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+"""
+
 from flask import Flask, Response, jsonify
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit, send

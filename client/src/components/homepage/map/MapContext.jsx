@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import { createContext } from "react";
 import mapboxgl from '!mapbox-gl';
 

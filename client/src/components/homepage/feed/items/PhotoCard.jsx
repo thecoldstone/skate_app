@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import { Row, Col, Image, Button } from 'react-bootstrap';
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { ImLocation2 } from 'react-icons/im';

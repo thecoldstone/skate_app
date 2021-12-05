@@ -1,3 +1,7 @@
+"""
+    Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+"""
+
 from flask_restful import Resource
 from flask import request
 import re

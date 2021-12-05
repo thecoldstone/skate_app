@@ -1,3 +1,6 @@
+/**
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
 
 import api from '../api';
 

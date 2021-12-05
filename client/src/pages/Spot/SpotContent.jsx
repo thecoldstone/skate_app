@@ -1,3 +1,7 @@
+/**
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Nav, Tab, Button, Modal, Form} from 'react-bootstrap';
 import { useLocation } from "react-router-dom";

@@ -1,3 +1,7 @@
+"""
+    Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
+"""
+
 from flask_restful import Resource
 from flask import request
 

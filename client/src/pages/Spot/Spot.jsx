@@ -1,6 +1,10 @@
+/**
+ * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+ */
+
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col} from 'react-bootstrap';
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo } from '@fortawesome/free-solid-svg-icons';
 import { useApiContext } from '../../components/AppContext';

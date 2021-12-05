@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import {Col, Row, Form as RForm, FormGroup, Button} from 'react-bootstrap';
 import {FcGoogle} from 'react-icons/fc';
 import {BsFacebook} from 'react-icons/bs';

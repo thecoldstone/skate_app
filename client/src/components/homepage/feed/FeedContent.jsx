@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import { useContext, useEffect, useState} from 'react';
 import {Row, Col, Tab} from 'react-bootstrap';
 import FeedItemCard from './FeedItemCard';

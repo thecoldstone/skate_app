@@ -1,3 +1,7 @@
+"""
+    Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
+"""
+
 import os
 
 from flask import Flask, render_template
