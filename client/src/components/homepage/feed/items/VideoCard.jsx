@@ -37,7 +37,7 @@ function VideoCard(props) {
                                 <Row>
                                     <Col style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                                         <BsEyeFill size="1.5em" />
-                                        <p style={{ marginTop: "1rem" }}>35 people</p>
+                                        <p style={{ marginTop: "1rem" }}>{props.feature.properties.members} views</p>
                                         <ImLocation2 size="1.5em" />
                                         <p style={{ marginTop: "1rem" }}>{props.feature.properties.address}</p>
                                         <Button
