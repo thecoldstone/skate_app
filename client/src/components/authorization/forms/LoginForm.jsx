@@ -30,6 +30,7 @@ function LoginForm() {
     /**
      * Form validator
      * 
+     * @author Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
      * @returns {Boolean}
      */
     function validateForm() {
@@ -39,6 +40,7 @@ function LoginForm() {
     /**
      * Form handler
      * 
+     * @author Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
      * @param {React.MouseEvent} event 
      * @returns {void}
      */
