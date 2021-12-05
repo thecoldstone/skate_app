@@ -132,8 +132,8 @@ users = {
 """
 spots = {
     0: {
-        "name": "Venice Beach",
-        "description": "A skate park which was created by Jasos Biba in 1337. Its cultural place is available for all kinds of faggots",
+        "name": "Skate park #1",
+        "description": "A skate park which was created by Jasos Biba in 1337. Its cultural place is available for all kinds of skaters",
         "image": "https://www.korunavysociny.cz/media/com_xkatalog/images/listings/m/1406.jpg",
         'comments': [
             {'userId': 0, 'userName': users[0]
@@ -195,7 +195,8 @@ spots = {
         ],
     },
     1: {
-        "name": "Another Beach",
+        "name": "Skate park \"Slam Dunk\"",
+        "description": "ZA WARUDO!!! TOKI WO TOMARE!!!!",
         "image": "https://www.blansko.cz/soubory/clanky/images/2021/skatepark-51967-5604_800.jpg",
         'comments': [
             {'userId': 2, 'userName': users[2]
@@ -249,7 +250,7 @@ spots = {
         ]
     },
     2: {
-        "name": "test Beach",
+        "name": "Skate park \"30 arrows\"",
         "description": "A skate park which was created by Jasos Biba",
         "image": "https://www.karolinka.cz/files/files/texty/1566379874dsc_0326.jpg",
         'comments': [

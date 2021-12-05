@@ -13,6 +13,11 @@ import "./Spot.css"
 import SpotContent from './SpotContent';
 import SpotImage from './SpotImage';
 
+/**
+ * A function that defines Spot as a component
+ * 
+ * @returns {React.FC} Spot component for rendering
+ */
 function Spot() {
     const [spot, setSpot] = useState({});
     const api = useApiContext();
@@ -21,6 +26,7 @@ function Spot() {
     let [searchParams, setSearchParams] = useSearchParams();
     let spotId = searchParams.get("id");
 
+    // gets the data about spot at the start of rendering
     useEffect(() => {
         const fetchSpotData = async () => {
             try {
@@ -34,39 +40,6 @@ function Spot() {
         };
         fetchSpotData();
     }, [])
-
-    const renderSpotImage = () => {
-        if (spot.image)
-        {
-            return (
-                <Row className="image-container" style={{ 
-                    backgroundImage: `url(${spot.image})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                }}>
-                    <div
-                    className="text-white text-center d-flex align-items-center py-5 justify-content-center"
-                    style={{backgroundColor: "rgba(0,0,0,0.7)"}}>
-                        <div>
-                            <h3 className="pink-text">
-                                {spot.name}
-                            </h3>
-                            <p>
-                                {spot.description}
-                            </p>
-                            <p><FontAwesomeIcon icon={faVideo}/> {spot.videos.length} 
-                               <FontAwesomeIcon style={{marginLeft: "10px"}} icon={faUserFriends}/> {spot.comments.length}</p>
-                        </div>
-                    </div>
-                </Row>
-            )
-        }
-        else
-        {
-            return null;
-        }
-    }
 
     return (       
         <Container className="container">

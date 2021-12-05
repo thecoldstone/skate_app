@@ -9,12 +9,24 @@ import { useApiContext, useAuthState } from '../../components/AppContext';
 
 import "./Chat.css"
 
+
+/**
+ * A function that defines Comment as a component
+ * 
+ * @param {*} spotId ID of the current spot to render
+ * @returns {React.FC} Comment component for rendering
+ */
 function Comment({spotId}) {
 
     const [comment, setComment] = useState("");
     const currentUser = useAuthState();
     const api = useApiContext();
 
+    /**
+     * A function that send POST request to the backend to save data
+     * 
+     * @param {*} comment ID of the current spot to render
+     */
     async function addComment(comment) {
         let response = await api.post(`/commentAdd`, JSON.stringify(comment));
         let data = await response.data;
@@ -27,6 +39,11 @@ function Comment({spotId}) {
         return data.error;
     }
 
+    /**
+     * A function that handles submit of a comment
+     * 
+     * @param {*} event 
+     */
     async function handleSubmit(event) {
         event.preventDefault();
 

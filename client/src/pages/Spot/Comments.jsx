@@ -11,10 +11,18 @@ import { useWebSocket } from '../../components/AppContext';
 
 import './Chat.css';
 
+
+/**
+ * A function that defines Comments as a component
+ * 
+ * @param {*} spotId ID of the current spot to render
+ * @returns {React.FC} Comments component for rendering
+ */
 function Comments({spotId}) {
     const [comments, setComments] = useState([]);
     const webSocket = useWebSocket();
     
+    // get comments from sockets in order to not reload a window
     useEffect(() => {      
         webSocket.emit('send_comments', spotId);
         webSocket.on('get_comments', (data) => {

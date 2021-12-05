@@ -4,25 +4,13 @@
 
 import api from '../api';
 
-export async function signup(dispatch, singupData) {
-    try {
-        dispatch({type: 'REQUEST_SIGNUP' });
-        let response = await api.post(`/signup`, JSON.stringify(singupData));
-        let data = await response.data;
-
-        if (!data.error) {
-            dispatch({ type: 'SIGNUP_SUCCESS', payload: data });
-            localStorage.setItem('currentUser', JSON.stringify(data));
-            return data;
-        }
-
-        dispatch({ type: 'SIGNUP_ERROR', error: data.error });
-        return;
-    } catch(error) {
-        dispatch({ type: 'SIGNUP_ERROR', error: error });
-    }
-}
-
+/**
+ * A function that handles login
+ * 
+ * @param {*} dispatch dispatcher that handles the status of authorization
+ * @param {*} loginData a dictionary with login and password
+ * @returns Received data if the request is successful otherwise it sets error
+ */
 export async function login(dispatch, loginData) {
     try {
         dispatch({ type: 'REQUEST_LOGIN' });
@@ -42,8 +30,13 @@ export async function login(dispatch, loginData) {
     } catch (error) {
         dispatch({ type: 'LOGIN_ERROR', error: error });
     }
-  }
-   
+}
+
+/**
+ * A function that handles logout
+ * 
+ * @param {*} dispatch dispatcher that handles the status of authorization
+ */
 export async function logout(dispatch) {
     dispatch({ type: 'LOGOUT' });
     localStorage.removeItem('currentUser');

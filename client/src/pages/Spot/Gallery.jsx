@@ -7,6 +7,12 @@ import { Container, Col } from 'react-bootstrap';
 
 import "./Spot.css";
 
+/**
+ * A function that defines Gallery as a component
+ * 
+ * @param {*} spot The current spot to render
+ * @returns {React.FC} Gallery component for rendering
+ */
 function Gallery({spot}) {
 
     if (spot && spot.videos) 

@@ -10,10 +10,19 @@ import { faVideo, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import "./Spot.css"
 import { useWebSocket } from '../../components/AppContext';
 
+
+/**
+ * A function that defines SpotImage as a component
+ * 
+ * @param {*} spotId ID of the current spot to render
+ * @param {*} spot The current spot to render
+ * @returns {React.FC} SpotImage component for rendering
+ */
 function SpotImage({spot, spotId}) {
     let [spotMisc, setSpotMisc] = useState({})
     let webSocket = useWebSocket();
 
+    // get misc data from sockets in order to not reload a window
     useEffect(() => {
         webSocket.emit('send_spot_misc', spotId);
         webSocket.on('get_spot_misc', (data) => {

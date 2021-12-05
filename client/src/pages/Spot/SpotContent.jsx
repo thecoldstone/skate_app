@@ -14,6 +14,13 @@ import './Spot.css';
 import Chat from './Chat';
 import Gallery from './Gallery';
 
+
+/**
+ * A function that handles what type of the content to render 
+ * 
+ * @param {*} hash hash in the search bar
+ * @returns {string} type of content to render
+ */
 function setCurrentTabByHash(hash) {
     if (hash == '#gallery') {
         return 'gallery';
@@ -22,6 +29,13 @@ function setCurrentTabByHash(hash) {
     return 'chat';
 }
 
+/**
+ * A function that defines SpotContent as a component
+ * 
+ * @param {*} spotId ID of the current spot to render
+ * @param {*} spot The current spot to render
+ * @returns {React.FC} SpotContent component for rendering
+ */
 function SpotContent({spot, spotId}) {
     const [key, setKey] = useState('all');
     const [isFavourite, setFavourite] = useState();
@@ -31,10 +45,13 @@ function SpotContent({spot, spotId}) {
     const dispatch = useAuthDispatch();
     const webSocket = useWebSocket();
 
+    // set Tab content at the start of the rendering
     useEffect(() =>{
         setKey(setCurrentTabByHash(location.hash));
     }, [])
 
+    // get data if the spot is favourite for the current user
+    // from sockets in order to not reload a window
     useEffect(() => {
         webSocket.emit('send_is_favourite', {
             "user_id" : currentUser.id,
@@ -45,8 +62,17 @@ function SpotContent({spot, spotId}) {
         });
     })
 
+    /**
+     * A function that defines favourite icon as a navigation item
+     * 
+     * @returns {React.FC} NavItem for favourite icon
+     */
     function addFavouriteSpot()
     {
+        /**
+         * A function that handles adding or removing
+         * the spot from favourite by POST request
+         */
         const addFavourite = async (event) => {
             event.preventDefault();
             try {
@@ -73,11 +99,19 @@ function SpotContent({spot, spotId}) {
         );
     }
 
+    /**
+     * A function that defines video adding icon as a navigation item
+     * 
+     * @returns {React.FC} NavItem for video adding icon
+     */
     function addVideoButton()
     {
         const [modal, setModal] = useState(false);
         const [video, setVideo] = useState("");
 
+        /**
+         * A function that handles adding a video to the spot by POST request
+         */
         const addVideo = async (event) => {
             event.preventDefault();
 
@@ -89,6 +123,7 @@ function SpotContent({spot, spotId}) {
                 };
                 let response = await api.post('/editSpot', JSON.stringify(request));
                 if (response.data.error)
+                    // sets the error to be shown in modal window
                     dispatch({ type: 'VIDEO_LOADING_ERROR', error: response.data.error });
                 else
                     window.location.reload();

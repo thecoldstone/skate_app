@@ -8,6 +8,13 @@ import "./Chat.css";
 import Comment from './Comment';
 import Comments from './Comments';
 
+
+/**
+ * A function that defines Chat as a component
+ * 
+ * @param {*} spotId ID of the current spot to render
+ * @returns {React.FC} Chat component for rendering
+ */
 function Chat({spotId}) {   
 
     return (

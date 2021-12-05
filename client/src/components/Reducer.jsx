@@ -6,12 +6,23 @@ let user = localStorage.getItem("currentUser")
     ? JSON.parse(localStorage.getItem("currentUser"))
     : "";
 
+/**
+ * Contains data about the user in session
+ */
 export const initialState = {
     id: "" || user.id,
     loading: false,
     errorMessage: user.error
 };
  
+
+/**
+ * A function that handles dispatching. Sets the data considering a given action
+ * 
+ * @param {*} initialState data about the user
+ * @param {*} action status of request
+ * @returns Current status of the user in session
+ */
 export const AuthReducer = (initialState, action) => {
     switch (action.type) {
         case "REQUEST_LOGIN":
