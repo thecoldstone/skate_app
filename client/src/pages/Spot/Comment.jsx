@@ -42,17 +42,20 @@ function Comment({spotId}) {
     return (
         <Form onSubmit={handleSubmit}>
              <Row>
-                <Col>
+                <Col style={{paddingRight: "0%", width: "74vh", height: "2rem"}}>
                     <Form.Control 
                         as="textarea" 
                         type="text"
-                        placeholder={"Enter your comment"} 
-                        disabled={false}
+                        placeholder={
+                            currentUser.id == undefined ?
+                            "Log in to comment" : "Enter your comment"
+                        } 
+                        disabled={currentUser.id == undefined}
                         value={comment}
                         onChange={e => setComment(e.target.value)}
                     />
                 </Col>
-                <Col xs="auto" style={{padding: "0%"}}>
+                <Col md="auto" style={{paddingLeft: "0%" , height: "2rem"}}>
                     <Button
                         className="comment-button"
                         variant="primary" 

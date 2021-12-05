@@ -127,7 +127,8 @@ users = {
 spots = {
     0: {
         "name": "Venice Beach",
-        "image": "https://picsum.photos/id/772/100/100",
+        "description": "A skate park which was created by Jasos Biba in 1337. Its cultural place is available for all kinds of faggots",
+        "image": "https://www.korunavysociny.cz/media/com_xkatalog/images/listings/m/1406.jpg",
         'comments': [
             {'userId': 0, 'userName': users[0]
                 ['name'], 'comment': 'asdasdasd'},
@@ -243,7 +244,8 @@ spots = {
     },
     2: {
         "name": "test Beach",
-        "image": "https://picsum.photos/id/774/100/100",
+        "description": "A skate park which was created by Jasos Biba",
+        "image": "https://www.karolinka.cz/files/files/texty/1566379874dsc_0326.jpg",
         'comments': [
             {'userId': 0, 'userName': users[0]['name'], 'comment': 'test1'},
             {'userId': 1, 'userName': users[1]['name'], 'comment': 'test2'},

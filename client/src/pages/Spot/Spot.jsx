@@ -6,23 +6,17 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col} from 'react-bootstrap';
 import { useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo } from '@fortawesome/free-solid-svg-icons';
-import { useApiContext } from '../../components/AppContext';
+import { faVideo, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { useApiContext, useAuthState } from '../../components/AppContext';
 
 import "./Spot.css"
 import SpotContent from './SpotContent';
-
-function setCurrentTabByHash(hash) {
-    if (hash == '#gallery') {
-        return 'gallery';
-    }
-
-    return 'chat';
-}
+import SpotImage from './SpotImage';
 
 function Spot() {
     const [spot, setSpot] = useState({});
     const api = useApiContext();
+    const currentUser = useAuthState();
 
     let [searchParams, setSearchParams] = useSearchParams();
     let spotId = searchParams.get("id");
@@ -30,7 +24,9 @@ function Spot() {
     useEffect(() => {
         const fetchSpotData = async () => {
             try {
-                let response = await api.post('/spot', JSON.stringify({'id': spotId}));
+                let response = await api.post('/spot', JSON.stringify({
+                    'id': spotId, 'user_id': currentUser.id
+                }));
                 setSpot(response.data);
             } catch(error){
                 console.log(error);
@@ -50,7 +46,7 @@ function Spot() {
                     backgroundPosition: 'center',
                 }}>
                     <div
-                    className="text-white text-center d-flex align-items-center py-5"
+                    className="text-white text-center d-flex align-items-center py-5 justify-content-center"
                     style={{backgroundColor: "rgba(0,0,0,0.7)"}}>
                         <div>
                             <h3 className="pink-text">
@@ -59,7 +55,8 @@ function Spot() {
                             <p>
                                 {spot.description}
                             </p>
-                            <p><FontAwesomeIcon icon={faVideo}/> {spot.videos.length}</p>
+                            <p><FontAwesomeIcon icon={faVideo}/> {spot.videos.length} 
+                               <FontAwesomeIcon style={{marginLeft: "10px"}} icon={faUserFriends}/> {spot.comments.length}</p>
                         </div>
                     </div>
                 </Row>
@@ -80,7 +77,7 @@ function Spot() {
                     </Row>
                 </Col>
                 <Col>
-                    {renderSpotImage()}
+                    <SpotImage spot={spot} spotId={spotId}/>
                 </Col>
             </Row>
         </Container>

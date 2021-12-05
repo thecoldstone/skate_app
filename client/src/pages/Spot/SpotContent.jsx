@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { useApiContext, useAuthState } from '../../components/AppContext';
+import { useApiContext, useAuthState, useWebSocket } from '../../components/AppContext';
 import './Spot.css';
 import Chat from './Chat';
 import Gallery from './Gallery';
@@ -23,9 +23,25 @@ function setCurrentTabByHash(hash) {
 
 function SpotContent({spot, spotId}) {
     const [key, setKey] = useState('all');
+    const [isFavourite, setFavourite] = useState();
     const location = useLocation();
     const api = useApiContext();
     const currentUser = useAuthState();
+    const webSocket = useWebSocket();
+
+    useEffect(() =>{
+        setKey(setCurrentTabByHash(location.hash));
+    }, [])
+
+    useEffect(() => {
+        webSocket.emit('send_is_favourite', {
+            "user_id" : currentUser.id,
+            "spot_id" : spotId
+        });
+        webSocket.on('get_is_favourite', (data) => {
+            setFavourite(data);
+        });
+    })
 
     function addFavouriteSpot()
     {
@@ -43,8 +59,9 @@ function SpotContent({spot, spotId}) {
         }
 
         return (
-            <Nav.Item className="favourite-icon">
-                <FontAwesomeIcon 
+            <Nav.Item className="favourite-icon" style={{marginLeft: "50vh"}}>
+                <FontAwesomeIcon
+                style={(isFavourite) ? {color: 'yellow'} : {color: 'gray'}}
                 icon={faStar} 
                 size="1x" cursor='pointer' 
                 onClick={e => addFavourite(e)}
@@ -77,7 +94,7 @@ function SpotContent({spot, spotId}) {
         {
             return (
                 <>
-                    <Nav.Item className="favourite-icon">
+                    <Nav.Item className="favourite-icon" style={{marginLeft: "2vh"}}>
                         <FontAwesomeIcon 
                         icon={faPlus} 
                         size="1x" cursor='pointer' 
@@ -119,10 +136,6 @@ function SpotContent({spot, spotId}) {
         }
     }
 
-    useEffect(() => {
-        setKey(setCurrentTabByHash(location.hash));
-    }, [])
-
     return (       
         <Tab.Container activeKey={key} onSelect={(k) => setKey(k)}>
             <Row>
@@ -131,7 +144,8 @@ function SpotContent({spot, spotId}) {
                         background: "radial-gradient(circle, rgba(255,255,255,0.9724264705882353) 0%, rgba(255,255,255,1) 100%)",
                         height: "60px",
                         position: "fixed",
-                        width: "inherit"
+                        width: "inherit",
+                        zIndex: 3,
                     }}> 
                         <Col>
                             <Row className="mt-2"> 
@@ -142,16 +156,17 @@ function SpotContent({spot, spotId}) {
                                     <Nav.Item>
                                         <Nav.Link href="#gallery" eventKey="gallery">Gallery</Nav.Link>
                                     </Nav.Item>
+                                    
                                     {addFavouriteSpot(spotId)}
                                     {addVideoButton(key, spotId)}
                                 </Nav> 
                             </Row>
                         </Col>
                     </Row>
-                    <Row style={{marginTop: "80px"}}>
+                    <Row style={{marginTop: "80px", zIndex: 0}}>
                         <Tab.Content>
                             <Tab.Pane eventKey="chat">
-                                <Chat spot={spot} spotId={spotId}/> 
+                                <Chat spotId={spotId}/> 
                             </Tab.Pane>
                             <Tab.Pane eventKey="gallery">
                                 <Gallery spot={spot}/>

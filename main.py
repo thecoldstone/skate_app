@@ -22,9 +22,24 @@ def connected():
 def disconnected():
     print("Disconnected")
 
-@socketio.on('get_comments')
-def handle_my_custom_event(spot_id):
-    emit('message', db.spots[int(spot_id)]["comments"])
+@socketio.on('send_comments')
+def get_comments(spot_id):
+    emit('get_comments', db.spots[int(spot_id)]["comments"])
+
+@socketio.on('send_spot_misc')
+def get_spot_misc(spot_id):
+    spot = db.spots[int(spot_id)]
+    misc_data = {
+        "videos_count": len(spot["videos"]),
+        "people_count": len(set([comment["userId"] for comment in spot["comments"]]))
+    }
+    emit('get_spot_misc', misc_data)
+
+@socketio.on('send_is_favourite')
+def get_is_favourite(data):
+    user = db.get_user(data["user_id"])
+    is_favourite = int(data["spot_id"]) in user["spots"]
+    emit('get_is_favourite', is_favourite)
 
 if __name__ == "__main__":
     socketio.run(app, debug=True)

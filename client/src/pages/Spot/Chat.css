@@ -9,7 +9,7 @@
 .vertical-scrollable {
     overflow-y: auto;
     float: none;
-    height: "calc(80vh-60px)";
+    bottom: 3rem;
 }
 
 a, a:hover {
