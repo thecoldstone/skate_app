@@ -25,7 +25,7 @@ function Signup() {
                 </Col>
                 <Col md={6}>
                     <Row>
-                        <Image src="assets/skatepark_img_login.png" style={{objectFit: "cover", height: "calc(100vh - 60px)", padding: "0"}}/>
+                        <Image src="assets/skatepark_img_login.png" style={{objectFit: "cover", height: "calc(100vh - 90px)", padding: "0"}}/>
                     </Row>
                 </Col>
             </Row>

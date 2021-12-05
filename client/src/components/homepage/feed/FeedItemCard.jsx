@@ -6,6 +6,7 @@ import SpotCard from './items/SpotCard';
 import VideoCard from './items/VideoCard';
 import EventCard from './items/EventCard';
 import PhotoCard from './items/PhotoCard';
+import styles from './FeedItemCard.module.css';
 
 function FeedItemCard(props) {
     const {map, currentState} = useContext(MapContext);
@@ -53,13 +54,9 @@ function FeedItemCard(props) {
 
     return(
         <Row 
-            id={props.id} onClick={(e) => onClickItem(e)}
-            style={{
-                borderRadius: "10px",
-                boxShadow: "0px 0px 2px 2px rgba(0, 0, 0, .1)",
-                cursor: "pointer",
-                marginBottom: "30px",
-            }}
+            id={`feed-item-${props.id}`} 
+            className={styles.feed_item}
+            onClick={(e) => onClickItem(e)}
         >
             {renderItem()}          
         </Row>

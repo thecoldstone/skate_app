@@ -1,5 +1,6 @@
 import { Row, Col, Image, Button } from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
+import {MdSkateboarding} from 'react-icons/md';
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { ImLocation2 } from 'react-icons/im';
 import fontStyles from '../FeedItemCard.module.css';
@@ -17,9 +18,9 @@ function SpotCard(props) {
     return (
         <>
             <Col sm={9}>
-                <Row className="mx-md-1 my-3">
+                <Row className="mt-3"><h4 className={fontStyles.forma_djr_medium}><MdSkateboarding/> {props.title}</h4></Row>
+                <Row className="mx-md-1">
                     <Col>
-                        <Row><h4 className={fontStyles.forma_djr_medium}>{props.title}</h4></Row>
                         <Row className="mt-2">{props.description}</Row>
                         <Row className="mt-2">
                             <Col>
@@ -43,7 +44,7 @@ function SpotCard(props) {
             </Col>
             <Col sm={3} style={{ padding: "0" }}>
                 {/* <Row> */}
-                <Image fluid src={`assets/${props.img}`} style={{
+                <Image fluid src={props.feature.properties.image} style={{
                     objectFit: "cover",
                     borderRadius: "0 10px 10px 0",
                     height: "100%"
