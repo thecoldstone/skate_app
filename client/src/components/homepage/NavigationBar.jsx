@@ -2,15 +2,18 @@
  * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
  */
 
-import {Container, Navbar, Nav} from 'react-bootstrap';
-import {useState, useEffect, useContext} from 'react';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 import navigationStyles from './NavigationBar.module.css';
-import { useApiContext, useAuthState, useAuthDispatch } from '../AppContext';
+import { useAuthState, useAuthDispatch } from '../AppContext';
 import { logout } from "../authorization/AuthorizationHandler";
 
-
-function NavigationBar()
-{
+/**
+ * Navigation Bar Component
+ * 
+ * @returns {React.FC}
+ */
+function NavigationBar() {
+    // Using react context
     const currentUser = useAuthState();
     const dispatch = useAuthDispatch();
 
@@ -18,6 +21,11 @@ function NavigationBar()
         logout(dispatch);
     }
 
+    /**
+     * Verifies if user is logged in
+     * 
+     * @returns {Nav}
+     */
     function checkLogin() {
         if (currentUser.id != undefined) {
             let profile_path = "/profile?id=" + currentUser.id;
@@ -28,7 +36,7 @@ function NavigationBar()
                 </Nav>
             )
         }
-    
+
         return (
             <Nav>
                 <Nav.Link href="/login">login</Nav.Link>
@@ -37,11 +45,11 @@ function NavigationBar()
         )
     };
 
-    return(
+    return (
         <Navbar bg="light" expand="lg" sticky="top">
             <Container>
                 <Navbar.Brand href="/"><p className={navigationStyles.logo}>Skate</p></Navbar.Brand>
-                <Navbar.Toggle aria-controls="gearwheel-nav"/>
+                <Navbar.Toggle aria-controls="gearwheel-nav" />
                 <Navbar.Collapse id="gearwheel-nav" className="justify-content-end">
                     {checkLogin()}
                 </Navbar.Collapse>

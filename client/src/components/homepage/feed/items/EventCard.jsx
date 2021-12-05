@@ -3,21 +3,32 @@
  */
 
 import { Row, Col, Image, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import { BsFillPeopleFill, BsFillCalendarEventFill } from 'react-icons/bs'
 import { ImLocation2 } from 'react-icons/im';
 import fontStyles from '../FeedItemCard.module.css';
+import React from 'react';
 
+/**
+ * Event Card Component
+ * 
+ * @param {*} props 
+ * @returns {React.FC}
+ */
 function EventCard(props) {
 
-    const handleExploeButton = (e) => {
+    /**
+     * Handles button
+     * 
+     * @param {React.MouseEvent} e 
+     */
+    const handleButton = (e) => {
         e.preventDefault();
     }
 
     return (
         <>
             <Col sm={9}>
-            <Row className="mt-3"><h4 className={fontStyles.forma_djr_medium}><BsFillCalendarEventFill size="1em"/> {props.title}</h4></Row>
+                <Row className="mt-3"><h4 className={fontStyles.forma_djr_medium}><BsFillCalendarEventFill size="1em" /> {props.title}</h4></Row>
                 <Row className="mx-1">
                     <Col>
                         <Row className="mt-2">{props.description}</Row>
@@ -31,7 +42,7 @@ function EventCard(props) {
                                         <p style={{ marginTop: "1rem" }}>{props.feature.properties.address}</p>
                                         <Button
                                             style={{ backgroundColor: "#223A88", borderRadius: "11px" }}
-                                            onClick={handleExploeButton}
+                                            onClick={handleButton}
                                         >Join</Button>
                                     </Col>
                                 </Row>
@@ -42,13 +53,11 @@ function EventCard(props) {
                 </Row>
             </Col>
             <Col sm={3} style={{ padding: "0" }}>
-                {/* <Row> */}
                 <Image fluid src={props.feature.properties.image} style={{
                     objectFit: "cover",
                     borderRadius: "0 10px 10px 0",
                     height: "100%"
                 }} />
-                {/* </Row> */}
             </Col>
         </>
     )

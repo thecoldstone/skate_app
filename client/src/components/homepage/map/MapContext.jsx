@@ -5,8 +5,12 @@
 import { createContext } from "react";
 import mapboxgl from '!mapbox-gl';
 
+// Accessing env variable
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
+/**
+ * Holds Map Context
+ */
 const MapContext = createContext({
     map: "Loading...",
     mapContainer: "Loading...",

@@ -1,17 +1,23 @@
 /**
- *  Author: Nikita Zhukov <xzhuko00@stud.fit.vutbr.cz>
+ *  Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
  *  Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
  */
 
-import {Col, Row, Form, FormGroup, Button} from 'react-bootstrap';
-import {useState} from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Col, Form, FormGroup, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { login } from "../AuthorizationHandler"
 import { useApiContext, useAuthState, useAuthDispatch } from '../../AppContext';
 import formStyles from './Form.module.css';
 
+/**
+ * Login Form Component
+ * 
+ * @returns {React.FC}
+ */
 function LoginForm() {
+    // Define component's states
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -21,15 +27,26 @@ function LoginForm() {
 
     const navigate = useNavigate();
 
+    /**
+     * Form validator
+     * 
+     * @returns {Boolean}
+     */
     function validateForm() {
         return email.length > 0 && password.length > 0;
     }
 
+    /**
+     * Form handler
+     * 
+     * @param {React.MouseEvent} event 
+     * @returns {void}
+     */
     async function handleSubmit(event) {
         event.preventDefault();
         try {
-            let data = await login(dispatch, {email, password})
-            if(!data) return
+            let data = await login(dispatch, { email, password })
+            if (!data) return
             navigate('/profile?id=' + data.id);
             window.location.reload();
             console.log(currentUser.errorMessage);
@@ -38,24 +55,24 @@ function LoginForm() {
         }
     }
 
-    return(
-        <Form style={{width: "400px"}} onSubmit={handleSubmit}>
+    return (
+        <Form style={{ width: "400px" }} onSubmit={handleSubmit}>
             <FormGroup controlId="email" className="mb-3 mt-3">
                 <Form.Control
-                    style={{height: "50px"}}
+                    style={{ height: "50px" }}
                     type="email"
                     placeholder="Enter your email or login"
                     value={email}
-                    onChange={e => setEmail(e.target.value)}/>
+                    onChange={e => setEmail(e.target.value)} />
             </FormGroup>
             <FormGroup controlId="password" className="mb-3">
                 <Form.Control
-                    style={{height: "50px"}}
+                    style={{ height: "50px" }}
                     type="password"
                     placeholder="Enter your password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
-                    disabled={currentUser.loading}/>
+                    disabled={currentUser.loading} />
             </FormGroup>
             <FormGroup>
                 <Col className={formStyles.f_pwd}><p>Forgot password?</p></Col>
