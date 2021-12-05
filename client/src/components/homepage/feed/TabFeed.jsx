@@ -8,20 +8,16 @@ import FeedContent from './FeedContent';
 import api from '../../api';
 import { MapContext } from '..';
 
+// Hard-coded nav items names
 const navItems = ["all", "events", "spots", "videos", "photos"];
 
-function setCurrentTabByHash(hash) {
-    const pattern = new RegExp('^#(all|events|places|videos|photos)$')
-
-    if (pattern.test(hash)) {
-        return hash.slice(1, hash.length);
-    }
-
-    return 'all';
-}
-
+/**
+ * Tab Feed Component
+ * 
+ * @returns {React.FC}
+ */
 function TabFeed() {
-    const [key, setKey] = useState('all');
+    // Use map context 
     const {map, currentState} = useContext(MapContext);
 
     // Fetch data for TabFeed and Map 
@@ -38,6 +34,11 @@ function TabFeed() {
         })()
     }, [currentState.key]);
 
+    /**
+     * Renders nav items for Tab Feed
+     * 
+     * @returns {Nav.Item} 
+     */
     const renderNavItems = () => {
         return (
             <>
