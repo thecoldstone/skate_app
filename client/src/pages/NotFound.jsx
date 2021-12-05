@@ -1,16 +1,20 @@
-/**
- * Author: Nikita Zhukov <xzhuko00@stud.fit.vutbr.cz>
- */
-
-import {Col, Row, Container} from 'react-bootstrap';
-
+import {Col, Row, Container, Image} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import {GiDinosaurBones} from 'react-icons/gi';
 
 function NotFound() {
     return(
-        <Container>
-            <Row> 
-                <Col>
-                    <h1>Not found 404!</h1>
+        <Container fluid style={{backgroundColor: "#F2F2F2"}}>
+            <Row>
+                <Col style={{height: "calc(100vh - 90px)"}}>
+                    <Row className="justify-content-md-center" style={{margin: "10% 0"}}>
+                        <Col md="auto" style={{textAlign: "center"}}>
+                            <GiDinosaurBones size="5rem"/>
+                            <h2>Oouuups...</h2>
+                            <p>Page does not exist</p>
+                            <Link to="/" style={{color: "blue"}}>Go to home page</Link>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
         </Container>

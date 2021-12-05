@@ -46,7 +46,7 @@ export function useWebSocket() {
       throw new Error("useWebSocket must be used within a WebSocketProvider");
     }
    
-    return context;
+    return context; 
 }
 
 export const AppProvider = ({ children }) => {

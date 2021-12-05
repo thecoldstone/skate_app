@@ -54,5 +54,6 @@ html {
   cursor: pointer;
   height: 56px;
   width: 56px;
-  background-color: #F5F5F5;
+  background-image: url('pictures/icons/map-marker.png');
+  object-fit: cover;
 }
