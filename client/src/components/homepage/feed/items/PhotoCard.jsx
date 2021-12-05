@@ -2,15 +2,28 @@
  * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
  */
 
+import React from 'react';
 import { Row, Col, Image, Button } from 'react-bootstrap';
 import { BsEyeFill } from 'react-icons/bs'
 import { ImLocation2 } from 'react-icons/im';
 import { MdInsertPhoto } from 'react-icons/md';
 import fontStyles from '../FeedItemCard.module.css';
 
+/**
+ * Photo Card Component
+ * 
+ * @param {*} props
+ *  
+ * @returns {React.FC}
+ */
 function PhotoCard(props) {
 
-    const handleExploeButton = (e) => {
+    /**
+     * Handles button
+     * 
+     * @param {React.MouseEvent} e 
+     */
+    const handleButton = (e) => {
         e.preventDefault();
     }
 
@@ -31,7 +44,7 @@ function PhotoCard(props) {
                                         <p style={{ marginTop: "1rem" }}>{props.feature.properties.address}</p>
                                         <Button
                                             style={{ backgroundColor: "#223A88", borderRadius: "11px" }}
-                                            onClick={handleExploeButton}
+                                            onClick={handleButton}
                                         >Watch</Button>
                                     </Col>
                                 </Row>
@@ -42,13 +55,11 @@ function PhotoCard(props) {
                 </Row>
             </Col>
             <Col sm={3} style={{ padding: "0" }}>
-                {/* <Row> */}
                 <Image fluid src={props.feature.properties.image} style={{
                     objectFit: "cover",
                     borderRadius: "0 10px 10px 0",
                     height: "100%"
                 }} />
-                {/* </Row> */}
             </Col>
         </>
     )

@@ -12,6 +12,7 @@ import EditProfile from "../pages/profile/EditProfile";
 import NotFound from "../pages/NotFound";
 import Spot from "../pages/Spot/Spot";
 
+// Default app routes
 const routes = [
     {
         path: '/',

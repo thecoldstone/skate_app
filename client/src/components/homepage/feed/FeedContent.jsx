@@ -2,20 +2,31 @@
  * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
  */
 
-import { useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import {Row, Col, Tab} from 'react-bootstrap';
 import FeedItemCard from './FeedItemCard';
 import { MapContext } from '..';
 
+/**
+ * Feed Content Component
+ * 
+ * @returns {React.FC}
+ */
 function FeedContent() {
     const {currentState} = useContext(MapContext);
     const [content, setContent] = useState("Loading...");
 
+   // Updates Tab Feed Content  
     useEffect(() => {
         if (!currentState.mapData) return;
         setContent(renderFeedItems());
     }, [currentState.key, currentState.mapData]);
 
+    /**
+     * Rendres tab content 
+     * 
+     * @returns {Tab.Content}
+     */
     const renderFeedItems = () => {
         return(
             <Tab.Content>
@@ -48,7 +59,12 @@ function FeedContent() {
         )
     }
 
-    const mapItems = (type) => {
+    /**
+     * Maps and returns Feed Item Cards
+     * 
+     * @returns {FeedItemCard}
+     */
+    const mapItems = () => {
         return (
             <>
                 {

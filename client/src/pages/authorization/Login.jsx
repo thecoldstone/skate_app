@@ -2,25 +2,30 @@
  * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
  */
 
-import {Container, Row, Col, Image, Button} from 'react-bootstrap';
+import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import {Form} from '../../components/authorization/index';
+import { Form } from '../../components/authorization/index';
 
+/**
+ * Login Function Component
+ * 
+ * @returns {React.FC}
+ */
 function Login() {
-    return(
-        <Container fluid style={{backgroundColor: "#F2F2F2"}}>
+    return (
+        <Container fluid style={{ backgroundColor: "#F2F2F2" }}>
             <Row>
                 <Col md={6}>
-                    <Row className="justify-content-md-center" style={{margin: "10% 0"}}>
+                    <Row className="justify-content-md-center" style={{ margin: "10% 0" }}>
                         <Col md="auto">
-                            <Form type="Login"/>
+                            <Form type="Login" />
                             <Row className="mt-5">
-                                <Col style={{textAlign: "center"}}>
+                                <Col style={{ textAlign: "center" }}>
                                     <Row>
                                         <p>Don't have an account</p>
                                     </Row>
                                     <Row>
-                                        <Link to="/signup" style={{color: "blue"}}>Signup</Link>
+                                        <Link to="/signup" style={{ color: "blue" }}>Signup</Link>
                                     </Row>
                                 </Col>
                             </Row>
@@ -29,7 +34,7 @@ function Login() {
                 </Col>
                 <Col md={6}>
                     <Row>
-                        <Image src="assets/skatepark_img_login.png" style={{objectFit: "cover", height: "calc(100vh - 90px)", padding: "0"}}/>
+                        <Image src="assets/skatepark_img_login.png" style={{ objectFit: "cover", height: "calc(100vh - 90px)", padding: "0" }} />
                     </Row>
                 </Col>
             </Row>

@@ -10,6 +10,7 @@ import './index.css';
 
 import App from './App';
 
+// Renders React and appends it into html element with the id 'root'
 ReactDOM.render(
     <React.StrictMode>
         <App />
