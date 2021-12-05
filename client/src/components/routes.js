@@ -7,8 +7,8 @@
 import HomePage from "../pages/HomePage";
 import Login from "../pages/authorization/Login";
 import Signup from "../pages/authorization/Signup";
-import Profile from "../pages/Profile/Profile";
-import EditProfile from "../pages/Profile/EditProfile";
+import Profile from "../pages/profile/Profile";
+import EditProfile from "../pages/profile/EditProfile";
 import NotFound from "../pages/NotFound";
 import Spot from "../pages/Spot/Spot";
 
