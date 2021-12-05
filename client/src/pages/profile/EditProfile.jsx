@@ -22,7 +22,7 @@ function EditProfile () {
     let [userImage, setUserImage] = useState("");
     useEffect(() => {
         const fetchUserData = async () => {
-            let response = await api.post('/profile', JSON.stringify({'id': userId}));;
+            let response = await api.post('/profile', JSON.stringify({'id': userId})); // get user image
             setUserImage(response.data.image);
         };
         fetchUserData();
@@ -36,7 +36,7 @@ function EditProfile () {
     const [newInst, setInst] = useState("");
     const [newTikTok, setTikTok] = useState("");
 
-    async function saveChanges() {
+    async function saveChanges() { // create dictionary and send to backend
         let request = {
             "id" : userId,
             "email" : newEmail,
@@ -59,7 +59,7 @@ function EditProfile () {
                 </Col>
                 <Col md={2}>
                     <a href={"/profile?id=" + userId}>
-                        <Image className="video_img" src={close_icon_img}/>
+                        <Image className="video_img" src={close_icon_img}/> {/*close button*/}
                     </a>
                 </Col>
             </Row>

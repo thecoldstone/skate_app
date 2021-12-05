@@ -22,7 +22,7 @@ import Friends from './Friends';
 
 function Profile () {
     const navigate = useNavigate();
-    const currentUser = useAuthState();
+    const currentUser = useAuthState(); // current user is in local storage
 
     const [key, setKey] = useState('places');
     const api = useApiContext();
@@ -34,7 +34,7 @@ function Profile () {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            let response = await api.post('/profile', JSON.stringify({
+            let response = await api.post('/profile', JSON.stringify({ // get user info
                 'id': userId, 'user_id': currentUser.id
             }));
             setUserInfo(response.data);
@@ -46,14 +46,14 @@ function Profile () {
         navigate("/editProfile?id=" + userId);
     }
 
-    function addFriendButtonClick() {
+    function addFriendButtonClick() { // add/remove friend
         api.post('/editProfile', JSON.stringify({'id': currentUser.id, 'friend_id': userId}));
         window.location.reload();
     }
 
-    function setButtonState(){
+    function setButtonState(){ // no buttons if user is unathorized
         if (currentUser.id != undefined){
-            if (userId == currentUser.id){
+            if (userId == currentUser.id){ // if actual profile is user`s profile, show button "Edit profile"
                 return (
                     <Row md={2}>
                         <Button
@@ -65,7 +65,7 @@ function Profile () {
                         </Button>
                     </Row>
                 );
-            } else {
+            } else { // if not, show button "Add friend"/"Remove friend"
                 let button_text = "Add friend +";
                 if (userInfo["is_in_friends_list"]) {
                     button_text = "Remove friend -"
@@ -90,7 +90,7 @@ function Profile () {
             <Container className="body-profile" fluid="md">
                  <Row>
                      <Col md="auto">
-                         <Image src={userInfo.image} roundedCircle className="title-panel" />
+                         <Image src={userInfo.image} roundedCircle className="title-panel" /> {/*profile image*/}
                      </Col>
                      <Col md={6}>
                          <Row className="text">
@@ -131,7 +131,7 @@ function Profile () {
                          </Row>
                      </Col>
                  </Row>
-                <Tab.Container activeKey={key} onSelect={(k) => setKey(k)}>
+                <Tab.Container activeKey={key} onSelect={(k) => setKey(k)}> {/*places and friends tabs*/}
                     <Row className="limiter"> 
                         <Nav>
                             <Nav.Item>
@@ -145,7 +145,7 @@ function Profile () {
                     <Row>
                         <Tab.Content>
                             <Tab.Pane eventKey="places" >
-                                <Places userInfo={userInfo} userId={userId}/>
+                                <Places userInfo={userInfo} userId={userId}/> {/*places and friends content*/}
                             </Tab.Pane>
                             <Tab.Pane eventKey="friends">
                                 <Friends userInfo={userInfo}/>

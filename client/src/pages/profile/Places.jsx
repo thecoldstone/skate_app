@@ -25,13 +25,13 @@ function Places({userInfo, userId}) {
         window.location.reload();
     }
 
-    function renderVideos(spot) {
+    function renderVideos(spot) { // videos horizontal scrollable list
         if (userInfo.spot_info[spot]["videos"].length) {
             return (
                 <Row>
                     <Col md="auto">
-                        <Container className="horizontal-scrollable">
-                            {userInfo.spot_info[spot]["videos"].map((video, video_id) =>
+                        <Container className="horizontal-scrollable"> {/*go through all videos and create iframe & delete button for everyone*/}
+                            {userInfo.spot_info[spot]["videos"].map((video, video_id) => 
                                 <Col className="col-xs-4" key={video_id}>
                                     <Col className="text-right">
                                         <FontAwesomeIcon 
@@ -63,14 +63,14 @@ function Places({userInfo, userId}) {
                 <Row key={spot_id}>
                     <Row md="auto" className="place_row">
                         <Col md="auto">
-                            <Image className="group_img" src={userInfo.spot_info[spot].image} roundedCircle />
+                            <Image className="group_img" src={userInfo.spot_info[spot].image} roundedCircle /> {/*spot image*/}
                         </Col>
                         <Col md="auto" className="place_info">
                             <Row className="text">
                                 {userInfo.spot_info[spot].name}
                             </Row>
                             <Row className="text">
-                                Rank: {userInfo.spot_info[spot].user_ranks[userId]}
+                                Rank: {userInfo.spot_info[spot].user_ranks[userId]} {/*user`s rank on this spot image*/}
                             </Row>
                             <Row>
                                 <Button
@@ -78,7 +78,7 @@ function Places({userInfo, userId}) {
                                 className="place_button"
                                 type="button"
                                 onClick={() => openSpot(spot)}>
-                                    Open group page    
+                                    Open spot page    
                                 </Button>
                             </Row>
                         </Col>
