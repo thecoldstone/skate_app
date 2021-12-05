@@ -4,40 +4,26 @@
 
 import React from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 
 import instagram_icon_image from "../../pictures/icons/instagram.png";
 import facebook_icon_image from "../../pictures/icons/facebook_1.png";
 import tiktok_icon_image from "../../pictures/icons/tiktok.png";
 
 function Friends({userInfo}) {
-    const navigate = useNavigate();
-
-    function openFriend(friendId) { // open friend`s profile
-        navigate("/profile?id=" + friendId);
-        window.location.reload();
-    }
 
     return (
         <Container fluid="md"> {/*go through all friends*/}
             {userInfo.friends.map((friend, friend_id) =>
                 <Row key={friend_id}>
                     <Row md="auto" className="place_row">
-                        <Col md="auto" className="place_icon">
-                            <Image className="group_img" src={userInfo.friend_info[friend].image} roundedCircle /> {/*friend`s profile image*/}
+                        <Col md="auto">
+                            <a href={"/profile?id=" + friend}>
+                                <Image className="group_img" src={userInfo.friend_info[friend].image} roundedCircle /> {/*friend`s profile image*/}
+                            </a>
                         </Col>
                         <Col md="auto" className="place_info">
                             <Row className="text">
                                 {userInfo.friend_info[friend].name}
-                            </Row>
-                            <Row className="profile_spot_button">
-                                <Button
-                                variant="light"
-                                className="place_button"
-                                type="button"
-                                onClick={() => openFriend(friend)}>
-                                    Open friend profile 
-                                </Button>
                             </Row>
                         </Col>
                         {/*Friend`s facebook, instagram and tiktok*/}

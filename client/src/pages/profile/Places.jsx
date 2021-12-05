@@ -4,19 +4,13 @@
 
 import React from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 import { useApiContext } from '../../components/AppContext';
 
 function Places({userInfo, userId}) {
-    const navigate = useNavigate();
     const api = useApiContext();
-
-    function openSpot(spotId) {
-        navigate("/spot?id=" + spotId);
-    }
 
     function removeVideo(spotId, videoId) {
         api.post('/editSpot', JSON.stringify({
@@ -63,7 +57,9 @@ function Places({userInfo, userId}) {
                 <Row key={spot_id}>
                     <Row md="auto" className="place_row">
                         <Col md="auto">
+                            <a href={"/spot?id=" + spot}>
                             <Image className="group_img" src={userInfo.spot_info[spot].image} roundedCircle /> {/*spot image*/}
+                            </a>
                         </Col>
                         <Col md="auto" className="place_info">
                             <Row className="text">
@@ -71,15 +67,6 @@ function Places({userInfo, userId}) {
                             </Row>
                             <Row className="text">
                                 Rank: {userInfo.spot_info[spot].user_ranks[userId]} {/*user`s rank on this spot image*/}
-                            </Row>
-                            <Row>
-                                <Button
-                                variant="light"
-                                className="place_button"
-                                type="button"
-                                onClick={() => openSpot(spot)}>
-                                    Open spot page    
-                                </Button>
                             </Row>
                         </Col>
                     </Row>
