@@ -2,21 +2,41 @@
  * Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>
  */
 
-import React from 'react';
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
-import { useApiContext } from '../../components/AppContext';
+import { useApiContext, useAuthState } from '../../components/AppContext';
+
+import ProfileContext from './ProfileContext';
 
 function Places({userInfo, userId}) {
     const api = useApiContext();
+
+    const {needReload, setNeedReload} = useContext(ProfileContext);
 
     function removeVideo(spotId, videoId) {
         api.post('/editSpot', JSON.stringify({
             'spot_id':spotId , 'video_id': videoId, 'user_id': userId
         }));
-        window.location.reload();
+        setNeedReload(!needReload);
+    }
+
+    const currentUser = useAuthState(); // current user is in local storage
+
+    function setRemoveVideoX(spot, video_id){
+        if (userId == currentUser.id){
+            return (
+                <Col className="text-right">
+                    <FontAwesomeIcon 
+                    icon={faTimes} 
+                    size="1x" cursor='pointer' 
+                    onClick={e => removeVideo(spot, video_id)}
+                    />
+                </Col>
+            );
+        }
     }
 
     function renderVideos(spot) { // videos horizontal scrollable list
@@ -27,13 +47,7 @@ function Places({userInfo, userId}) {
                         <Container className="horizontal-scrollable"> {/*go through all videos and create iframe & delete button for everyone*/}
                             {userInfo.spot_info[spot]["videos"].map((video, video_id) => 
                                 <Col className="col-xs-4" key={video_id}>
-                                    <Col className="text-right">
-                                        <FontAwesomeIcon 
-                                        icon={faTimes} 
-                                        size="1x" cursor='pointer' 
-                                        onClick={e => removeVideo(spot, video_id)}
-                                        />
-                                    </Col>
+                                    {setRemoveVideoX(spot, video_id)}
                                     <iframe
                                         className = "video_img" 
                                         src={video.url}>
@@ -47,8 +61,7 @@ function Places({userInfo, userId}) {
         }
         else {
             return null;
-        }
-        
+        }   
     }
 
     return (
