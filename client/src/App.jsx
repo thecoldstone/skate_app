@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom';
 import { AppProvider } from './components/AppContext';
 import { NavigationBar } from './components/homepage/index';
+import Alert from './components/Alert';
 
 /**
  * Main App Function Component
@@ -22,6 +23,7 @@ function App() {
         <AppProvider>
             <Router>
                 <NavigationBar />
+                <Alert />
                 <Routes>
                     {routes.map((route, index) => {
                         return (

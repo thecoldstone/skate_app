@@ -5,8 +5,11 @@
 import { Row, Col, Image, Button } from 'react-bootstrap';
 import { BsFillPeopleFill, BsFillCalendarEventFill } from 'react-icons/bs'
 import { ImLocation2 } from 'react-icons/im';
+import { MdFreeCancellation } from 'react-icons/md';
 import fontStyles from '../FeedItemCard.module.css';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAlertContext, useApiContext, useAuthState } from '../../../AppContext';
 
 /**
  * Event Card Component
@@ -16,14 +19,98 @@ import React from 'react';
  */
 function EventCard(props) {
 
+    const navigate = useNavigate();
+
+    const { setAlertContent, setVisible } = useAlertContext();
+    const api = useApiContext();
+    const user = useAuthState(); //  current user is in local storage
+
+    const [participants, setParticipants] = React.useState(0);
+    const [joined, setJoined] = React.useState(false);
+
+    React.useEffect(() => {
+        let participants = props.feature.properties.participants;
+
+        if (participants && participants.includes(user.id)) {
+            setJoined(true);
+        } else {
+            setJoined(false);
+        }
+        setParticipants(props.feature.properties.members);
+    }, [props.feature.properties.participants]);
+
+
     /**
-     * Handles button
+     * Handles Join button
      * 
      * @param {React.MouseEvent} e 
+     * @param {String} eventId - event id as a string
      */
-    const handleButton = (e) => {
+    const handleJoinButton = (e, eventId) => {
+        // [TODO] We need to know which event exactly it is
         e.preventDefault();
-    }
+
+        if (!isEnabled()) {
+            navigate('/login');
+            return;
+        }
+
+        api.post(
+            '/joinEvent',
+            JSON.stringify({
+                'userId': user.id,
+                'eventId': eventId
+            })
+        )
+            .then((res) => {
+                setParticipants(participants + 1);
+                setJoined(true);
+
+                // Prepare Alert 
+                setAlertContent("Joined successfully!", "success");
+                setVisible(true);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    };
+
+    /**
+     * Handles Leave button
+     * 
+     * @param {React.MouseEvent} e 
+     * @param {String} eventId - event id as a string
+     */
+    const handleLeaveButton = (e, eventId) => {
+        e.preventDefault();
+
+        api.post(
+            '/leaveEvent',
+            JSON.stringify({
+                'userId': user.id,
+                'eventId': eventId
+            })
+        )
+            .then((res) => {
+                setParticipants(participants - 1);
+                setJoined(false);
+
+                // Prepare Alert 
+                setAlertContent("Leaved successfully!", "success");
+                setVisible(true);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    };
+
+    const isEnabled = () => {
+        if (user.id == undefined || user.id === "") {
+            return false;
+        }
+
+        return true;
+    };
 
     return (
         <>
@@ -37,13 +124,23 @@ function EventCard(props) {
                                 <Row>
                                     <Col style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                                         <BsFillPeopleFill size="1.5em" />
-                                        <p style={{ marginTop: "1rem" }}>{props.feature.properties.members} participants</p>
+                                        <p style={{ marginTop: "1rem" }}>{participants} participants</p>
                                         <ImLocation2 size="1.5em" />
                                         <p style={{ marginTop: "1rem" }}>{props.feature.properties.address}</p>
-                                        <Button
-                                            style={{ backgroundColor: "#223A88", borderRadius: "11px" }}
-                                            onClick={handleButton}
-                                        >Join</Button>
+                                        {joined
+                                            ? (<Button
+                                                style={{ borderRadius: "11px" }}
+                                                variant='danger'
+                                                onClick={(e) => handleLeaveButton(e, props.id)}
+                                            ><MdFreeCancellation /></Button>)
+                                            : (<Button
+                                                style={
+                                                    !isEnabled()
+                                                        ? { backgroundColor: "#b0c1f8", borderRadius: "11px", border: "none" }
+                                                        : { backgroundColor: "#223A88", borderRadius: "11px" }
+                                                }
+                                                onClick={(e) => handleJoinButton(e, props.id)}
+                                            >Join</Button>)}
                                     </Col>
                                 </Row>
                             </Col>

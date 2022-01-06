@@ -13,7 +13,7 @@ import { MapContext } from '..';
  * @returns {React.FC}
  */
 function FeedContent() {
-    const {currentState} = useContext(MapContext);
+    const {currentState, setCurrentState} = useContext(MapContext);
     const [content, setContent] = useState("Loading...");
 
    // Updates Tab Feed Content  
