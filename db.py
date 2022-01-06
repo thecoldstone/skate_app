@@ -19,7 +19,8 @@ users = {
         "spots" : [0, 1, 2],
         "spot_info" : {},
         "friends" : [1,2,3,4,5,6,7,8],
-        "friend_info" : {}
+        "friend_info" : {},
+        "events": []
     },
     1 : {
         "email" : "myemail1@gmail.com",
@@ -32,7 +33,8 @@ users = {
         "spots" : [0, 1, 2],
         "spot_info" : {},
         "friends" : [0, 2],
-        "friend_info" : {}
+        "friend_info" : {},
+        "events": []
     },
     2 : {
         "email" : "myemail2@gmail.com",
@@ -45,7 +47,8 @@ users = {
         "spots" : [0, 1, 2],
         "spot_info" : {},
         "friends" : [0, 1, 3, 4 ,7],
-        "friend_info" : {}
+        "friend_info" : {},
+        "events": []
     },
     3 : {
         "email" : "myemail3@gmail.com",
@@ -58,7 +61,8 @@ users = {
         "spots" : [0, 1, 2],
         "spot_info" : {},
         "friends" : [1, 5, 7, 4, 2],
-        "friend_info" : {}
+        "friend_info" : {},
+        "events": []
     },
     4 : {
         "email" : "myemail4@gmail.com",
@@ -71,7 +75,8 @@ users = {
         "spots" : [0, 1, 2],
         "spot_info" : {},
         "friends" : [0, 1, 3, 4, 7],
-        "friend_info" : {}
+        "friend_info" : {},
+        "events": []
     },
     5 : {
         "email" : "myemail5@gmail.com",
@@ -84,7 +89,8 @@ users = {
         "spots" : [0, 1, 2],
         "spot_info" : {},
         "friends" : [0, 1, 3],
-        "friend_info" : {}
+        "friend_info" : {},
+        "events": []
     },
     6 : {
         "email" : "myemail6@gmail.com",
@@ -97,7 +103,8 @@ users = {
         "spots" : [0, 1, 2],
         "spot_info" : {},
         "friends" : [3, 4, 5],
-        "friend_info" : {}
+        "friend_info" : {},
+        "events": []
     },
     7 : {
         "email" : "myemail7@gmail.com",
@@ -110,7 +117,8 @@ users = {
         "spots" : [0, 1, 2],
         "spot_info" : {},
         "friends" : [6, 7, 3],
-        "friend_info" : {}
+        "friend_info" : {},
+        "events": []
     },
     8 : {
         "email" : "myemail8@gmail.com",
@@ -123,7 +131,8 @@ users = {
         "spots" : [0, 1, 2],
         "spot_info" : {},
         "friends" : [2, 4, 6],
-        "friend_info" : {}
+        "friend_info" : {},
+        "events": []
     }
 }
 
@@ -338,6 +347,29 @@ tab_spots = [
     }
 ]
 
+events = [
+    {
+        "title": "SkateFest",
+        "type": "event",
+        "description": "Workshop for small children to learn basic skate tricks.",
+        "address": "Boby Centrum",
+        "id": "2",
+        "members": 0,
+        "image": "https://t4.ftcdn.net/jpg/03/85/01/71/240_F_385017164_97YeX100UVZWAbJ1QZ3HUtaOE8uMNZQN.jpg",
+        "participants": []
+    },
+    {
+        "title": "Longshop Opening",
+        "type": "event",
+        "description": "We are opening",
+        "address": "Antonínská 5",
+        "id": "12",
+        "members": 0,
+        "image": "https://longshop.cz/wp-content/uploads/2018/11/meli2-768x327.jpg",
+        "participants": []
+    },
+]
+
 """
     Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
 """
@@ -351,16 +383,21 @@ tab_events = [
                     49.21169085644892
                 ]
         },
-        "properties": {
-            "title": "SkateFest",
-            "type": "event",
-            "description": "Workshop for small children to learn basic skate tricks.",
-            "address": "Boby Centrum",
-            "id": "2",
-            "members": 24,
-            "image": "https://t4.ftcdn.net/jpg/03/85/01/71/240_F_385017164_97YeX100UVZWAbJ1QZ3HUtaOE8uMNZQN.jpg"
-        }
-    }
+        "properties": events[0],
+        "id": "2"
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    16.605623400012504,
+                    49.20291420397536
+                ]
+        },
+        "properties": events[1],
+        "id": "12"
+    },
 ]
 
 """
@@ -474,6 +511,14 @@ def get_homepage_contet(content_type):
 
     return respond_body
 
+"""
+    Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+"""
+def get_event(eventId):
+    for event in tab_events:
+            if event['id'] == eventId:
+                return event
+    return {}
 
 """
     Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>

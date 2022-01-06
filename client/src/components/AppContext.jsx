@@ -9,10 +9,35 @@ import { initialState, AuthReducer } from './Reducer';
 import api from './api';
 
 // App Contexts
+const AlertContext = createContext(
+    {
+        text: "",
+        setText: () => { },
+        severity: "",
+        setSeverity: () => { },
+        visible: false,
+        setVisible: () => { },
+        setAlertContent: () => { } 
+    });
 const ApiContext = createContext();
 const AuthStateContext = createContext();
 const AuthDispatchContext = createContext();
 const WebSocketContext = createContext();
+
+/**
+ * Get Alert Context
+ * 
+ * @author Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ * @returns {React.Context}
+ */
+export function useAlertContext() {
+    const context = useContext(AlertContext);
+    if (context === undefined) {
+        throw new Error("useAlertContext must be used within an AppProvider")
+    }
+
+    return context;
+}
 
 /**
  * Get Api Context
@@ -23,7 +48,7 @@ const WebSocketContext = createContext();
 export function useApiContext() {
     const context = useContext(ApiContext);
     if (context === undefined) {
-        throw new Error("useApiContext must be used within a AppProvider");
+        throw new Error("useApiContext must be used within an AppProvider");
     }
 
     return context;
@@ -38,7 +63,7 @@ export function useApiContext() {
 export function useAuthState() {
     const context = useContext(AuthStateContext);
     if (context === undefined) {
-        throw new Error("useAuthState must be used within a AuthProvider");
+        throw new Error("useAuthState must be used within an AuthProvider");
     }
 
     return context;
@@ -53,7 +78,7 @@ export function useAuthState() {
 export function useAuthDispatch() {
     const context = useContext(AuthDispatchContext);
     if (context === undefined) {
-        throw new Error("useAuthDispatch must be used within a AuthProvider");
+        throw new Error("useAuthDispatch must be used within an AuthProvider");
     }
 
     return context;
@@ -87,15 +112,44 @@ export const AppProvider = ({ children }) => {
     const [user, dispatch] = useReducer(AuthReducer, initialState);
     let socket = io.connect('http://localhost:5000');
 
+    const [text, setText] = React.useState("");
+    const [severity, setSeverity] = React.useState((value) => {
+        if (
+            value === "error" ||
+            value === "warning" ||
+            value === "info" ||
+            value === "success"
+        ) {
+            return value;
+        }
+        return "error";
+    });
+
+    const [visible, setVisible] = React.useState(false);
+    const setAlertContent = (text, severity) => {
+        setText(text);
+        setSeverity(severity);
+    }
+
     return (
-        <ApiContext.Provider value={api}>
-            <AuthStateContext.Provider value={user}>
-                <AuthDispatchContext.Provider value={dispatch}>
-                    <WebSocketContext.Provider value={socket}>
-                        {children}
-                    </WebSocketContext.Provider>
-                </AuthDispatchContext.Provider>
-            </AuthStateContext.Provider>
-        </ApiContext.Provider>
+        <AlertContext.Provider value={{
+            text: text,
+            setText: setText,
+            severity: severity,
+            setSeverity: setSeverity,
+            visible: visible,
+            setVisible: setVisible,
+            setAlertContent: setAlertContent
+        }}>
+            <ApiContext.Provider value={api}>
+                <AuthStateContext.Provider value={user}>
+                    <AuthDispatchContext.Provider value={dispatch}>
+                        <WebSocketContext.Provider value={socket}>
+                            {children}
+                        </WebSocketContext.Provider>
+                    </AuthDispatchContext.Provider>
+                </AuthStateContext.Provider>
+            </ApiContext.Provider>
+        </AlertContext.Provider>
     );
 };
