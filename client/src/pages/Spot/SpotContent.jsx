@@ -86,13 +86,15 @@ function SpotContent({spot, spotId}) {
                 };
                 await api.post('/editProfile', JSON.stringify(request));
                 
-
+                setNeedReload(!needReload);
                 let message = (!isFavourite) ? "The spot has been added to favourite!"
                                              : "The spot has been removed from favourite!";
-                setNeedReload(!needReload);
 
                 setAlertContent(message, 'success');
                 setVisible(true);
+                setTimeout(() => {
+                    setVisible(false)
+                }, 5000);
             } catch (error) {
                 console.log(error);
             }
@@ -142,6 +144,9 @@ function SpotContent({spot, spotId}) {
 
                     setAlertContent("Video has been successfully added!", 'success');
                     setVisible(true);
+                    setTimeout(() => {
+                        setVisible(false)
+                    }, 3000); 
                 }
             } catch (error) {
                 console.log(error);

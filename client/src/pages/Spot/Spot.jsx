@@ -41,14 +41,10 @@ function Spot() {
             }
         };
         fetchSpotData();
-        console.log(needReload);
     }, [needReload])
 
     return (
-        <SpotContext.Provider value={{
-            needReload,
-            setNeedReload
-        }}>
+        <SpotContext.Provider value={{needReload, setNeedReload}}>
             <Container className="container">
                 <Row>
                     <Col sm={6}>
