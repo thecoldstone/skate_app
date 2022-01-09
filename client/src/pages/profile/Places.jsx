@@ -7,7 +7,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
-import { useApiContext, useAuthState } from '../../components/AppContext';
+import { useApiContext, useAuthState, useAlertContext } from '../../components/AppContext';
 
 import ProfileContext from './ProfileContext';
 
@@ -16,10 +16,19 @@ function Places({userInfo, userId}) {
 
     const {needReload, setNeedReload} = useContext(ProfileContext);
 
+    const { setAlertContent, setVisible } = useAlertContext();
+
     function removeVideo(spotId, videoId) {
         api.post('/editSpot', JSON.stringify({
             'spot_id':spotId , 'video_id': videoId, 'user_id': userId
         }));
+
+        setAlertContent("Video was removed!", "success");
+        setVisible(true);
+        setTimeout(() => {
+            setVisible(false)
+        }, 3000);
+
         setNeedReload(!needReload);
     }
 

@@ -54,4 +54,8 @@ class EditProfile(Resource):
 
         db.set_user(json_data["id"], user)
 
-        return {'result': 'OK'}
+        for check_key, check_value in json_data.items():
+            if check_key != "id" and check_value:
+                return {'result': 'OK'}
+
+        return {'result': 'NO'}
