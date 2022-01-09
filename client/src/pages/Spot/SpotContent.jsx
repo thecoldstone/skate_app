@@ -2,17 +2,18 @@
  * Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Row, Col, Nav, Tab, Button, Modal, Form} from 'react-bootstrap';
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { useApiContext, useAuthState,
+import { useAlertContext, useApiContext, useAuthState,
          useAuthDispatch, useWebSocket } from '../../components/AppContext';
 import './Spot.css';
 import Chat from './Chat';
 import Gallery from './Gallery';
+import SpotContext from './SpotContext';
 
 
 /**
@@ -38,12 +39,15 @@ function setCurrentTabByHash(hash) {
  */
 function SpotContent({spot, spotId}) {
     const [key, setKey] = useState('all');
-    const [isFavourite, setFavourite] = useState();
+    const [isFavourite, setFavourite] = useState(false);
+
     const location = useLocation();
     const api = useApiContext();
     const currentUser = useAuthState();
     const dispatch = useAuthDispatch();
     const webSocket = useWebSocket();
+    const {needReload, setNeedReload} = useContext(SpotContext);
+    const { setAlertContent, setVisible } = useAlertContext();
 
     // set Tab content at the start of the rendering
     useEffect(() =>{
@@ -60,7 +64,7 @@ function SpotContent({spot, spotId}) {
         webSocket.on('get_is_favourite', (data) => {
             setFavourite(data);
         });
-    })
+    }, [needReload])
 
     /**
      * A function that defines favourite icon as a navigation item
@@ -81,7 +85,14 @@ function SpotContent({spot, spotId}) {
                     "spot_id" : spotId
                 };
                 await api.post('/editProfile', JSON.stringify(request));
-                window.location.reload();
+                
+
+                let message = (!isFavourite) ? "The spot has been added to favourite!"
+                                             : "The spot has been removed from favourite!";
+                setNeedReload(!needReload);
+
+                setAlertContent(message, 'success');
+                setVisible(true);
             } catch (error) {
                 console.log(error);
             }
@@ -125,8 +136,13 @@ function SpotContent({spot, spotId}) {
                 if (response.data.error)
                     // sets the error to be shown in modal window
                     dispatch({ type: 'VIDEO_LOADING_ERROR', error: response.data.error });
-                else
-                    window.location.reload();
+                else{
+                    setNeedReload(!needReload);
+                    setModal(false);
+
+                    setAlertContent("Video has been successfully added!", 'success');
+                    setVisible(true);
+                }
             } catch (error) {
                 console.log(error);
             }
