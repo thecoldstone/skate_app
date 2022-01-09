@@ -8,7 +8,7 @@ import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useApiContext } from '../../components/AppContext';
+import { useApiContext, useAlertContext } from '../../components/AppContext';
 import close_icon_img from "../../pictures/icons/close_button.png";
 import './Profile.css'
 
@@ -18,6 +18,8 @@ function EditProfile () {
 
     let [searchParams, setSearchParams] = useSearchParams();
     let userId = searchParams.get("id");
+
+    const { setAlertContent, setVisible } = useAlertContext();
 
     let [userImage, setUserImage] = useState("");
     useEffect(() => {
@@ -47,8 +49,31 @@ function EditProfile () {
             "instagram" : newInst,
             "tiktok" : newTikTok
         }
-        await api.post('/editProfile', JSON.stringify(request));
-        navigate("/profile?id=" + userId);
+        let response = await api.post('/editProfile', JSON.stringify(request));
+
+        if (response && response.data.result == "OK") {
+            setAlertContent("Personal info was saved!", "success");
+        } else {
+            setAlertContent("Nothing to save!", "success");
+        }
+
+        // for (const [key, value] of Object.entries(request)) {
+        //     if (key == "id") {
+        //         continue;
+        //     }
+        //     if (value != "") {
+        //         setAlertContent("Personal info was saved!", "success");
+        //         break;
+        //     }
+        //     if (key == Object.keys(request)[Object.keys(request).length - 1] && value == "") {
+        //         setAlertContent("Nothing to save!", "success");
+        //     }
+        // }
+        setVisible(true);
+        setTimeout(() => {
+            setVisible(false);
+            navigate("/profile?id=" + userId);
+        }, 1000);
     }
 
     return (

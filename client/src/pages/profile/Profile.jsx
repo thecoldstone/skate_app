@@ -15,7 +15,7 @@ import tiktok_icon_image from "../../pictures/icons/tiktok.png";
 
 import './Profile.css'
 
-import { useApiContext, useAuthState } from '../../components/AppContext';
+import { useApiContext, useAuthState, useAlertContext } from '../../components/AppContext';
 import Places from './Places';
 import Friends from './Friends';
 import ProfileContext from './ProfileContext';
@@ -27,6 +27,8 @@ function Profile () {
 
     const [key, setKey] = useState('places');
     const api = useApiContext();
+
+    const { setAlertContent, setVisible } = useAlertContext();
 
     const [needReload, setNeedReload] = useState(true);
 
@@ -51,6 +53,17 @@ function Profile () {
 
     function addFriendButtonClick() { // add/remove friend
         api.post('/editProfile', JSON.stringify({'id': currentUser.id, 'friend_id': userId}));
+        
+        if (userInfo["is_in_friends_list"]) {
+            setAlertContent("Friend was removed!", "success");
+        } else {
+            setAlertContent("Friend was added!", "success");
+        }
+        setVisible(true);
+        setTimeout(() => {
+            setVisible(false)
+        }, 3000);
+
         setNeedReload(!needReload);
     }
 
