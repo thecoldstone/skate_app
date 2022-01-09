@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import { useContext, useState } from 'react';
 import { Row, Col, Form, FormGroup, Button, Dropdown, FormControl } from 'react-bootstrap';
 import Geocode from 'react-geocode';
@@ -126,6 +130,9 @@ function AddContentForm() {
             // Prepare Alert 
             setAlertContent("Select location!", "error");
             setVisible(true);
+            setTimeout(() => {
+                setVisible(false)
+            }, 5000);
             return;
         }
 
@@ -146,6 +153,9 @@ function AddContentForm() {
                 // Prepare Alert 
                 setAlertContent("Error!", "error");
                 setVisible(true);
+                setTimeout(() => {
+                    setVisible(false)
+                }, 5000);
                 return;
             }
             currentState.setKey("all");
@@ -154,6 +164,9 @@ function AddContentForm() {
             setVisible(true);
             // Change view 
             setCurrentView("TabFeed");
+            setTimeout(() => {
+                setVisible(false)
+            }, 5000);
         }).catch((err) => {
 
             // Prepare Alert 

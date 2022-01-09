@@ -10,70 +10,84 @@ import db
 class HomepageContent(Resource):
     def post(self):
         json_data = request.get_json(force=True)
+        content = None
 
-        print(json_data)
-
-        content = json_data["content"]
-
-        if json_data["userId"] != None:
+        try:
+            content = json_data["content"]
             return {'result': db.get_homepage_contet(content, userId=json_data["userId"])}
-        else:
-            return {'result': db.get_homepage_contet(content)}
+        except KeyError:
+            if content:
+                return {'result': db.get_homepage_contet(content)}
+            else:
+                return 
+            
 
 class JoinEvent(Resource):
     def post(self):
         json_data = request.get_json(force=True)
         
-        event = db.get_event(json_data["eventId"])
-        event['properties']['members'] += 1
-        event['properties']['participants'].append(json_data["userId"])
+        try:
+            event = db.get_event(json_data["eventId"])
+            event['properties']['participants'].append(json_data["userId"])
+            event['properties']['members'] += 1
 
-        print(event['properties']['participants'])
+            print(event['properties']['participants'])
 
-        return {'result': 'ok'}
-        
+            return {'result': 'ok'}
+        except:
+            return {'result': None}
+
 class LeaveEvent(Resource):
     def post(self):
         json_data = request.get_json(force=True)
 
-        event = db.get_event(json_data["eventId"])
-        event['properties']['members'] -= 1
-        event['properties']['participants'].remove(json_data["userId"])
+        try:
+            event = db.get_event(json_data["eventId"])
+            event['properties']['participants'].remove(json_data["userId"])
+            event['properties']['members'] -= 1
 
-        return {'result': 'ok'}
+            return {'result': 'ok'}
+        except:
+            return {'result': None}
 
 class LikeItem(Resource):
     def post(self):
         json_data = request.get_json(force=True)
 
-        item = db.get_item(json_data["itemId"])
-        if item is None:
-            return
-        
-        if json_data["userId"] is None:
-            return
+        try:
+            item = db.get_item(json_data["itemId"])
+            if item is None:
+                return
+            
+            if json_data["userId"] is None:
+                return
 
-        item["isFavourite"] = True
-        
-        db.users[json_data["userId"]]["favourite"].append(int(item["id"]))
+            item["isFavourite"] = True
+            
+            db.users[json_data["userId"]]["favourite"].append(int(item["id"]))
 
-        return {'result': 'ok'}
+            return {'result': 'ok'}
+        except KeyError:
+            return {'result': None}
 
 class DislikeItem(Resource):
     def post(self):
         json_data = request.get_json(force=True)
 
-        item = db.get_item(json_data["itemId"])
-        if item is None:
-            return
-        
-        if json_data["userId"] is None:
-            return
-        
-        db.users[json_data["userId"]]["favourite"].remove(int(item["id"]))
-        item["isFavourite"] = False
+        try:
+            item = db.get_item(json_data["itemId"])
+            if item is None:
+                return
+            
+            if json_data["userId"] is None:
+                return
+            
+            db.users[json_data["userId"]]["favourite"].remove(int(item["id"]))
+            item["isFavourite"] = False
 
-        return {'result': 'ok'}
+            return {'result': 'ok'}
+        except:
+            return {'result': None}
 
 class AddItem(Resource):
     def post(self):

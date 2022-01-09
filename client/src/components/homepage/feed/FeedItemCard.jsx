@@ -125,6 +125,9 @@ function FeedItemCard(props) {
                 // Prepare Alert 
                 setAlertContent("Joined successfully!", "success");
                 setVisible(true);
+                setTimeout(() => {
+                    setVisible(false)
+                }, 5000);
             })
             .catch((err) => {
                 console.log(err)
@@ -154,6 +157,9 @@ function FeedItemCard(props) {
                 // Prepare Alert 
                 setAlertContent("Leaved successfully!", "success");
                 setVisible(true);
+                setTimeout(() => {
+                    setVisible(false)
+                }, 5000);
             })
             .catch((err) => {
                 console.log(err)
@@ -256,6 +262,9 @@ function FeedItemCard(props) {
                 // Prepare Alert 
                 setAlertContent("Added to liked", "success");
                 setVisible(true);
+                setTimeout(() => {
+                    setVisible(false)
+                }, 5000);
             })
             .catch((err) => {
                 console.log(err)
@@ -278,6 +287,9 @@ function FeedItemCard(props) {
                 // Prepare Alert 
                 setAlertContent("Removed from liked", "success");
                 setVisible(true);
+                setTimeout(() => {
+                    setVisible(false)
+                }, 5000);
             })
             .catch((err) => {
                 console.log(err)

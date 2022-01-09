@@ -472,6 +472,9 @@ tab_all = [
     tab_photos
 ]
 
+"""
+    Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+"""
 def add_event(title, description, address, lng, lat):
 
     event = {
@@ -503,10 +506,13 @@ def add_event(title, description, address, lng, lat):
 
     return tab_event
 
+"""
+    Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+"""
 def add_spot(title, description, address, lng, lat):
     properties = {
             "title": title,
-            "type": "event",
+            "type": "spot",
             "description": description,
             "address": address,
             "id": "13",
@@ -604,6 +610,9 @@ def get_event(eventId):
                 return event
     return {}
 
+"""
+    Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+"""
 def get_item(itemId):
     for tab in tab_all:
         for item in tab:

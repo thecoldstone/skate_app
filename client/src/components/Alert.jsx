@@ -1,3 +1,7 @@
+/**
+ * Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
+ */
+
 import React from 'react';
 import { Alert as Alrt, Collapse, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
