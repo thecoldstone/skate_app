@@ -170,7 +170,13 @@ function SpotContent({spot, spotId}) {
                         aria-labelledby="contained-modal-title-vcenter"
                         centered
                         show={modal}
-                        onHide={() => setModal(false)}
+                        onHide={() => 
+                            {
+                                setVideo("");
+                                setModal(false);
+                                currentUser.errorMessage = null;
+                            }
+                        }
                         >
                         <Modal.Header closeButton>
                             <Modal.Title>Add Youtube video</Modal.Title>
