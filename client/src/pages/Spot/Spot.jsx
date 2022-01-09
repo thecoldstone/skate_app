@@ -12,6 +12,7 @@ import { useApiContext, useAuthState } from '../../components/AppContext';
 import "./Spot.css"
 import SpotContent from './SpotContent';
 import SpotImage from './SpotImage';
+import SpotContext from './SpotContext';
 
 /**
  * A function that defines Spot as a component
@@ -22,6 +23,7 @@ function Spot() {
     const [spot, setSpot] = useState({});
     const api = useApiContext();
     const currentUser = useAuthState();
+    const [needReload, setNeedReload] = useState(true);
 
     let [searchParams, setSearchParams] = useSearchParams();
     let spotId = searchParams.get("id");
@@ -39,21 +41,27 @@ function Spot() {
             }
         };
         fetchSpotData();
-    }, [])
+        console.log(needReload);
+    }, [needReload])
 
-    return (       
-        <Container className="container">
-            <Row>
-                <Col sm={6}>
-                    <Row>
-                        <SpotContent spot={spot} spotId={spotId}/>
-                    </Row>
-                </Col>
-                <Col>
-                    <SpotImage spot={spot} spotId={spotId}/>
-                </Col>
-            </Row>
-        </Container>
+    return (
+        <SpotContext.Provider value={{
+            needReload,
+            setNeedReload
+        }}>
+            <Container className="container">
+                <Row>
+                    <Col sm={6}>
+                        <Row>
+                            <SpotContent spot={spot} spotId={spotId}/>
+                        </Row>
+                    </Col>
+                    <Col>
+                        <SpotImage spot={spot} spotId={spotId}/>
+                    </Col>
+                </Row>
+            </Container>
+        </SpotContext.Provider>
     )
 }
 
