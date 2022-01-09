@@ -52,28 +52,19 @@ function EditProfile () {
         let response = await api.post('/editProfile', JSON.stringify(request));
 
         if (response && response.data.result == "OK") {
-            setAlertContent("Personal info was saved!", "success");
+            setAlertContent("Personal info has been saved!", "success");
+            setVisible(true);
+            setTimeout(() => {
+                setVisible(false);
+                navigate("/profile?id=" + userId);
+            }, 1000);
         } else {
-            setAlertContent("Nothing to save!", "success");
+            setAlertContent("Nothing to save!", "error");
+            setVisible(true);
+            setTimeout(() => {
+                setVisible(false);
+            }, 3000);
         }
-
-        // for (const [key, value] of Object.entries(request)) {
-        //     if (key == "id") {
-        //         continue;
-        //     }
-        //     if (value != "") {
-        //         setAlertContent("Personal info was saved!", "success");
-        //         break;
-        //     }
-        //     if (key == Object.keys(request)[Object.keys(request).length - 1] && value == "") {
-        //         setAlertContent("Nothing to save!", "success");
-        //     }
-        // }
-        setVisible(true);
-        setTimeout(() => {
-            setVisible(false);
-            navigate("/profile?id=" + userId);
-        }, 1000);
     }
 
     return (

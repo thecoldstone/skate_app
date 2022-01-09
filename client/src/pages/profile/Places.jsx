@@ -23,7 +23,7 @@ function Places({userInfo, userId}) {
             'spot_id':spotId , 'video_id': videoId, 'user_id': userId
         }));
 
-        setAlertContent("Video was removed!", "success");
+        setAlertContent("Video has been removed!", "success");
         setVisible(true);
         setTimeout(() => {
             setVisible(false)

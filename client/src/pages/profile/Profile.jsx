@@ -55,9 +55,9 @@ function Profile () {
         api.post('/editProfile', JSON.stringify({'id': currentUser.id, 'friend_id': userId}));
         
         if (userInfo["is_in_friends_list"]) {
-            setAlertContent("Friend was removed!", "success");
+            setAlertContent("Friend has been removed!", "success");
         } else {
-            setAlertContent("Friend was added!", "success");
+            setAlertContent("Friend has been added!", "success");
         }
         setVisible(true);
         setTimeout(() => {
