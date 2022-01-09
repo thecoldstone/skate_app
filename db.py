@@ -20,7 +20,8 @@ users = {
         "spot_info" : {},
         "friends" : [1,2,3,4,5,6,7,8],
         "friend_info" : {},
-        "events": []
+        "events": [],
+        "favourite": []
     },
     1 : {
         "email" : "myemail1@gmail.com",
@@ -34,7 +35,8 @@ users = {
         "spot_info" : {},
         "friends" : [0, 2],
         "friend_info" : {},
-        "events": []
+        "events": [],
+        "favourite": []
     },
     2 : {
         "email" : "myemail2@gmail.com",
@@ -48,7 +50,8 @@ users = {
         "spot_info" : {},
         "friends" : [0, 1, 3, 4 ,7],
         "friend_info" : {},
-        "events": []
+        "events": [],
+        "favourite": []
     },
     3 : {
         "email" : "myemail3@gmail.com",
@@ -62,7 +65,8 @@ users = {
         "spot_info" : {},
         "friends" : [1, 5, 7, 4, 2],
         "friend_info" : {},
-        "events": []
+        "events": [],
+        "favourite": []
     },
     4 : {
         "email" : "myemail4@gmail.com",
@@ -76,7 +80,8 @@ users = {
         "spot_info" : {},
         "friends" : [0, 1, 3, 4, 7],
         "friend_info" : {},
-        "events": []
+        "events": [],
+        "favourite": []
     },
     5 : {
         "email" : "myemail5@gmail.com",
@@ -90,7 +95,8 @@ users = {
         "spot_info" : {},
         "friends" : [0, 1, 3],
         "friend_info" : {},
-        "events": []
+        "events": [],
+        "favourite": []
     },
     6 : {
         "email" : "myemail6@gmail.com",
@@ -104,7 +110,8 @@ users = {
         "spot_info" : {},
         "friends" : [3, 4, 5],
         "friend_info" : {},
-        "events": []
+        "events": [],
+        "favourite": []
     },
     7 : {
         "email" : "myemail7@gmail.com",
@@ -118,7 +125,8 @@ users = {
         "spot_info" : {},
         "friends" : [6, 7, 3],
         "friend_info" : {},
-        "events": []
+        "events": [],
+        "favourite": []
     },
     8 : {
         "email" : "myemail8@gmail.com",
@@ -132,7 +140,8 @@ users = {
         "spot_info" : {},
         "friends" : [2, 4, 6],
         "friend_info" : {},
-        "events": []
+        "events": [],
+        "favourite": []
     }
 }
 
@@ -343,7 +352,8 @@ tab_spots = [
             "id": "1",
             "members": 15,
             "image": "https://as1.ftcdn.net/v2/jpg/02/87/93/88/1000_F_287938821_r4gVJaWOkQivCpByTVH2Sq4FPTZDPXN7.jpg"
-        }
+        },
+        "id": "1",
     }
 ]
 
@@ -421,7 +431,8 @@ tab_videos = [
             "id": "3",
             "members": 2,
             "image": "https://as2.ftcdn.net/v2/jpg/03/02/47/73/1000_F_302477323_YcrRliEVC4z6RZJPCACGxO3bBjdbHcrf.jpg"
-        }
+        },
+        "id": "3"
     }
 ]
 
@@ -446,7 +457,8 @@ tab_photos = [
             "id": "4",
             "members": 4,
             "image": "https://as2.ftcdn.net/v2/jpg/04/72/12/31/1000_F_472123128_RL8Jx0jqylDsTcplDLhM2nXOaAHsn1Qy.jpg"
-        }
+        },
+        "id": "4"
     }
 ]
 
@@ -460,6 +472,63 @@ tab_all = [
     tab_photos
 ]
 
+def add_event(title, description, address, lng, lat):
+
+    event = {
+            "title": title,
+            "type": "event",
+            "description": description,
+            "address": address,
+            "id": "13",
+            "members": 0,
+            "image": "https://longshop.cz/wp-content/uploads/2018/11/meli2-768x327.jpg",
+            "participants": []
+    }
+
+    tab_event = {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    lng,
+                    lat
+                ]
+            },
+            "properties": event,
+            "id": "13"
+    }
+
+    events.append(event)
+    tab_events.append(tab_event)
+
+    return tab_event
+
+def add_spot(title, description, address, lng, lat):
+    properties = {
+            "title": title,
+            "type": "event",
+            "description": description,
+            "address": address,
+            "id": "13",
+            "members": 0,
+            "image": "https://as1.ftcdn.net/v2/jpg/02/87/93/88/1000_F_287938821_r4gVJaWOkQivCpByTVH2Sq4FPTZDPXN7.jpg",
+    }
+    tab_spot = {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    lng,
+                    lat
+                ]
+            },
+            "properties": properties,
+            "id": "14"
+    }
+
+    tab_spots.append(tab_spot)
+
+    return tab_spot
 
 """
     Author: Serhii Salatskyi <xsalat01@stud.fit.vutbr.cz>
@@ -481,17 +550,32 @@ def set_spot(id, name, image):
 """
     Author: Nikita Zhukov <xzhuko01@stud.fit.vutbr.cz>
 """
-def get_homepage_contet(content_type):
+def get_homepage_contet(content_type, userFavourites=None, userId=None):
 
     respond_body = {
         "type": "FeatureCollection",
         "features": []
     }
 
+    if userId is not None:
+        userFavourites = users[userId]["favourite"]
+
+    print(userFavourites)
+    
+    if userFavourites is None or type(userFavourites) is not list:
+        userFavourites = []
+
     if content_type == "all":
         for items in tab_all:
             for item in items:
                 respond_body["features"].append(item)
+
+    if content_type == "favourite":
+            for items in tab_all:
+                for item in items:
+                    if int(item["id"]) in userFavourites:
+                        item["isFavourite"] = True
+                        respond_body["features"].append(item)
 
     if content_type == "events":
         for item in tab_events:
@@ -519,6 +603,14 @@ def get_event(eventId):
             if event['id'] == eventId:
                 return event
     return {}
+
+def get_item(itemId):
+    for tab in tab_all:
+        for item in tab:
+            if item['id'] == itemId:
+                return item
+    
+    return None
 
 """
     Author: Oleksii Korniienko <xkorni02@stud.fit.vutbr.cz>

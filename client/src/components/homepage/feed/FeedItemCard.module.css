@@ -21,3 +21,11 @@
     cursor: pointer;
     margin-bottom: 30px;
 }
+
+.dislike_btn {
+    color: rgba(0, 0, 0, .1);
+}
+
+.dislike_btn:hover {
+    color:rgba(233, 25, 25, 0.89);
+}

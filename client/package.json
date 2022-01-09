@@ -41,6 +41,7 @@
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.7",
     "axios": "^0.24.0",
+    "react-geocode": "^0.2.3",
     "react-icons": "^4.3.1"
   },
   "proxy": "http://localhost:5000"
