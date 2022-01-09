@@ -20,7 +20,9 @@ const MapContext = createContext({
         mapData: null,
         setMapData: () => {}
     },
-    setCurrentState: () => {}
+    setCurrentState: () => {},
+    currentView: "TabFeed",
+    setCurrentView: () => {}
 });
 
 export default MapContext;

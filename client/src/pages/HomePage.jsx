@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import mapboxgl from '!mapbox-gl';
 import { Map, MapContext, TabFeed } from '../components/homepage/index';
+import AddContentForm from '../components/homepage/feed/AddContentForm';
 
 /**
  * Home Page Component
@@ -24,6 +25,7 @@ function HomePage() {
     // Define states for MapContext Provider
     const [key, setKey] = useState("all")
     const [mapData, setMapData] = useState(null)
+    const [currentView, setCurrentView] = useState("TabFeed");
 
     // Update map base on new mapData
     useEffect(() => {
@@ -61,7 +63,7 @@ function HomePage() {
 
         // Add markers 
         map.current.on('load', () => {
-            if (mapData != null) {
+            if (mapData !== undefined && mapData.features !== undefined) {
                 map.current.addSource('spots', {
                     type: 'geojson',
                     data: mapData
@@ -130,18 +132,20 @@ function HomePage() {
                 setKey: setKey,
                 mapData: mapData,
                 setMapData: setMapData
-            }
+            },
+            currentView,
+            setCurrentView
         }}>
             <Container>
                 <Row>
-                    <Col md={{ order: 1 }} style={{ zIndex: "1" }}>
+                    <Col md={{ order: 1 }} style={{ zIndex: "4" }}>
                         <Row>
                             <Map />
                         </Row>
                     </Col>
                     <Col sm={6}>
                         <Row>
-                            <TabFeed />
+                            <TabFeed /> 
                         </Row>
                     </Col>
                 </Row>

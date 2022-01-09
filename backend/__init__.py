@@ -6,7 +6,7 @@ import os
 
 from flask import Flask, render_template
 
-from backend.homepage import All, Events, Spots, Videos, Photos, JoinEvent, LeaveEvent
+from backend.homepage import AddItem, HomepageContent, JoinEvent, LeaveEvent, LikeItem, DislikeItem
 from backend.profile import Profile, EditProfile
 from backend.spot import Spot, Comment_add, Edit_spot
 from backend.authorization import Login
@@ -15,14 +15,13 @@ def add_api_resources(app):
     from flask_restful import Api
     api = Api(app, prefix='/api')
 
-    api.add_resource(All, '/all')
-    api.add_resource(Events, '/events')
-    api.add_resource(Spots, '/spots')
-    api.add_resource(Videos, '/videos')
-    api.add_resource(Photos, '/photos')
-    api.add_resource(Profile, '/profile')
+    api.add_resource(HomepageContent, '/getContent')
     api.add_resource(JoinEvent, '/joinEvent')
     api.add_resource(LeaveEvent, '/leaveEvent')
+    api.add_resource(LikeItem, '/likeItem')
+    api.add_resource(DislikeItem, '/dislikeItem')
+    api.add_resource(AddItem, '/addItem')
+    api.add_resource(Profile, '/profile')
 
     api.add_resource(EditProfile, '/editProfile')
     api.add_resource(Spot, '/spot')

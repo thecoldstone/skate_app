@@ -18,6 +18,7 @@ function FeedContent() {
 
    // Updates Tab Feed Content  
     useEffect(() => {
+        setContent(null)
         if (!currentState.mapData) return;
         setContent(renderFeedItems());
     }, [currentState.key, currentState.mapData]);
@@ -32,27 +33,32 @@ function FeedContent() {
             <Tab.Content>
                 <Tab.Pane eventKey="all">
                     <Col>
-                        {mapItems("all")}
+                        {mapItems()}
                     </Col>
                 </Tab.Pane>
                 <Tab.Pane eventKey="events">
                     <Col>
-                        {mapItems("event")}
+                        {mapItems()}
                     </Col>
                 </Tab.Pane>
                 <Tab.Pane eventKey="spots">
                     <Col>
-                        {mapItems("spot")}
+                        {mapItems()}
                     </Col>
                 </Tab.Pane>
                 <Tab.Pane eventKey="videos">
                     <Col>
-                        {mapItems("video")}
+                        {mapItems()}
                     </Col>
                 </Tab.Pane>
                 <Tab.Pane eventKey="photos">
                     <Col>
-                        {mapItems("photo")}
+                        {mapItems()}
+                    </Col>
+                </Tab.Pane>
+                <Tab.Pane eventKey="favourite">
+                    <Col>
+                        {mapItems()}
                     </Col>
                 </Tab.Pane>
             </Tab.Content>
@@ -65,6 +71,9 @@ function FeedContent() {
      * @returns {FeedItemCard}
      */
     const mapItems = () => {
+        if (currentState.mapData === undefined || currentState.mapData.features === undefined) {
+            return;
+        }
         return (
             <>
                 {
